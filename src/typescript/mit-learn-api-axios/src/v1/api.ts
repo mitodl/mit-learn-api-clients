@@ -693,6 +693,12 @@ export interface CourseResource {
     'pace': Array<CourseResourcePaceInner>;
     /**
      * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof CourseResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
+    /**
+     * 
      * @type {CourseResourceResourceTypeEnum}
      * @memberof CourseResource
      */
@@ -1517,6 +1523,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof LearningPathResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
     /**
      * 
      * @type {LearningPathResourceResourceTypeEnum}
@@ -2515,6 +2527,45 @@ export interface LearningResourceRelationship {
      * @memberof LearningResourceRelationship
      */
     'child': number;
+}
+
+
+/**
+ * Serializer field for the LearningResourceRelationship model that uses the LearningResourceSerializer to serialize the child resources
+ * @export
+ * @interface LearningResourceRelationshipChildField
+ */
+export interface LearningResourceRelationshipChildField {
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningResourceRelationshipChildField
+     */
+    'child': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningResourceRelationshipChildField
+     */
+    'position'?: number;
+    /**
+     * 
+     * @type {RelationTypeEnum}
+     * @memberof LearningResourceRelationshipChildField
+     */
+    'relation_type'?: RelationTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceRelationshipChildField
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceRelationshipChildField
+     */
+    'readable_id': string;
 }
 
 
@@ -4714,6 +4765,12 @@ export interface PodcastEpisodeResource {
     'pace': Array<CourseResourcePaceInner>;
     /**
      * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof PodcastEpisodeResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
+    /**
+     * 
      * @type {PodcastEpisodeResourceResourceTypeEnum}
      * @memberof PodcastEpisodeResource
      */
@@ -5188,6 +5245,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof PodcastResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
     /**
      * 
      * @type {PodcastResourceResourceTypeEnum}
@@ -5891,6 +5954,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof ProgramResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
     /**
      * 
      * @type {ProgramResourceResourceTypeEnum}
@@ -6799,6 +6868,12 @@ export interface VideoPlaylistResource {
     'pace': Array<CourseResourcePaceInner>;
     /**
      * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof VideoPlaylistResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
+    /**
+     * 
      * @type {VideoPlaylistResourceResourceTypeEnum}
      * @memberof VideoPlaylistResource
      */
@@ -7261,6 +7336,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
+     * @type {LearningResourceRelationshipChildField}
+     * @memberof VideoResource
+     */
+    'children': LearningResourceRelationshipChildField | null;
     /**
      * 
      * @type {VideoResourceResourceTypeEnum}
