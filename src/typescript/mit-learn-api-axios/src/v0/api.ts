@@ -9421,6 +9421,8 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {Array<string>} [course_number] Course number of the content file
          * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
+         * @param {string} [group_by] The attribute to group results by
+         * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
          * @param {Array<string>} [key] The filename of the content file
          * @param {number} [limit] Number of results to return per page
          * @param {Array<string>} [offered_by] Offeror of the content file
@@ -9433,7 +9435,7 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorContentFilesSearchRetrieve: async (collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorContentFilesSearchRetrieve: async (collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_content_files_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9464,6 +9466,14 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
 
             if (file_extension) {
                 localVarQueryParameter['file_extension'] = file_extension;
+            }
+
+            if (group_by !== undefined) {
+                localVarQueryParameter['group_by'] = group_by;
+            }
+
+            if (group_size !== undefined) {
+                localVarQueryParameter['group_size'] = group_size;
             }
 
             if (key) {
@@ -9531,6 +9541,8 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {Array<string>} [course_number] Course number of the content file
          * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
+         * @param {string} [group_by] The attribute to group results by
+         * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
          * @param {Array<string>} [key] The filename of the content file
          * @param {number} [limit] Number of results to return per page
          * @param {Array<string>} [offered_by] Offeror of the content file
@@ -9543,8 +9555,8 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorContentFilesSearchRetrieve(collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, content_feature_type, course_number, edx_module_id, file_extension, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, options);
+        async vectorContentFilesSearchRetrieve(collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, content_feature_type, course_number, edx_module_id, file_extension, group_by, group_size, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorContentFilesSearchApi.vectorContentFilesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9567,7 +9579,7 @@ export const VectorContentFilesSearchApiFactory = function (configuration?: Conf
          * @throws {RequiredError}
          */
         vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileVectorSearchResponse> {
-            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9612,6 +9624,20 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
      */
     readonly file_extension?: Array<string>
+
+    /**
+     * The attribute to group results by
+     * @type {string}
+     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
+     */
+    readonly group_by?: string
+
+    /**
+     * The number of chunks in each group. Only relevant when group_by is used
+     * @type {number}
+     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
+     */
+    readonly group_size?: number
 
     /**
      * The filename of the content file
@@ -9693,7 +9719,7 @@ export class VectorContentFilesSearchApi extends BaseAPI {
      * @memberof VectorContentFilesSearchApi
      */
     public vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(this.axios, this.basePath));
+        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
