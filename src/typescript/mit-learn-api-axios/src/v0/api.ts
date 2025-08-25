@@ -557,6 +557,12 @@ export interface ContentFile {
     'description'?: string | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof ContentFile
+     */
+    'require_summaries': boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ContentFile
      */
@@ -1126,6 +1132,12 @@ export interface CourseResource {
      * @memberof CourseResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CourseResource
+     */
+    'require_summaries': boolean;
 }
 
 
@@ -2122,6 +2134,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LearningPathResource
+     */
+    'require_summaries'?: boolean;
 }
 
 
@@ -3851,6 +3869,12 @@ export interface PodcastEpisodeResource {
      * @memberof PodcastEpisodeResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PodcastEpisodeResource
+     */
+    'require_summaries': boolean;
 }
 
 
@@ -4155,6 +4179,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PodcastResource
+     */
+    'require_summaries': boolean;
 }
 
 
@@ -4861,6 +4891,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgramResource
+     */
+    'require_summaries': boolean;
 }
 
 
@@ -5826,6 +5862,12 @@ export interface VideoPlaylistResource {
      * @memberof VideoPlaylistResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoPlaylistResource
+     */
+    'require_summaries': boolean;
 }
 
 
@@ -6136,6 +6178,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'max_weekly_hours'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoResource
+     */
+    'require_summaries': boolean;
 }
 
 
