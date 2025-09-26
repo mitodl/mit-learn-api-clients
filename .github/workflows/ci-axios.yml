@@ -1,0 +1,35 @@
+name: CI - Axios TypeScript Package
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'src/typescript/mit-learn-api-axios/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'src/typescript/mit-learn-api-axios/**'
+
+jobs:
+  test-axios-package:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Enable corepack
+      run: corepack enable
+      
+    - name: Install dependencies
+      working-directory: src/typescript/mit-learn-api-axios
+      run: yarn install
+      
+    - name: Run pack dry-run
+      working-directory: src/typescript/mit-learn-api-axios
+      run: yarn pack --dry-run
