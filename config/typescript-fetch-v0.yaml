@@ -1,0 +1,8 @@
+generatorName: typescript-fetch
+outputDir: mit-learn-api-clients/src/typescript/mit-learn-api-fetch/src/v0
+inputSpec: mit-learn/openapi/specs/v0.yaml
+ignoreFileOverride: mit-learn-api-clients/.openapi-generator-ignore
+additionalProperties:
+  globalProperty: apis,models
+  paramNaming: original
+  useSingleRequestParameter: true
