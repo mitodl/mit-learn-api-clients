@@ -2608,6 +2608,12 @@ export interface LearningResourceOfferor {
      * @memberof LearningResourceOfferor
      */
     'channel_url': string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LearningResourceOfferor
+     */
+    'display_facet'?: boolean;
 }
 /**
  * Serializer for LearningResourceOfferor with all details
@@ -2687,6 +2693,12 @@ export interface LearningResourceOfferorDetail {
      * @memberof LearningResourceOfferorDetail
      */
     'value_prop'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LearningResourceOfferorDetail
+     */
+    'display_facet'?: boolean;
 }
 /**
  * Serializer for LearningResourceOfferor with all details
@@ -2760,6 +2772,12 @@ export interface LearningResourceOfferorDetailRequest {
      * @memberof LearningResourceOfferorDetailRequest
      */
     'value_prop'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LearningResourceOfferorDetailRequest
+     */
+    'display_facet'?: boolean;
 }
 /**
  * Serializer for LearningResourcePlatform
