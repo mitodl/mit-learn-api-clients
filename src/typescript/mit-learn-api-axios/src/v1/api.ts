@@ -226,6 +226,12 @@ export interface ArticleResource {
      */
     'children': LearningResourceRelationshipChildField | null;
     /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof ArticleResource
+     */
+    'best_run_id': number | null;
+    /**
      * 
      * @type {ArticleResourceResourceTypeEnum}
      * @memberof ArticleResource
@@ -1165,6 +1171,12 @@ export interface CourseResource {
      */
     'children': LearningResourceRelationshipChildField | null;
     /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof CourseResource
+     */
+    'best_run_id': number | null;
+    /**
      * 
      * @type {CourseResourceResourceTypeEnum}
      * @memberof CourseResource
@@ -2002,6 +2014,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'children': LearningResourceRelationshipChildField | null;
+    /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof LearningPathResource
+     */
+    'best_run_id': number | null;
     /**
      * 
      * @type {LearningPathResourceResourceTypeEnum}
@@ -5345,6 +5363,12 @@ export interface PodcastEpisodeResource {
      */
     'children': LearningResourceRelationshipChildField | null;
     /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof PodcastEpisodeResource
+     */
+    'best_run_id': number | null;
+    /**
      * 
      * @type {PodcastEpisodeResourceResourceTypeEnum}
      * @memberof PodcastEpisodeResource
@@ -5832,6 +5856,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'children': LearningResourceRelationshipChildField | null;
+    /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof PodcastResource
+     */
+    'best_run_id': number | null;
     /**
      * 
      * @type {PodcastResourceResourceTypeEnum}
@@ -6547,6 +6577,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'children': LearningResourceRelationshipChildField | null;
+    /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof ProgramResource
+     */
+    'best_run_id': number | null;
     /**
      * 
      * @type {ProgramResourceResourceTypeEnum}
@@ -7578,6 +7614,12 @@ export interface VideoPlaylistResource {
      */
     'children': LearningResourceRelationshipChildField | null;
     /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof VideoPlaylistResource
+     */
+    'best_run_id': number | null;
+    /**
      * 
      * @type {VideoPlaylistResourceResourceTypeEnum}
      * @memberof VideoPlaylistResource
@@ -8053,6 +8095,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'children': LearningResourceRelationshipChildField | null;
+    /**
+     * Return the best run id for the resource, if it has runs
+     * @type {number}
+     * @memberof VideoResource
+     */
+    'best_run_id': number | null;
     /**
      * 
      * @type {VideoResourceResourceTypeEnum}
