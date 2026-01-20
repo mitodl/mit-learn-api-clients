@@ -6612,7 +6612,7 @@ export interface VideoShort {
      * @type {string}
      * @memberof VideoShort
      */
-    'youtube_id': string;
+    'video_id': string;
     /**
      * 
      * @type {string}
@@ -6624,37 +6624,25 @@ export interface VideoShort {
      * @type {string}
      * @memberof VideoShort
      */
-    'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
     'published_at': string;
     /**
      * 
      * @type {string}
      * @memberof VideoShort
      */
-    'thumbnail_url': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof VideoShort
-     */
-    'thumbnail_height': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof VideoShort
-     */
-    'thumbnail_width': number;
+    'thumbnail_small_url'?: string;
     /**
      * 
      * @type {string}
      * @memberof VideoShort
      */
-    'video_url': string;
+    'thumbnail_large_url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoShort
+     */
+    'video_url'?: string;
     /**
      * 
      * @type {string}
@@ -10780,15 +10768,15 @@ export const VideoShortsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Retrieve a single video short.
-         * @param {string} youtube_id A unique value identifying this video short.
+         * @param {string} video_id A unique value identifying this video short.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoShortsRetrieve: async (youtube_id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'youtube_id' is not null or undefined
-            assertParamExists('videoShortsRetrieve', 'youtube_id', youtube_id)
-            const localVarPath = `/api/v0/video_shorts/{youtube_id}/`
-                .replace(`{${"youtube_id"}}`, encodeURIComponent(String(youtube_id)));
+        videoShortsRetrieve: async (video_id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'video_id' is not null or undefined
+            assertParamExists('videoShortsRetrieve', 'video_id', video_id)
+            const localVarPath = `/api/v0/video_shorts/{video_id}/`
+                .replace(`{${"video_id"}}`, encodeURIComponent(String(video_id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10836,12 +10824,12 @@ export const VideoShortsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a single video short.
-         * @param {string} youtube_id A unique value identifying this video short.
+         * @param {string} video_id A unique value identifying this video short.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoShortsRetrieve(youtube_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoShort>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoShortsRetrieve(youtube_id, options);
+        async videoShortsRetrieve(video_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoShort>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.videoShortsRetrieve(video_id, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VideoShortsApi.videoShortsRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10872,7 +10860,7 @@ export const VideoShortsApiFactory = function (configuration?: Configuration, ba
          * @throws {RequiredError}
          */
         videoShortsRetrieve(requestParameters: VideoShortsApiVideoShortsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<VideoShort> {
-            return localVarFp.videoShortsRetrieve(requestParameters.youtube_id, options).then((request) => request(axios, basePath));
+            return localVarFp.videoShortsRetrieve(requestParameters.video_id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10909,7 +10897,7 @@ export interface VideoShortsApiVideoShortsRetrieveRequest {
      * @type {string}
      * @memberof VideoShortsApiVideoShortsRetrieve
      */
-    readonly youtube_id: string
+    readonly video_id: string
 }
 
 /**
@@ -10938,7 +10926,7 @@ export class VideoShortsApi extends BaseAPI {
      * @memberof VideoShortsApi
      */
     public videoShortsRetrieve(requestParameters: VideoShortsApiVideoShortsRetrieveRequest, options?: RawAxiosRequestConfig) {
-        return VideoShortsApiFp(this.configuration).videoShortsRetrieve(requestParameters.youtube_id, options).then((request) => request(this.axios, this.basePath));
+        return VideoShortsApiFp(this.configuration).videoShortsRetrieve(requestParameters.video_id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
