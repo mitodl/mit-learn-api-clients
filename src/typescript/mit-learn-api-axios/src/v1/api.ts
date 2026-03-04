@@ -24,7 +24,7 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
- * * `resource_type` - resource_type * `certification` - certification * `certification_type` - certification_type * `offered_by` - offered_by * `platform` - platform * `topic` - topic * `department` - department * `level` - level * `course_feature` - course_feature * `professional` - professional * `free` - free * `delivery` - delivery * `resource_category` - resource_category
+ * * `resource_type` - resource_type * `certification` - certification * `certification_type` - certification_type * `offered_by` - offered_by * `platform` - platform * `topic` - topic * `department` - department * `level` - level * `course_feature` - course_feature * `professional` - professional * `free` - free * `delivery` - delivery * `resource_type_group` - resource_type_group
  * @export
  * @enum {string}
  */
@@ -79,9 +79,9 @@ export const AggregationsEnum = {
     */
     Delivery: 'delivery',
     /**
-    * resource_category
+    * resource_type_group
     */
-    ResourceCategory: 'resource_category'
+    ResourceTypeGroup: 'resource_type_group'
 } as const;
 
 export type AggregationsEnum = typeof AggregationsEnum[keyof typeof AggregationsEnum];
@@ -194,7 +194,7 @@ export interface ArticleResource {
      * @type {string}
      * @memberof ArticleResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -273,6 +273,12 @@ export interface ArticleResource {
      * @memberof ArticleResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ArticleResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -553,19 +559,6 @@ export type AvailabilityEnum = typeof AvailabilityEnum[keyof typeof Availability
 
 
 /**
- * 
- * @export
- * @enum {string}
- */
-
-export const BlankEnum = {
-    Empty: ''
-} as const;
-
-export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
-
-
-/**
  * * `micromasters` - MicroMasters Credential * `professional` - Professional Certificate * `completion` - Certificate of Completion * `none` - No Certificate
  * @export
  * @enum {string}
@@ -591,42 +584,6 @@ export const CertificationTypeEnum = {
 } as const;
 
 export type CertificationTypeEnum = typeof CertificationTypeEnum[keyof typeof CertificationTypeEnum];
-
-
-/**
- * * `Lecture Notes` - Lecture Notes * `Readings` - Readings * `Practice` - Practice * `Open Textbooks` - Open Textbooks * `Lecture Audio` - Lecture Audio * `Video` - Video
- * @export
- * @enum {string}
- */
-
-export const ContentCategoryEnum = {
-    /**
-    * Lecture Notes
-    */
-    LectureNotes: 'Lecture Notes',
-    /**
-    * Readings
-    */
-    Readings: 'Readings',
-    /**
-    * Practice
-    */
-    Practice: 'Practice',
-    /**
-    * Open Textbooks
-    */
-    OpenTextbooks: 'Open Textbooks',
-    /**
-    * Lecture Audio
-    */
-    LectureAudio: 'Lecture Audio',
-    /**
-    * Video
-    */
-    Video: 'Video'
-} as const;
-
-export type ContentCategoryEnum = typeof ContentCategoryEnum[keyof typeof ContentCategoryEnum];
 
 
 /**
@@ -837,165 +794,6 @@ export interface ContentFile {
      * 
      * @type {any}
      * @memberof ContentFile
-     */
-    'flashcards'?: any;
-}
-
-
-/**
- * Serializer class for course run ContentFiles
- * @export
- * @interface ContentFileRequest
- */
-export interface ContentFileRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof ContentFileRequest
-     */
-    'run_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'run_title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'run_slug'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'semester'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContentFileRequest
-     */
-    'year'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'key'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'uid'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'title'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'url'?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ContentFileRequest
-     */
-    'content_feature_type': Array<string>;
-    /**
-     * 
-     * @type {ContentTypeEnum}
-     * @memberof ContentFileRequest
-     */
-    'content_type'?: ContentTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'content'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'content_title'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'content_author'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'content_language'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'checksum'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'image_src'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'source_path'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'file_type'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'file_extension'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'run_readable_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'edx_module_id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentFileRequest
-     */
-    'summary'?: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof ContentFileRequest
      */
     'flashcards'?: any;
 }
@@ -1353,7 +1151,7 @@ export interface CourseResource {
      * @type {string}
      * @memberof CourseResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -1438,6 +1236,12 @@ export interface CourseResource {
      * @memberof CourseResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CourseResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -1998,494 +1802,444 @@ export type DepartmentEnum = typeof DepartmentEnum[keyof typeof DepartmentEnum];
 
 
 /**
- * Serializer for the LearningMaterial model
+ * Serializer for document resources
  * @export
- * @interface LearningMaterial
+ * @interface DocumentResource
  */
-export interface LearningMaterial {
+export interface DocumentResource {
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterial
-     */
-    'id': number;
-    /**
-     * 
-     * @type {ContentFile}
-     * @memberof LearningMaterial
-     */
-    'content_file': ContentFile | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningMaterial
-     */
-    'content_tags'?: Array<string> | null;
-    /**
-     * 
-     * @type {LearningMaterialContentCategory}
-     * @memberof LearningMaterial
-     */
-    'content_category'?: LearningMaterialContentCategory | null;
-}
-/**
- * @type LearningMaterialContentCategory
- * @export
- */
-export type LearningMaterialContentCategory = BlankEnum | ContentCategoryEnum;
-
-/**
- * Serializer for the LearningMaterial model
- * @export
- * @interface LearningMaterialRequest
- */
-export interface LearningMaterialRequest {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningMaterialRequest
-     */
-    'content_tags'?: Array<string> | null;
-    /**
-     * 
-     * @type {LearningMaterialContentCategory}
-     * @memberof LearningMaterialRequest
-     */
-    'content_category'?: LearningMaterialContentCategory | null;
-}
-/**
- * Serializer for LearningMaterial resources with resource_type=Lecture Notes
- * @export
- * @interface LearningMaterialResource
- */
-export interface LearningMaterialResource {
-    /**
-     * 
-     * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'id': number;
     /**
      * 
      * @type {Array<LearningResourceTopic>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'topics'?: Array<LearningResourceTopic>;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'position': number | null;
     /**
      * 
      * @type {LearningResourceOfferor}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'offered_by': LearningResourceOfferor | null;
     /**
      * 
      * @type {LearningResourcePlatform}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'platform': LearningResourcePlatform | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'course_feature': Array<string> | null;
     /**
      * 
      * @type {Array<LearningResourceDepartment>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'certification': boolean;
     /**
      * 
      * @type {CourseResourceCertificationType}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'certification_type': CourseResourceCertificationType;
     /**
      * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'prices': Array<string>;
     /**
      * 
      * @type {Array<LearningResourcePrice>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'resource_prices': Array<LearningResourcePrice>;
     /**
      * 
      * @type {Array<LearningResourceRun>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'runs': Array<LearningResourceRun> | null;
     /**
      * 
      * @type {LearningResourceImage}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'image': LearningResourceImage | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'views': number;
     /**
      * 
      * @type {Array<CourseResourceDeliveryInner>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'delivery': Array<CourseResourceDeliveryInner>;
     /**
      * Return true if the resource is free/has a free option
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'free': boolean;
     /**
      * Return the resource category of the resource
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'format': Array<CourseResourceFormatInner>;
     /**
      * 
      * @type {Array<CourseResourcePaceInner>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {LearningResourceRelationshipChildField}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'children': LearningResourceRelationshipChildField | null;
     /**
      * Return the best run id for the resource, if it has runs
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'best_run_id': number | null;
     /**
      * 
-     * @type {LearningMaterialResourceResourceTypeEnum}
-     * @memberof LearningMaterialResource
+     * @type {DocumentResourceResourceTypeEnum}
+     * @memberof DocumentResource
      */
-    'resource_type': LearningMaterialResourceResourceTypeEnum;
+    'resource_type': DocumentResourceResourceTypeEnum;
     /**
      * 
-     * @type {LearningMaterial}
-     * @memberof LearningMaterialResource
+     * @type {Array<ContentFile>}
+     * @memberof DocumentResource
      */
-    'learning_material': LearningMaterial;
+    'content_files': Array<ContentFile> | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'readable_id': string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'title': string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'description'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'full_description'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'last_modified'?: string | null;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'published'?: boolean;
     /**
      * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'languages'?: Array<string> | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'url'?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof DocumentResource
+     */
+    'resource_category': string;
+    /**
+     * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'ocw_topics'?: Array<string>;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'professional': boolean;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'next_start_date'?: string | null;
     /**
      * 
      * @type {AvailabilityEnum}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'availability'?: AvailabilityEnum | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'completeness'?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'license_cc'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'test_mode'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'continuing_ed_credits'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'location'?: string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'duration'?: string;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'min_weeks'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'max_weeks'?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'time_commitment'?: string;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'min_weekly_hours'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'max_weekly_hours'?: number | null;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResource
+     * @memberof DocumentResource
      */
     'require_summaries': boolean;
 }
 
 
 /**
- * Serializer for LearningMaterial resources with resource_type=Lecture Notes
+ * Serializer for document resources
  * @export
- * @interface LearningMaterialResourceRequest
+ * @interface DocumentResourceRequest
  */
-export interface LearningMaterialResourceRequest {
+export interface DocumentResourceRequest {
     /**
      * 
      * @type {Array<LearningResourceTopic>}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'topics'?: Array<LearningResourceTopic>;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'readable_id': string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'title': string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'description'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'full_description'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'last_modified'?: string | null;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'published'?: boolean;
     /**
      * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'languages'?: Array<string> | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'url'?: string | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'ocw_topics'?: Array<string>;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'next_start_date'?: string | null;
     /**
      * 
      * @type {AvailabilityEnum}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'completeness'?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'license_cc'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'test_mode'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'continuing_ed_credits'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'location'?: string;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'duration'?: string;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'min_weeks'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'max_weeks'?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'time_commitment'?: string;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'min_weekly_hours'?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof LearningMaterialResourceRequest
+     * @memberof DocumentResourceRequest
      */
     'max_weekly_hours'?: number | null;
 }
@@ -2497,11 +2251,11 @@ export interface LearningMaterialResourceRequest {
  * @enum {string}
  */
 
-export const LearningMaterialResourceResourceTypeEnum = {
-    LearningMaterial: 'learning_material'
+export const DocumentResourceResourceTypeEnum = {
+    Document: 'document'
 } as const;
 
-export type LearningMaterialResourceResourceTypeEnum = typeof LearningMaterialResourceResourceTypeEnum[keyof typeof LearningMaterialResourceResourceTypeEnum];
+export type DocumentResourceResourceTypeEnum = typeof DocumentResourceResourceTypeEnum[keyof typeof DocumentResourceResourceTypeEnum];
 
 
 /**
@@ -2692,7 +2446,7 @@ export interface LearningPathResource {
      * @type {string}
      * @memberof LearningPathResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -2723,6 +2477,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'resource_type': LearningPathResourceResourceTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningPathResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {LearningPath}
@@ -3046,7 +2806,7 @@ export type LearningPathResourceResourceTypeEnum = typeof LearningPathResourceRe
  * @type LearningResource
  * @export
  */
-export type LearningResource = { resource_type: 'article' } & ArticleResource | { resource_type: 'course' } & CourseResource | { resource_type: 'learning_material' } & LearningMaterialResource | { resource_type: 'learning_path' } & LearningPathResource | { resource_type: 'podcast' } & PodcastResource | { resource_type: 'podcast_episode' } & PodcastEpisodeResource | { resource_type: 'program' } & ProgramResource | { resource_type: 'video' } & VideoResource | { resource_type: 'video_playlist' } & VideoPlaylistResource;
+export type LearningResource = { resource_type: 'article' } & ArticleResource | { resource_type: 'course' } & CourseResource | { resource_type: 'document' } & DocumentResource | { resource_type: 'learning_path' } & LearningPathResource | { resource_type: 'podcast' } & PodcastResource | { resource_type: 'podcast_episode' } & PodcastEpisodeResource | { resource_type: 'program' } & ProgramResource | { resource_type: 'video' } & VideoResource | { resource_type: 'video_playlist' } & VideoPlaylistResource;
 
 /**
  * Serializer for LearningResourceDepartment, minus school  The absence of the departments list is to avoid a circular serialization structure.
@@ -3791,7 +3551,7 @@ export interface LearningResourceRelationshipChildField {
  * @type LearningResourceRequest
  * @export
  */
-export type LearningResourceRequest = { resource_type: 'article' } & ArticleResourceRequest | { resource_type: 'course' } & CourseResourceRequest | { resource_type: 'learning_material' } & LearningMaterialResourceRequest | { resource_type: 'learning_path' } & LearningPathResourceRequest | { resource_type: 'podcast' } & PodcastResourceRequest | { resource_type: 'podcast_episode' } & PodcastEpisodeResourceRequest | { resource_type: 'program' } & ProgramResourceRequest | { resource_type: 'video' } & VideoResourceRequest | { resource_type: 'video_playlist' } & VideoPlaylistResourceRequest;
+export type LearningResourceRequest = { resource_type: 'article' } & ArticleResourceRequest | { resource_type: 'course' } & CourseResourceRequest | { resource_type: 'document' } & DocumentResourceRequest | { resource_type: 'learning_path' } & LearningPathResourceRequest | { resource_type: 'podcast' } & PodcastResourceRequest | { resource_type: 'podcast_episode' } & PodcastEpisodeResourceRequest | { resource_type: 'program' } & ProgramResourceRequest | { resource_type: 'video' } & VideoResourceRequest | { resource_type: 'video_playlist' } & VideoPlaylistResourceRequest;
 
 /**
  * Serializer for the LearningResourceRun model
@@ -5583,7 +5343,7 @@ export interface PercolateQuerySubscriptionRequestRequest {
      */
     'sortby'?: SortbyEnum;
     /**
-     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `learning_material` - learning material
+     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `document` - document
      * @type {Array<PercolateQuerySubscriptionRequestResourceTypeEnum>}
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
@@ -5649,11 +5409,11 @@ export interface PercolateQuerySubscriptionRequestRequest {
      */
     'delivery'?: Array<DeliveryEnum>;
     /**
-     * The category of learning resource               * `course` - Course * `program` - Program * `learning_material` - Learning Material
-     * @type {Array<ResourceCategoryEnum>}
+     * The resource type grouping of learning resource               * `course` - Course * `program` - Program * `learning_material` - Learning Material
+     * @type {Array<ResourceTypeGroupEnum>}
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
-    'resource_category'?: Array<ResourceCategoryEnum>;
+    'resource_type_group'?: Array<ResourceTypeGroupEnum>;
     /**
      * 
      * @type {SearchModeEnum}
@@ -5694,7 +5454,7 @@ export interface PercolateQuerySubscriptionRequestRequest {
 
 
 /**
- * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `learning_material` - learning material
+ * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `document` - document
  * @export
  * @enum {string}
  */
@@ -5733,9 +5493,9 @@ export const PercolateQuerySubscriptionRequestResourceTypeEnum = {
     */
     Article: 'article',
     /**
-    * learning material
+    * document
     */
-    LearningMaterial: 'learning_material'
+    Document: 'document'
 } as const;
 
 export type PercolateQuerySubscriptionRequestResourceTypeEnum = typeof PercolateQuerySubscriptionRequestResourceTypeEnum[keyof typeof PercolateQuerySubscriptionRequestResourceTypeEnum];
@@ -6063,7 +5823,7 @@ export interface PodcastEpisodeResource {
      * @type {string}
      * @memberof PodcastEpisodeResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -6148,6 +5908,12 @@ export interface PodcastEpisodeResource {
      * @memberof PodcastEpisodeResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PodcastEpisodeResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -6545,7 +6311,7 @@ export interface PodcastResource {
      * @type {string}
      * @memberof PodcastResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -6630,6 +6396,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PodcastResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -7254,7 +7026,7 @@ export interface ProgramResource {
      * @type {string}
      * @memberof ProgramResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -7339,6 +7111,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgramResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -7631,31 +7409,7 @@ export type RelationTypeEnum = typeof RelationTypeEnum[keyof typeof RelationType
 
 
 /**
- * * `course` - Course * `program` - Program * `learning_material` - Learning Material
- * @export
- * @enum {string}
- */
-
-export const ResourceCategoryEnum = {
-    /**
-    * Course
-    */
-    Course: 'course',
-    /**
-    * Program
-    */
-    Program: 'program',
-    /**
-    * Learning Material
-    */
-    LearningMaterial: 'learning_material'
-} as const;
-
-export type ResourceCategoryEnum = typeof ResourceCategoryEnum[keyof typeof ResourceCategoryEnum];
-
-
-/**
- * * `course` - course * `program` - program * `learning_path` - learning_path * `podcast` - podcast * `podcast_episode` - podcast_episode * `video` - video * `video_playlist` - video_playlist * `article` - article * `learning_material` - learning_material
+ * * `course` - course * `program` - program * `learning_path` - learning_path * `podcast` - podcast * `podcast_episode` - podcast_episode * `video` - video * `video_playlist` - video_playlist * `article` - article * `document` - document
  * @export
  * @enum {string}
  */
@@ -7694,12 +7448,36 @@ export const ResourceTypeEnum = {
     */
     Article: 'article',
     /**
-    * learning_material
+    * document
+    */
+    Document: 'document'
+} as const;
+
+export type ResourceTypeEnum = typeof ResourceTypeEnum[keyof typeof ResourceTypeEnum];
+
+
+/**
+ * * `course` - Course * `program` - Program * `learning_material` - Learning Material
+ * @export
+ * @enum {string}
+ */
+
+export const ResourceTypeGroupEnum = {
+    /**
+    * Course
+    */
+    Course: 'course',
+    /**
+    * Program
+    */
+    Program: 'program',
+    /**
+    * Learning Material
     */
     LearningMaterial: 'learning_material'
 } as const;
 
-export type ResourceTypeEnum = typeof ResourceTypeEnum[keyof typeof ResourceTypeEnum];
+export type ResourceTypeGroupEnum = typeof ResourceTypeGroupEnum[keyof typeof ResourceTypeGroupEnum];
 
 
 /**
@@ -8384,7 +8162,7 @@ export interface VideoPlaylistResource {
      * @type {string}
      * @memberof VideoPlaylistResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -8469,6 +8247,12 @@ export interface VideoPlaylistResource {
      * @memberof VideoPlaylistResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoPlaylistResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -8854,7 +8638,7 @@ export interface VideoResource {
      * @type {string}
      * @memberof VideoResource
      */
-    'resource_category': string;
+    'resource_type_group': string;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -8897,6 +8681,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'playlists': Array<string>;
+    /**
+     * 
+     * @type {Array<ContentFile>}
+     * @memberof VideoResource
+     */
+    'content_files': Array<ContentFile> | null;
     /**
      * 
      * @type {string}
@@ -8945,6 +8735,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoResource
+     */
+    'resource_category': string;
     /**
      * 
      * @type {Array<string>}
@@ -10897,15 +10693,15 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {Array<CoursesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<CoursesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<CoursesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {CoursesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        coursesList: async (certification?: boolean, certification_type?: Array<CoursesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<CoursesListDeliveryEnum>>, department?: Array<CoursesListDepartmentEnum>, free?: boolean, level?: Array<CoursesListLevelEnum>, limit?: number, offered_by?: Array<CoursesListOfferedByEnum>, offset?: number, platform?: Array<CoursesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<CoursesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<CoursesListResourceTypeEnum>, sortby?: CoursesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        coursesList: async (certification?: boolean, certification_type?: Array<CoursesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<CoursesListDeliveryEnum>>, department?: Array<CoursesListDepartmentEnum>, free?: boolean, level?: Array<CoursesListLevelEnum>, limit?: number, offered_by?: Array<CoursesListOfferedByEnum>, offset?: number, platform?: Array<CoursesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<CoursesListResourceTypeEnum>, resource_type_group?: Array<CoursesListResourceTypeGroupEnum>, sortby?: CoursesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/courses/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10970,16 +10766,16 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -11096,16 +10892,16 @@ export const CoursesApiFp = function(configuration?: Configuration) {
          * @param {Array<CoursesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<CoursesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<CoursesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {CoursesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async coursesList(certification?: boolean, certification_type?: Array<CoursesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<CoursesListDeliveryEnum>>, department?: Array<CoursesListDepartmentEnum>, free?: boolean, level?: Array<CoursesListLevelEnum>, limit?: number, offered_by?: Array<CoursesListOfferedByEnum>, offset?: number, platform?: Array<CoursesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<CoursesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<CoursesListResourceTypeEnum>, sortby?: CoursesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coursesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async coursesList(certification?: boolean, certification_type?: Array<CoursesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<CoursesListDeliveryEnum>>, department?: Array<CoursesListDepartmentEnum>, free?: boolean, level?: Array<CoursesListLevelEnum>, limit?: number, offered_by?: Array<CoursesListOfferedByEnum>, offset?: number, platform?: Array<CoursesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<CoursesListResourceTypeEnum>, resource_type_group?: Array<CoursesListResourceTypeGroupEnum>, sortby?: CoursesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.coursesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['CoursesApi.coursesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -11161,7 +10957,7 @@ export const CoursesApiFactory = function (configuration?: Configuration, basePa
          * @throws {RequiredError}
          */
         coursesList(requestParameters: CoursesApiCoursesListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedCourseResourceList> {
-            return localVarFp.coursesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.coursesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single course
@@ -11365,13 +11161,6 @@ export interface CoursesApiCoursesListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof CoursesApiCoursesList
-     */
-    readonly resource_category?: Array<CoursesListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof CoursesApiCoursesList
@@ -11379,11 +11168,18 @@ export interface CoursesApiCoursesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof CoursesApiCoursesList
      */
     readonly resource_type?: Array<CoursesListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof CoursesApiCoursesList
+     */
+    readonly resource_type_group?: Array<CoursesListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -11454,7 +11250,7 @@ export class CoursesApi extends BaseAPI {
      * @memberof CoursesApi
      */
     public coursesList(requestParameters: CoursesApiCoursesListRequest = {}, options?: RawAxiosRequestConfig) {
-        return CoursesApiFp(this.configuration).coursesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return CoursesApiFp(this.configuration).coursesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11627,19 +11423,10 @@ export type CoursesListPlatformEnum = typeof CoursesListPlatformEnum[keyof typeo
 /**
  * @export
  */
-export const CoursesListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type CoursesListResourceCategoryEnum = typeof CoursesListResourceCategoryEnum[keyof typeof CoursesListResourceCategoryEnum];
-/**
- * @export
- */
 export const CoursesListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -11648,6 +11435,15 @@ export const CoursesListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type CoursesListResourceTypeEnum = typeof CoursesListResourceTypeEnum[keyof typeof CoursesListResourceTypeEnum];
+/**
+ * @export
+ */
+export const CoursesListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type CoursesListResourceTypeGroupEnum = typeof CoursesListResourceTypeGroupEnum[keyof typeof CoursesListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -11911,15 +11707,15 @@ export const FeaturedApiAxiosParamCreator = function (configuration?: Configurat
          * @param {Array<FeaturedListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<FeaturedListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<FeaturedListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {FeaturedListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        featuredList: async (certification?: boolean, certification_type?: Array<FeaturedListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<FeaturedListDeliveryEnum>>, department?: Array<FeaturedListDepartmentEnum>, free?: boolean, level?: Array<FeaturedListLevelEnum>, limit?: number, offered_by?: Array<FeaturedListOfferedByEnum>, offset?: number, platform?: Array<FeaturedListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<FeaturedListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<FeaturedListResourceTypeEnum>, sortby?: FeaturedListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        featuredList: async (certification?: boolean, certification_type?: Array<FeaturedListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<FeaturedListDeliveryEnum>>, department?: Array<FeaturedListDepartmentEnum>, free?: boolean, level?: Array<FeaturedListLevelEnum>, limit?: number, offered_by?: Array<FeaturedListOfferedByEnum>, offset?: number, platform?: Array<FeaturedListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<FeaturedListResourceTypeEnum>, resource_type_group?: Array<FeaturedListResourceTypeGroupEnum>, sortby?: FeaturedListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/featured/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11984,16 +11780,16 @@ export const FeaturedApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -12075,16 +11871,16 @@ export const FeaturedApiFp = function(configuration?: Configuration) {
          * @param {Array<FeaturedListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<FeaturedListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<FeaturedListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {FeaturedListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async featuredList(certification?: boolean, certification_type?: Array<FeaturedListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<FeaturedListDeliveryEnum>>, department?: Array<FeaturedListDepartmentEnum>, free?: boolean, level?: Array<FeaturedListLevelEnum>, limit?: number, offered_by?: Array<FeaturedListOfferedByEnum>, offset?: number, platform?: Array<FeaturedListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<FeaturedListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<FeaturedListResourceTypeEnum>, sortby?: FeaturedListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.featuredList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async featuredList(certification?: boolean, certification_type?: Array<FeaturedListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<FeaturedListDeliveryEnum>>, department?: Array<FeaturedListDepartmentEnum>, free?: boolean, level?: Array<FeaturedListLevelEnum>, limit?: number, offered_by?: Array<FeaturedListOfferedByEnum>, offset?: number, platform?: Array<FeaturedListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<FeaturedListResourceTypeEnum>, resource_type_group?: Array<FeaturedListResourceTypeGroupEnum>, sortby?: FeaturedListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.featuredList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['FeaturedApi.featuredList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -12120,7 +11916,7 @@ export const FeaturedApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         featuredList(requestParameters: FeaturedApiFeaturedListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceList> {
-            return localVarFp.featuredList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.featuredList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single featured resource
@@ -12233,13 +12029,6 @@ export interface FeaturedApiFeaturedListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof FeaturedApiFeaturedList
-     */
-    readonly resource_category?: Array<FeaturedListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof FeaturedApiFeaturedList
@@ -12247,11 +12036,18 @@ export interface FeaturedApiFeaturedListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof FeaturedApiFeaturedList
      */
     readonly resource_type?: Array<FeaturedListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof FeaturedApiFeaturedList
+     */
+    readonly resource_type_group?: Array<FeaturedListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -12298,7 +12094,7 @@ export class FeaturedApi extends BaseAPI {
      * @memberof FeaturedApi
      */
     public featuredList(requestParameters: FeaturedApiFeaturedListRequest = {}, options?: RawAxiosRequestConfig) {
-        return FeaturedApiFp(this.configuration).featuredList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return FeaturedApiFp(this.configuration).featuredList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12432,19 +12228,10 @@ export type FeaturedListPlatformEnum = typeof FeaturedListPlatformEnum[keyof typ
 /**
  * @export
  */
-export const FeaturedListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type FeaturedListResourceCategoryEnum = typeof FeaturedListResourceCategoryEnum[keyof typeof FeaturedListResourceCategoryEnum];
-/**
- * @export
- */
 export const FeaturedListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -12453,6 +12240,15 @@ export const FeaturedListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type FeaturedListResourceTypeEnum = typeof FeaturedListResourceTypeEnum[keyof typeof FeaturedListResourceTypeEnum];
+/**
+ * @export
+ */
+export const FeaturedListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type FeaturedListResourceTypeGroupEnum = typeof FeaturedListResourceTypeGroupEnum[keyof typeof FeaturedListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -12497,15 +12293,15 @@ export const LearningResourceDisplayInfoApiAxiosParamCreator = function (configu
          * @param {Array<LearningResourceDisplayInfoListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourceDisplayInfoListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourceDisplayInfoListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourceDisplayInfoList: async (certification?: boolean, certification_type?: Array<LearningResourceDisplayInfoListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourceDisplayInfoListDeliveryEnum>>, department?: Array<LearningResourceDisplayInfoListDepartmentEnum>, free?: boolean, level?: Array<LearningResourceDisplayInfoListLevelEnum>, limit?: number, offered_by?: Array<LearningResourceDisplayInfoListOfferedByEnum>, offset?: number, platform?: Array<LearningResourceDisplayInfoListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourceDisplayInfoListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>, sortby?: LearningResourceDisplayInfoListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourceDisplayInfoList: async (certification?: boolean, certification_type?: Array<LearningResourceDisplayInfoListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourceDisplayInfoListDeliveryEnum>>, department?: Array<LearningResourceDisplayInfoListDepartmentEnum>, free?: boolean, level?: Array<LearningResourceDisplayInfoListLevelEnum>, limit?: number, offered_by?: Array<LearningResourceDisplayInfoListOfferedByEnum>, offset?: number, platform?: Array<LearningResourceDisplayInfoListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>, resource_type_group?: Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>, sortby?: LearningResourceDisplayInfoListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resource_display_info/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12570,16 +12366,16 @@ export const LearningResourceDisplayInfoApiAxiosParamCreator = function (configu
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -12661,16 +12457,16 @@ export const LearningResourceDisplayInfoApiFp = function(configuration?: Configu
          * @param {Array<LearningResourceDisplayInfoListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourceDisplayInfoListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourceDisplayInfoListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourceDisplayInfoList(certification?: boolean, certification_type?: Array<LearningResourceDisplayInfoListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourceDisplayInfoListDeliveryEnum>>, department?: Array<LearningResourceDisplayInfoListDepartmentEnum>, free?: boolean, level?: Array<LearningResourceDisplayInfoListLevelEnum>, limit?: number, offered_by?: Array<LearningResourceDisplayInfoListOfferedByEnum>, offset?: number, platform?: Array<LearningResourceDisplayInfoListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourceDisplayInfoListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>, sortby?: LearningResourceDisplayInfoListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceDisplayInfoResponseList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourceDisplayInfoList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningResourceDisplayInfoList(certification?: boolean, certification_type?: Array<LearningResourceDisplayInfoListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourceDisplayInfoListDeliveryEnum>>, department?: Array<LearningResourceDisplayInfoListDepartmentEnum>, free?: boolean, level?: Array<LearningResourceDisplayInfoListLevelEnum>, limit?: number, offered_by?: Array<LearningResourceDisplayInfoListOfferedByEnum>, offset?: number, platform?: Array<LearningResourceDisplayInfoListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>, resource_type_group?: Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>, sortby?: LearningResourceDisplayInfoListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceDisplayInfoResponseList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourceDisplayInfoList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourceDisplayInfoApi.learningResourceDisplayInfoList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -12706,7 +12502,7 @@ export const LearningResourceDisplayInfoApiFactory = function (configuration?: C
          * @throws {RequiredError}
          */
         learningResourceDisplayInfoList(requestParameters: LearningResourceDisplayInfoApiLearningResourceDisplayInfoListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceDisplayInfoResponseList> {
-            return localVarFp.learningResourceDisplayInfoList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourceDisplayInfoList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve display info for a learning resource.
@@ -12819,13 +12615,6 @@ export interface LearningResourceDisplayInfoApiLearningResourceDisplayInfoListRe
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningResourceDisplayInfoApiLearningResourceDisplayInfoList
-     */
-    readonly resource_category?: Array<LearningResourceDisplayInfoListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningResourceDisplayInfoApiLearningResourceDisplayInfoList
@@ -12833,11 +12622,18 @@ export interface LearningResourceDisplayInfoApiLearningResourceDisplayInfoListRe
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourceDisplayInfoApiLearningResourceDisplayInfoList
      */
     readonly resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningResourceDisplayInfoApiLearningResourceDisplayInfoList
+     */
+    readonly resource_type_group?: Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -12884,7 +12680,7 @@ export class LearningResourceDisplayInfoApi extends BaseAPI {
      * @memberof LearningResourceDisplayInfoApi
      */
     public learningResourceDisplayInfoList(requestParameters: LearningResourceDisplayInfoApiLearningResourceDisplayInfoListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourceDisplayInfoApiFp(this.configuration).learningResourceDisplayInfoList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourceDisplayInfoApiFp(this.configuration).learningResourceDisplayInfoList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -13018,19 +12814,10 @@ export type LearningResourceDisplayInfoListPlatformEnum = typeof LearningResourc
 /**
  * @export
  */
-export const LearningResourceDisplayInfoListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningResourceDisplayInfoListResourceCategoryEnum = typeof LearningResourceDisplayInfoListResourceCategoryEnum[keyof typeof LearningResourceDisplayInfoListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourceDisplayInfoListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -13039,6 +12826,15 @@ export const LearningResourceDisplayInfoListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningResourceDisplayInfoListResourceTypeEnum = typeof LearningResourceDisplayInfoListResourceTypeEnum[keyof typeof LearningResourceDisplayInfoListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourceDisplayInfoListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningResourceDisplayInfoListResourceTypeGroupEnum = typeof LearningResourceDisplayInfoListResourceTypeGroupEnum[keyof typeof LearningResourceDisplayInfoListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -13325,15 +13121,15 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesList: async (certification?: boolean, certification_type?: Array<LearningResourcesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesListDeliveryEnum>>, department?: Array<LearningResourcesListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesListResourceTypeEnum>, sortby?: LearningResourcesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesList: async (certification?: boolean, certification_type?: Array<LearningResourcesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesListDeliveryEnum>>, department?: Array<LearningResourcesListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesListResourceTypeGroupEnum>, sortby?: LearningResourcesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -13398,16 +13194,16 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -13479,15 +13275,15 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesSimilarListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/similar/`
@@ -13551,16 +13347,16 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -13598,15 +13394,15 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesSummaryListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesSummaryListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSummaryListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSummaryListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSummaryList: async (certification?: boolean, certification_type?: Array<LearningResourcesSummaryListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSummaryListDeliveryEnum>>, department?: Array<LearningResourcesSummaryListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSummaryListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSummaryListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSummaryListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSummaryListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>, sortby?: LearningResourcesSummaryListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSummaryList: async (certification?: boolean, certification_type?: Array<LearningResourcesSummaryListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSummaryListDeliveryEnum>>, department?: Array<LearningResourcesSummaryListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSummaryListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSummaryListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSummaryListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSummaryListResourceTypeGroupEnum>, sortby?: LearningResourcesSummaryListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources/summary/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -13671,16 +13467,16 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -13761,15 +13557,15 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesVectorSimilarListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesVectorSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesVectorSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesVectorSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/vector_similar/`
@@ -13833,16 +13629,16 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -13970,16 +13766,16 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesList(certification?: boolean, certification_type?: Array<LearningResourcesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesListDeliveryEnum>>, department?: Array<LearningResourcesListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesListResourceTypeEnum>, sortby?: LearningResourcesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningResourcesList(certification?: boolean, certification_type?: Array<LearningResourcesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesListDeliveryEnum>>, department?: Array<LearningResourcesListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesListResourceTypeGroupEnum>, sortby?: LearningResourcesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -14013,16 +13809,16 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesSimilarListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningResourcesSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -14043,16 +13839,16 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesSummaryListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesSummaryListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSummaryListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSummaryListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSummaryList(certification?: boolean, certification_type?: Array<LearningResourcesSummaryListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSummaryListDeliveryEnum>>, department?: Array<LearningResourcesSummaryListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSummaryListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSummaryListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSummaryListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSummaryListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>, sortby?: LearningResourcesSummaryListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceSummaryList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSummaryList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningResourcesSummaryList(certification?: boolean, certification_type?: Array<LearningResourcesSummaryListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSummaryListDeliveryEnum>>, department?: Array<LearningResourcesSummaryListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSummaryListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSummaryListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSummaryListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSummaryListResourceTypeGroupEnum>, sortby?: LearningResourcesSummaryListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceSummaryList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSummaryList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesSummaryList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -14088,16 +13884,16 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningResourcesVectorSimilarListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesVectorSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningResourcesVectorSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesVectorSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -14170,7 +13966,7 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         learningResourcesList(requestParameters: LearningResourcesApiLearningResourcesListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceList> {
-            return localVarFp.learningResourcesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single learning resource.
@@ -14190,7 +13986,7 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
-            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a paginated list of learning resources with summary fields
@@ -14200,7 +13996,7 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         learningResourcesSummaryList(requestParameters: LearningResourcesApiLearningResourcesSummaryListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceSummaryList> {
-            return localVarFp.learningResourcesSummaryList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSummaryList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Set User List Relationships on a given Learning Resource.
@@ -14220,7 +14016,7 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
-            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -14498,13 +14294,6 @@ export interface LearningResourcesApiLearningResourcesListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningResourcesApiLearningResourcesList
-     */
-    readonly resource_category?: Array<LearningResourcesListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningResourcesApiLearningResourcesList
@@ -14512,11 +14301,18 @@ export interface LearningResourcesApiLearningResourcesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesList
      */
     readonly resource_type?: Array<LearningResourcesListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningResourcesApiLearningResourcesList
+     */
+    readonly resource_type_group?: Array<LearningResourcesListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -14645,13 +14441,6 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningResourcesApiLearningResourcesSimilarList
-     */
-    readonly resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
@@ -14659,11 +14448,18 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningResourcesApiLearningResourcesSimilarList
+     */
+    readonly resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -14778,13 +14574,6 @@ export interface LearningResourcesApiLearningResourcesSummaryListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningResourcesApiLearningResourcesSummaryList
-     */
-    readonly resource_category?: Array<LearningResourcesSummaryListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningResourcesApiLearningResourcesSummaryList
@@ -14792,11 +14581,18 @@ export interface LearningResourcesApiLearningResourcesSummaryListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesSummaryList
      */
     readonly resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningResourcesApiLearningResourcesSummaryList
+     */
+    readonly resource_type_group?: Array<LearningResourcesSummaryListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -14939,13 +14735,6 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
-     */
-    readonly resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
@@ -14953,11 +14742,18 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
+     */
+    readonly resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -15050,7 +14846,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesList(requestParameters: LearningResourcesApiLearningResourcesListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -15074,7 +14870,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -15086,7 +14882,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesSummaryList(requestParameters: LearningResourcesApiLearningResourcesSummaryListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesSummaryList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesSummaryList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -15110,7 +14906,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -15271,19 +15067,10 @@ export type LearningResourcesListPlatformEnum = typeof LearningResourcesListPlat
 /**
  * @export
  */
-export const LearningResourcesListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningResourcesListResourceCategoryEnum = typeof LearningResourcesListResourceCategoryEnum[keyof typeof LearningResourcesListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -15292,6 +15079,15 @@ export const LearningResourcesListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningResourcesListResourceTypeEnum = typeof LearningResourcesListResourceTypeEnum[keyof typeof LearningResourcesListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningResourcesListResourceTypeGroupEnum = typeof LearningResourcesListResourceTypeGroupEnum[keyof typeof LearningResourcesListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -15430,19 +15226,10 @@ export type LearningResourcesSimilarListPlatformEnum = typeof LearningResourcesS
 /**
  * @export
  */
-export const LearningResourcesSimilarListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningResourcesSimilarListResourceCategoryEnum = typeof LearningResourcesSimilarListResourceCategoryEnum[keyof typeof LearningResourcesSimilarListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesSimilarListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -15451,6 +15238,15 @@ export const LearningResourcesSimilarListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningResourcesSimilarListResourceTypeEnum = typeof LearningResourcesSimilarListResourceTypeEnum[keyof typeof LearningResourcesSimilarListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesSimilarListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningResourcesSimilarListResourceTypeGroupEnum = typeof LearningResourcesSimilarListResourceTypeGroupEnum[keyof typeof LearningResourcesSimilarListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -15589,19 +15385,10 @@ export type LearningResourcesSummaryListPlatformEnum = typeof LearningResourcesS
 /**
  * @export
  */
-export const LearningResourcesSummaryListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningResourcesSummaryListResourceCategoryEnum = typeof LearningResourcesSummaryListResourceCategoryEnum[keyof typeof LearningResourcesSummaryListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesSummaryListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -15610,6 +15397,15 @@ export const LearningResourcesSummaryListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningResourcesSummaryListResourceTypeEnum = typeof LearningResourcesSummaryListResourceTypeEnum[keyof typeof LearningResourcesSummaryListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesSummaryListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningResourcesSummaryListResourceTypeGroupEnum = typeof LearningResourcesSummaryListResourceTypeGroupEnum[keyof typeof LearningResourcesSummaryListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -15748,19 +15544,10 @@ export type LearningResourcesVectorSimilarListPlatformEnum = typeof LearningReso
 /**
  * @export
  */
-export const LearningResourcesVectorSimilarListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningResourcesVectorSimilarListResourceCategoryEnum = typeof LearningResourcesVectorSimilarListResourceCategoryEnum[keyof typeof LearningResourcesVectorSimilarListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesVectorSimilarListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -15769,6 +15556,15 @@ export const LearningResourcesVectorSimilarListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningResourcesVectorSimilarListResourceTypeEnum = typeof LearningResourcesVectorSimilarListResourceTypeEnum[keyof typeof LearningResourcesVectorSimilarListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesVectorSimilarListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningResourcesVectorSimilarListResourceTypeGroupEnum = typeof LearningResourcesVectorSimilarListResourceTypeGroupEnum[keyof typeof LearningResourcesVectorSimilarListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -15820,8 +15616,8 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {Array<LearningResourcesSearchRetrievePlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesSearchRetrieveResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -15830,7 +15626,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15923,12 +15719,12 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
                 localVarQueryParameter['q'] = q;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (search_mode !== undefined) {
@@ -15995,8 +15791,8 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {Array<LearningResourcesSearchRetrievePlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesSearchRetrieveResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -16005,8 +15801,8 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_type, resource_type_group, search_mode, slop, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesSearchApi.learningResourcesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -16029,7 +15825,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
          * @throws {RequiredError}
          */
         learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesSearchResponse> {
-            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -16042,7 +15838,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
 export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest {
     /**
      * Show resource counts by category
-     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_category'>}
+     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_type_group'>}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
     readonly aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>
@@ -16181,18 +15977,18 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
     readonly q?: string
 
     /**
-     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'program' | 'learning_material'>}
-     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
-     */
-    readonly resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>
-
-    /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'learning_material'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
     readonly resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>
+
+    /**
+     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
+     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
+     */
+    readonly resource_type_group?: Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>
 
     /**
      * The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
@@ -16246,7 +16042,7 @@ export class LearningResourcesSearchApi extends BaseAPI {
      * @memberof LearningResourcesSearchApi
      */
     public learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -16266,7 +16062,7 @@ export const LearningResourcesSearchRetrieveAggregationsEnum = {
     Professional: 'professional',
     Free: 'free',
     Delivery: 'delivery',
-    ResourceCategory: 'resource_category'
+    ResourceTypeGroup: 'resource_type_group'
 } as const;
 export type LearningResourcesSearchRetrieveAggregationsEnum = typeof LearningResourcesSearchRetrieveAggregationsEnum[keyof typeof LearningResourcesSearchRetrieveAggregationsEnum];
 /**
@@ -16387,15 +16183,6 @@ export type LearningResourcesSearchRetrievePlatformEnum = typeof LearningResourc
 /**
  * @export
  */
-export const LearningResourcesSearchRetrieveResourceCategoryEnum = {
-    Course: 'course',
-    Program: 'program',
-    LearningMaterial: 'learning_material'
-} as const;
-export type LearningResourcesSearchRetrieveResourceCategoryEnum = typeof LearningResourcesSearchRetrieveResourceCategoryEnum[keyof typeof LearningResourcesSearchRetrieveResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesSearchRetrieveResourceTypeEnum = {
     Course: 'course',
     Program: 'program',
@@ -16405,9 +16192,18 @@ export const LearningResourcesSearchRetrieveResourceTypeEnum = {
     Video: 'video',
     VideoPlaylist: 'video_playlist',
     Article: 'article',
-    LearningMaterial: 'learning_material'
+    Document: 'document'
 } as const;
 export type LearningResourcesSearchRetrieveResourceTypeEnum = typeof LearningResourcesSearchRetrieveResourceTypeEnum[keyof typeof LearningResourcesSearchRetrieveResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesSearchRetrieveResourceTypeGroupEnum = {
+    Course: 'course',
+    Program: 'program',
+    LearningMaterial: 'learning_material'
+} as const;
+export type LearningResourcesSearchRetrieveResourceTypeGroupEnum = typeof LearningResourcesSearchRetrieveResourceTypeGroupEnum[keyof typeof LearningResourcesSearchRetrieveResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -16470,8 +16266,8 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -16481,7 +16277,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionCheckListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionCheckListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/check/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -16574,12 +16370,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['q'] = q;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (search_mode !== undefined) {
@@ -16640,8 +16436,8 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -16650,7 +16446,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -16743,12 +16539,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['q'] = q;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (search_mode !== undefined) {
@@ -16805,8 +16601,8 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -16817,7 +16613,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionSubscribeCreateDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionSubscribeCreateDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/subscribe/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -16910,12 +16706,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['q'] = q;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (search_mode !== undefined) {
@@ -17023,8 +16819,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -17034,8 +16830,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionCheckListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionCheckListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_type, resource_type_group, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionCheckList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -17063,8 +16859,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -17073,8 +16869,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionListDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_type, resource_type_group, search_mode, slop, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -17102,8 +16898,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>} [resource_category] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -17114,8 +16910,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionSubscribeCreateDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
+        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, content_file_score_weight?: number | null, course_feature?: Array<string>, delivery?: Array<LearningResourcesUserSubscriptionSubscribeCreateDeliveryEnum>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, resource_type_group?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, content_file_score_weight, course_feature, delivery, department, dev_mode, free, id, level, limit, max_incompleteness_penalty, min_score, ocw_topic, offered_by, offset, platform, professional, q, resource_type, resource_type_group, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionSubscribeCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -17151,7 +16947,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * View for listing percolate query subscriptions for a user
@@ -17161,7 +16957,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * Subscribe a user to query
@@ -17171,7 +16967,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PercolateQuery> {
-            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsubscribe a user from a query  Args: pk (integer): The id of the query  Returns: PercolateQuerySerializer: The percolate query
@@ -17194,7 +16990,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
 export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest {
     /**
      * Show resource counts by category
-     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_category'>}
+     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_type_group'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>
@@ -17333,18 +17129,18 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly q?: string
 
     /**
-     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'program' | 'learning_material'>}
-     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
-     */
-    readonly resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>
-
-    /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'learning_material'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>
+
+    /**
+     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly resource_type_group?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>
 
     /**
      * The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
@@ -17397,7 +17193,7 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
 export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest {
     /**
      * Show resource counts by category
-     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_category'>}
+     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_type_group'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
     readonly aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>
@@ -17536,18 +17332,18 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly q?: string
 
     /**
-     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'program' | 'learning_material'>}
-     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
-     */
-    readonly resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>
-
-    /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'learning_material'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>
+
+    /**
+     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
+     */
+    readonly resource_type_group?: Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>
 
     /**
      * The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
@@ -17593,7 +17389,7 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
 export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest {
     /**
      * Show resource counts by category
-     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_category'>}
+     * @type {Array<'resource_type' | 'certification' | 'certification_type' | 'offered_by' | 'platform' | 'topic' | 'department' | 'level' | 'course_feature' | 'professional' | 'free' | 'delivery' | 'resource_type_group'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
     readonly aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>
@@ -17732,18 +17528,18 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly q?: string
 
     /**
-     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'program' | 'learning_material'>}
-     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
-     */
-    readonly resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>
-
-    /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;learning_material&#x60; - learning material
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'learning_material'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>
+
+    /**
+     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly resource_type_group?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>
 
     /**
      * The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
@@ -17825,7 +17621,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17837,7 +17633,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17849,7 +17645,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.content_file_score_weight, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17881,7 +17677,7 @@ export const LearningResourcesUserSubscriptionCheckListAggregationsEnum = {
     Professional: 'professional',
     Free: 'free',
     Delivery: 'delivery',
-    ResourceCategory: 'resource_category'
+    ResourceTypeGroup: 'resource_type_group'
 } as const;
 export type LearningResourcesUserSubscriptionCheckListAggregationsEnum = typeof LearningResourcesUserSubscriptionCheckListAggregationsEnum[keyof typeof LearningResourcesUserSubscriptionCheckListAggregationsEnum];
 /**
@@ -18002,15 +17798,6 @@ export type LearningResourcesUserSubscriptionCheckListPlatformEnum = typeof Lear
 /**
  * @export
  */
-export const LearningResourcesUserSubscriptionCheckListResourceCategoryEnum = {
-    Course: 'course',
-    Program: 'program',
-    LearningMaterial: 'learning_material'
-} as const;
-export type LearningResourcesUserSubscriptionCheckListResourceCategoryEnum = typeof LearningResourcesUserSubscriptionCheckListResourceCategoryEnum[keyof typeof LearningResourcesUserSubscriptionCheckListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesUserSubscriptionCheckListResourceTypeEnum = {
     Course: 'course',
     Program: 'program',
@@ -18020,9 +17807,18 @@ export const LearningResourcesUserSubscriptionCheckListResourceTypeEnum = {
     Video: 'video',
     VideoPlaylist: 'video_playlist',
     Article: 'article',
-    LearningMaterial: 'learning_material'
+    Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionCheckListResourceTypeEnum = typeof LearningResourcesUserSubscriptionCheckListResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionCheckListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum = {
+    Course: 'course',
+    Program: 'program',
+    LearningMaterial: 'learning_material'
+} as const;
+export type LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum = typeof LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum[keyof typeof LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -18078,7 +17874,7 @@ export const LearningResourcesUserSubscriptionListAggregationsEnum = {
     Professional: 'professional',
     Free: 'free',
     Delivery: 'delivery',
-    ResourceCategory: 'resource_category'
+    ResourceTypeGroup: 'resource_type_group'
 } as const;
 export type LearningResourcesUserSubscriptionListAggregationsEnum = typeof LearningResourcesUserSubscriptionListAggregationsEnum[keyof typeof LearningResourcesUserSubscriptionListAggregationsEnum];
 /**
@@ -18199,15 +17995,6 @@ export type LearningResourcesUserSubscriptionListPlatformEnum = typeof LearningR
 /**
  * @export
  */
-export const LearningResourcesUserSubscriptionListResourceCategoryEnum = {
-    Course: 'course',
-    Program: 'program',
-    LearningMaterial: 'learning_material'
-} as const;
-export type LearningResourcesUserSubscriptionListResourceCategoryEnum = typeof LearningResourcesUserSubscriptionListResourceCategoryEnum[keyof typeof LearningResourcesUserSubscriptionListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesUserSubscriptionListResourceTypeEnum = {
     Course: 'course',
     Program: 'program',
@@ -18217,9 +18004,18 @@ export const LearningResourcesUserSubscriptionListResourceTypeEnum = {
     Video: 'video',
     VideoPlaylist: 'video_playlist',
     Article: 'article',
-    LearningMaterial: 'learning_material'
+    Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionListResourceTypeEnum = typeof LearningResourcesUserSubscriptionListResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesUserSubscriptionListResourceTypeGroupEnum = {
+    Course: 'course',
+    Program: 'program',
+    LearningMaterial: 'learning_material'
+} as const;
+export type LearningResourcesUserSubscriptionListResourceTypeGroupEnum = typeof LearningResourcesUserSubscriptionListResourceTypeGroupEnum[keyof typeof LearningResourcesUserSubscriptionListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -18267,7 +18063,7 @@ export const LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum = 
     Professional: 'professional',
     Free: 'free',
     Delivery: 'delivery',
-    ResourceCategory: 'resource_category'
+    ResourceTypeGroup: 'resource_type_group'
 } as const;
 export type LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum];
 /**
@@ -18388,15 +18184,6 @@ export type LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum = typeo
 /**
  * @export
  */
-export const LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum = {
-    Course: 'course',
-    Program: 'program',
-    LearningMaterial: 'learning_material'
-} as const;
-export type LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum = {
     Course: 'course',
     Program: 'program',
@@ -18406,9 +18193,18 @@ export const LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum = 
     Video: 'video',
     VideoPlaylist: 'video_playlist',
     Article: 'article',
-    LearningMaterial: 'learning_material'
+    Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum = {
+    Course: 'course',
+    Program: 'program',
+    LearningMaterial: 'learning_material'
+} as const;
+export type LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -18748,15 +18544,15 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
          * @param {Array<LearningpathsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningpathsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningpathsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningpathsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningpathsList: async (certification?: boolean, certification_type?: Array<LearningpathsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningpathsListDeliveryEnum>>, department?: Array<LearningpathsListDepartmentEnum>, free?: boolean, level?: Array<LearningpathsListLevelEnum>, limit?: number, offered_by?: Array<LearningpathsListOfferedByEnum>, offset?: number, platform?: Array<LearningpathsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningpathsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningpathsListResourceTypeEnum>, sortby?: LearningpathsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningpathsList: async (certification?: boolean, certification_type?: Array<LearningpathsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningpathsListDeliveryEnum>>, department?: Array<LearningpathsListDepartmentEnum>, free?: boolean, level?: Array<LearningpathsListLevelEnum>, limit?: number, offered_by?: Array<LearningpathsListOfferedByEnum>, offset?: number, platform?: Array<LearningpathsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningpathsListResourceTypeEnum>, resource_type_group?: Array<LearningpathsListResourceTypeGroupEnum>, sortby?: LearningpathsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learningpaths/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -18821,16 +18617,16 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -19078,16 +18874,16 @@ export const LearningpathsApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningpathsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<LearningpathsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningpathsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningpathsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningpathsList(certification?: boolean, certification_type?: Array<LearningpathsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningpathsListDeliveryEnum>>, department?: Array<LearningpathsListDepartmentEnum>, free?: boolean, level?: Array<LearningpathsListLevelEnum>, limit?: number, offered_by?: Array<LearningpathsListOfferedByEnum>, offset?: number, platform?: Array<LearningpathsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningpathsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<LearningpathsListResourceTypeEnum>, sortby?: LearningpathsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningPathResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async learningpathsList(certification?: boolean, certification_type?: Array<LearningpathsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningpathsListDeliveryEnum>>, department?: Array<LearningpathsListDepartmentEnum>, free?: boolean, level?: Array<LearningpathsListLevelEnum>, limit?: number, offered_by?: Array<LearningpathsListOfferedByEnum>, offset?: number, platform?: Array<LearningpathsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningpathsListResourceTypeEnum>, resource_type_group?: Array<LearningpathsListResourceTypeGroupEnum>, sortby?: LearningpathsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningPathResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningpathsApi.learningpathsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -19218,7 +19014,7 @@ export const LearningpathsApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         learningpathsList(requestParameters: LearningpathsApiLearningpathsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningPathResourceList> {
-            return localVarFp.learningpathsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningpathsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of all learning path items
@@ -19504,13 +19300,6 @@ export interface LearningpathsApiLearningpathsListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof LearningpathsApiLearningpathsList
-     */
-    readonly resource_category?: Array<LearningpathsListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof LearningpathsApiLearningpathsList
@@ -19518,11 +19307,18 @@ export interface LearningpathsApiLearningpathsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningpathsApiLearningpathsList
      */
     readonly resource_type?: Array<LearningpathsListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof LearningpathsApiLearningpathsList
+     */
+    readonly resource_type_group?: Array<LearningpathsListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -19673,7 +19469,7 @@ export class LearningpathsApi extends BaseAPI {
      * @memberof LearningpathsApi
      */
     public learningpathsList(requestParameters: LearningpathsApiLearningpathsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningpathsApiFp(this.configuration).learningpathsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningpathsApiFp(this.configuration).learningpathsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -19830,19 +19626,10 @@ export type LearningpathsListPlatformEnum = typeof LearningpathsListPlatformEnum
 /**
  * @export
  */
-export const LearningpathsListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type LearningpathsListResourceCategoryEnum = typeof LearningpathsListResourceCategoryEnum[keyof typeof LearningpathsListResourceCategoryEnum];
-/**
- * @export
- */
 export const LearningpathsListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -19851,6 +19638,15 @@ export const LearningpathsListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type LearningpathsListResourceTypeEnum = typeof LearningpathsListResourceTypeEnum[keyof typeof LearningpathsListResourceTypeEnum];
+/**
+ * @export
+ */
+export const LearningpathsListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type LearningpathsListResourceTypeGroupEnum = typeof LearningpathsListResourceTypeGroupEnum[keyof typeof LearningpathsListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -20458,15 +20254,15 @@ export const PodcastEpisodesApiAxiosParamCreator = function (configuration?: Con
          * @param {Array<PodcastEpisodesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<PodcastEpisodesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastEpisodesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastEpisodesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        podcastEpisodesList: async (certification?: boolean, certification_type?: Array<PodcastEpisodesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastEpisodesListDeliveryEnum>>, department?: Array<PodcastEpisodesListDepartmentEnum>, free?: boolean, level?: Array<PodcastEpisodesListLevelEnum>, limit?: number, offered_by?: Array<PodcastEpisodesListOfferedByEnum>, offset?: number, platform?: Array<PodcastEpisodesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<PodcastEpisodesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<PodcastEpisodesListResourceTypeEnum>, sortby?: PodcastEpisodesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        podcastEpisodesList: async (certification?: boolean, certification_type?: Array<PodcastEpisodesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastEpisodesListDeliveryEnum>>, department?: Array<PodcastEpisodesListDepartmentEnum>, free?: boolean, level?: Array<PodcastEpisodesListLevelEnum>, limit?: number, offered_by?: Array<PodcastEpisodesListOfferedByEnum>, offset?: number, platform?: Array<PodcastEpisodesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<PodcastEpisodesListResourceTypeEnum>, resource_type_group?: Array<PodcastEpisodesListResourceTypeGroupEnum>, sortby?: PodcastEpisodesListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/podcast_episodes/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -20531,16 +20327,16 @@ export const PodcastEpisodesApiAxiosParamCreator = function (configuration?: Con
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -20622,16 +20418,16 @@ export const PodcastEpisodesApiFp = function(configuration?: Configuration) {
          * @param {Array<PodcastEpisodesListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<PodcastEpisodesListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastEpisodesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastEpisodesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async podcastEpisodesList(certification?: boolean, certification_type?: Array<PodcastEpisodesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastEpisodesListDeliveryEnum>>, department?: Array<PodcastEpisodesListDepartmentEnum>, free?: boolean, level?: Array<PodcastEpisodesListLevelEnum>, limit?: number, offered_by?: Array<PodcastEpisodesListOfferedByEnum>, offset?: number, platform?: Array<PodcastEpisodesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<PodcastEpisodesListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<PodcastEpisodesListResourceTypeEnum>, sortby?: PodcastEpisodesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPodcastEpisodeResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.podcastEpisodesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async podcastEpisodesList(certification?: boolean, certification_type?: Array<PodcastEpisodesListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastEpisodesListDeliveryEnum>>, department?: Array<PodcastEpisodesListDepartmentEnum>, free?: boolean, level?: Array<PodcastEpisodesListLevelEnum>, limit?: number, offered_by?: Array<PodcastEpisodesListOfferedByEnum>, offset?: number, platform?: Array<PodcastEpisodesListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<PodcastEpisodesListResourceTypeEnum>, resource_type_group?: Array<PodcastEpisodesListResourceTypeGroupEnum>, sortby?: PodcastEpisodesListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPodcastEpisodeResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.podcastEpisodesList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['PodcastEpisodesApi.podcastEpisodesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -20667,7 +20463,7 @@ export const PodcastEpisodesApiFactory = function (configuration?: Configuration
          * @throws {RequiredError}
          */
         podcastEpisodesList(requestParameters: PodcastEpisodesApiPodcastEpisodesListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedPodcastEpisodeResourceList> {
-            return localVarFp.podcastEpisodesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.podcastEpisodesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single podcast episode
@@ -20780,13 +20576,6 @@ export interface PodcastEpisodesApiPodcastEpisodesListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof PodcastEpisodesApiPodcastEpisodesList
-     */
-    readonly resource_category?: Array<PodcastEpisodesListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof PodcastEpisodesApiPodcastEpisodesList
@@ -20794,11 +20583,18 @@ export interface PodcastEpisodesApiPodcastEpisodesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof PodcastEpisodesApiPodcastEpisodesList
      */
     readonly resource_type?: Array<PodcastEpisodesListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof PodcastEpisodesApiPodcastEpisodesList
+     */
+    readonly resource_type_group?: Array<PodcastEpisodesListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -20845,7 +20641,7 @@ export class PodcastEpisodesApi extends BaseAPI {
      * @memberof PodcastEpisodesApi
      */
     public podcastEpisodesList(requestParameters: PodcastEpisodesApiPodcastEpisodesListRequest = {}, options?: RawAxiosRequestConfig) {
-        return PodcastEpisodesApiFp(this.configuration).podcastEpisodesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return PodcastEpisodesApiFp(this.configuration).podcastEpisodesList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20979,19 +20775,10 @@ export type PodcastEpisodesListPlatformEnum = typeof PodcastEpisodesListPlatform
 /**
  * @export
  */
-export const PodcastEpisodesListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type PodcastEpisodesListResourceCategoryEnum = typeof PodcastEpisodesListResourceCategoryEnum[keyof typeof PodcastEpisodesListResourceCategoryEnum];
-/**
- * @export
- */
 export const PodcastEpisodesListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -21000,6 +20787,15 @@ export const PodcastEpisodesListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type PodcastEpisodesListResourceTypeEnum = typeof PodcastEpisodesListResourceTypeEnum[keyof typeof PodcastEpisodesListResourceTypeEnum];
+/**
+ * @export
+ */
+export const PodcastEpisodesListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type PodcastEpisodesListResourceTypeGroupEnum = typeof PodcastEpisodesListResourceTypeGroupEnum[keyof typeof PodcastEpisodesListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -21131,15 +20927,15 @@ export const PodcastsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {Array<PodcastsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<PodcastsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        podcastsList: async (certification?: boolean, certification_type?: Array<PodcastsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastsListDeliveryEnum>>, department?: Array<PodcastsListDepartmentEnum>, free?: boolean, level?: Array<PodcastsListLevelEnum>, limit?: number, offered_by?: Array<PodcastsListOfferedByEnum>, offset?: number, platform?: Array<PodcastsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<PodcastsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<PodcastsListResourceTypeEnum>, sortby?: PodcastsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        podcastsList: async (certification?: boolean, certification_type?: Array<PodcastsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastsListDeliveryEnum>>, department?: Array<PodcastsListDepartmentEnum>, free?: boolean, level?: Array<PodcastsListLevelEnum>, limit?: number, offered_by?: Array<PodcastsListOfferedByEnum>, offset?: number, platform?: Array<PodcastsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<PodcastsListResourceTypeEnum>, resource_type_group?: Array<PodcastsListResourceTypeGroupEnum>, sortby?: PodcastsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/podcasts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -21204,16 +21000,16 @@ export const PodcastsApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -21325,16 +21121,16 @@ export const PodcastsApiFp = function(configuration?: Configuration) {
          * @param {Array<PodcastsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<PodcastsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async podcastsList(certification?: boolean, certification_type?: Array<PodcastsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastsListDeliveryEnum>>, department?: Array<PodcastsListDepartmentEnum>, free?: boolean, level?: Array<PodcastsListLevelEnum>, limit?: number, offered_by?: Array<PodcastsListOfferedByEnum>, offset?: number, platform?: Array<PodcastsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<PodcastsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<PodcastsListResourceTypeEnum>, sortby?: PodcastsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPodcastResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.podcastsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async podcastsList(certification?: boolean, certification_type?: Array<PodcastsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<PodcastsListDeliveryEnum>>, department?: Array<PodcastsListDepartmentEnum>, free?: boolean, level?: Array<PodcastsListLevelEnum>, limit?: number, offered_by?: Array<PodcastsListOfferedByEnum>, offset?: number, platform?: Array<PodcastsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<PodcastsListResourceTypeEnum>, resource_type_group?: Array<PodcastsListResourceTypeGroupEnum>, sortby?: PodcastsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPodcastResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.podcastsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['PodcastsApi.podcastsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -21390,7 +21186,7 @@ export const PodcastsApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         podcastsList(requestParameters: PodcastsApiPodcastsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedPodcastResourceList> {
-            return localVarFp.podcastsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.podcastsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single podcast
@@ -21559,13 +21355,6 @@ export interface PodcastsApiPodcastsListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof PodcastsApiPodcastsList
-     */
-    readonly resource_category?: Array<PodcastsListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof PodcastsApiPodcastsList
@@ -21573,11 +21362,18 @@ export interface PodcastsApiPodcastsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof PodcastsApiPodcastsList
      */
     readonly resource_type?: Array<PodcastsListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof PodcastsApiPodcastsList
+     */
+    readonly resource_type_group?: Array<PodcastsListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -21648,7 +21444,7 @@ export class PodcastsApi extends BaseAPI {
      * @memberof PodcastsApi
      */
     public podcastsList(requestParameters: PodcastsApiPodcastsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return PodcastsApiFp(this.configuration).podcastsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return PodcastsApiFp(this.configuration).podcastsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21782,19 +21578,10 @@ export type PodcastsListPlatformEnum = typeof PodcastsListPlatformEnum[keyof typ
 /**
  * @export
  */
-export const PodcastsListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type PodcastsListResourceCategoryEnum = typeof PodcastsListResourceCategoryEnum[keyof typeof PodcastsListResourceCategoryEnum];
-/**
- * @export
- */
 export const PodcastsListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -21803,6 +21590,15 @@ export const PodcastsListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type PodcastsListResourceTypeEnum = typeof PodcastsListResourceTypeEnum[keyof typeof PodcastsListResourceTypeEnum];
+/**
+ * @export
+ */
+export const PodcastsListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type PodcastsListResourceTypeGroupEnum = typeof PodcastsListResourceTypeGroupEnum[keyof typeof PodcastsListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -21965,15 +21761,15 @@ export const ProgramsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {Array<ProgramsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<ProgramsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<ProgramsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {ProgramsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programsList: async (certification?: boolean, certification_type?: Array<ProgramsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<ProgramsListDeliveryEnum>>, department?: Array<ProgramsListDepartmentEnum>, free?: boolean, level?: Array<ProgramsListLevelEnum>, limit?: number, offered_by?: Array<ProgramsListOfferedByEnum>, offset?: number, platform?: Array<ProgramsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<ProgramsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<ProgramsListResourceTypeEnum>, sortby?: ProgramsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        programsList: async (certification?: boolean, certification_type?: Array<ProgramsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<ProgramsListDeliveryEnum>>, department?: Array<ProgramsListDepartmentEnum>, free?: boolean, level?: Array<ProgramsListLevelEnum>, limit?: number, offered_by?: Array<ProgramsListOfferedByEnum>, offset?: number, platform?: Array<ProgramsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<ProgramsListResourceTypeEnum>, resource_type_group?: Array<ProgramsListResourceTypeGroupEnum>, sortby?: ProgramsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/programs/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -22038,16 +21834,16 @@ export const ProgramsApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -22129,16 +21925,16 @@ export const ProgramsApiFp = function(configuration?: Configuration) {
          * @param {Array<ProgramsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<ProgramsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<ProgramsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {ProgramsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async programsList(certification?: boolean, certification_type?: Array<ProgramsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<ProgramsListDeliveryEnum>>, department?: Array<ProgramsListDepartmentEnum>, free?: boolean, level?: Array<ProgramsListLevelEnum>, limit?: number, offered_by?: Array<ProgramsListOfferedByEnum>, offset?: number, platform?: Array<ProgramsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<ProgramsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<ProgramsListResourceTypeEnum>, sortby?: ProgramsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProgramResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.programsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async programsList(certification?: boolean, certification_type?: Array<ProgramsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<ProgramsListDeliveryEnum>>, department?: Array<ProgramsListDepartmentEnum>, free?: boolean, level?: Array<ProgramsListLevelEnum>, limit?: number, offered_by?: Array<ProgramsListOfferedByEnum>, offset?: number, platform?: Array<ProgramsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<ProgramsListResourceTypeEnum>, resource_type_group?: Array<ProgramsListResourceTypeGroupEnum>, sortby?: ProgramsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProgramResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.programsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['ProgramsApi.programsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -22174,7 +21970,7 @@ export const ProgramsApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         programsList(requestParameters: ProgramsApiProgramsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedProgramResourceList> {
-            return localVarFp.programsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.programsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single program
@@ -22287,13 +22083,6 @@ export interface ProgramsApiProgramsListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof ProgramsApiProgramsList
-     */
-    readonly resource_category?: Array<ProgramsListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof ProgramsApiProgramsList
@@ -22301,11 +22090,18 @@ export interface ProgramsApiProgramsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof ProgramsApiProgramsList
      */
     readonly resource_type?: Array<ProgramsListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof ProgramsApiProgramsList
+     */
+    readonly resource_type_group?: Array<ProgramsListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -22352,7 +22148,7 @@ export class ProgramsApi extends BaseAPI {
      * @memberof ProgramsApi
      */
     public programsList(requestParameters: ProgramsApiProgramsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return ProgramsApiFp(this.configuration).programsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return ProgramsApiFp(this.configuration).programsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -22486,19 +22282,10 @@ export type ProgramsListPlatformEnum = typeof ProgramsListPlatformEnum[keyof typ
 /**
  * @export
  */
-export const ProgramsListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type ProgramsListResourceCategoryEnum = typeof ProgramsListResourceCategoryEnum[keyof typeof ProgramsListResourceCategoryEnum];
-/**
- * @export
- */
 export const ProgramsListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -22507,6 +22294,15 @@ export const ProgramsListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type ProgramsListResourceTypeEnum = typeof ProgramsListResourceTypeEnum[keyof typeof ProgramsListResourceTypeEnum];
+/**
+ * @export
+ */
+export const ProgramsListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type ProgramsListResourceTypeGroupEnum = typeof ProgramsListResourceTypeGroupEnum[keyof typeof ProgramsListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -24162,15 +23958,15 @@ export const VideoPlaylistsApiAxiosParamCreator = function (configuration?: Conf
          * @param {Array<VideoPlaylistsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<VideoPlaylistsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideoPlaylistsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideoPlaylistsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoPlaylistsList: async (certification?: boolean, certification_type?: Array<VideoPlaylistsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideoPlaylistsListDeliveryEnum>>, department?: Array<VideoPlaylistsListDepartmentEnum>, free?: boolean, level?: Array<VideoPlaylistsListLevelEnum>, limit?: number, offered_by?: Array<VideoPlaylistsListOfferedByEnum>, offset?: number, platform?: Array<VideoPlaylistsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<VideoPlaylistsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<VideoPlaylistsListResourceTypeEnum>, sortby?: VideoPlaylistsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoPlaylistsList: async (certification?: boolean, certification_type?: Array<VideoPlaylistsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideoPlaylistsListDeliveryEnum>>, department?: Array<VideoPlaylistsListDepartmentEnum>, free?: boolean, level?: Array<VideoPlaylistsListLevelEnum>, limit?: number, offered_by?: Array<VideoPlaylistsListOfferedByEnum>, offset?: number, platform?: Array<VideoPlaylistsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<VideoPlaylistsListResourceTypeEnum>, resource_type_group?: Array<VideoPlaylistsListResourceTypeGroupEnum>, sortby?: VideoPlaylistsListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/video_playlists/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24235,16 +24031,16 @@ export const VideoPlaylistsApiAxiosParamCreator = function (configuration?: Conf
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -24356,16 +24152,16 @@ export const VideoPlaylistsApiFp = function(configuration?: Configuration) {
          * @param {Array<VideoPlaylistsListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<VideoPlaylistsListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideoPlaylistsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideoPlaylistsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoPlaylistsList(certification?: boolean, certification_type?: Array<VideoPlaylistsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideoPlaylistsListDeliveryEnum>>, department?: Array<VideoPlaylistsListDepartmentEnum>, free?: boolean, level?: Array<VideoPlaylistsListLevelEnum>, limit?: number, offered_by?: Array<VideoPlaylistsListOfferedByEnum>, offset?: number, platform?: Array<VideoPlaylistsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<VideoPlaylistsListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<VideoPlaylistsListResourceTypeEnum>, sortby?: VideoPlaylistsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedVideoPlaylistResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoPlaylistsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async videoPlaylistsList(certification?: boolean, certification_type?: Array<VideoPlaylistsListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideoPlaylistsListDeliveryEnum>>, department?: Array<VideoPlaylistsListDepartmentEnum>, free?: boolean, level?: Array<VideoPlaylistsListLevelEnum>, limit?: number, offered_by?: Array<VideoPlaylistsListOfferedByEnum>, offset?: number, platform?: Array<VideoPlaylistsListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<VideoPlaylistsListResourceTypeEnum>, resource_type_group?: Array<VideoPlaylistsListResourceTypeGroupEnum>, sortby?: VideoPlaylistsListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedVideoPlaylistResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.videoPlaylistsList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VideoPlaylistsApi.videoPlaylistsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -24421,7 +24217,7 @@ export const VideoPlaylistsApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         videoPlaylistsList(requestParameters: VideoPlaylistsApiVideoPlaylistsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedVideoPlaylistResourceList> {
-            return localVarFp.videoPlaylistsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.videoPlaylistsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single video playlist
@@ -24590,13 +24386,6 @@ export interface VideoPlaylistsApiVideoPlaylistsListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof VideoPlaylistsApiVideoPlaylistsList
-     */
-    readonly resource_category?: Array<VideoPlaylistsListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof VideoPlaylistsApiVideoPlaylistsList
@@ -24604,11 +24393,18 @@ export interface VideoPlaylistsApiVideoPlaylistsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof VideoPlaylistsApiVideoPlaylistsList
      */
     readonly resource_type?: Array<VideoPlaylistsListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof VideoPlaylistsApiVideoPlaylistsList
+     */
+    readonly resource_type_group?: Array<VideoPlaylistsListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -24679,7 +24475,7 @@ export class VideoPlaylistsApi extends BaseAPI {
      * @memberof VideoPlaylistsApi
      */
     public videoPlaylistsList(requestParameters: VideoPlaylistsApiVideoPlaylistsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return VideoPlaylistsApiFp(this.configuration).videoPlaylistsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return VideoPlaylistsApiFp(this.configuration).videoPlaylistsList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -24813,19 +24609,10 @@ export type VideoPlaylistsListPlatformEnum = typeof VideoPlaylistsListPlatformEn
 /**
  * @export
  */
-export const VideoPlaylistsListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type VideoPlaylistsListResourceCategoryEnum = typeof VideoPlaylistsListResourceCategoryEnum[keyof typeof VideoPlaylistsListResourceCategoryEnum];
-/**
- * @export
- */
 export const VideoPlaylistsListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -24834,6 +24621,15 @@ export const VideoPlaylistsListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type VideoPlaylistsListResourceTypeEnum = typeof VideoPlaylistsListResourceTypeEnum[keyof typeof VideoPlaylistsListResourceTypeEnum];
+/**
+ * @export
+ */
+export const VideoPlaylistsListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type VideoPlaylistsListResourceTypeGroupEnum = typeof VideoPlaylistsListResourceTypeGroupEnum[keyof typeof VideoPlaylistsListResourceTypeGroupEnum];
 /**
  * @export
  */
@@ -24878,15 +24674,15 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {Array<VideosListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<VideosListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideosListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideosListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videosList: async (certification?: boolean, certification_type?: Array<VideosListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideosListDeliveryEnum>>, department?: Array<VideosListDepartmentEnum>, free?: boolean, level?: Array<VideosListLevelEnum>, limit?: number, offered_by?: Array<VideosListOfferedByEnum>, offset?: number, platform?: Array<VideosListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<VideosListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<VideosListResourceTypeEnum>, sortby?: VideosListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videosList: async (certification?: boolean, certification_type?: Array<VideosListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideosListDeliveryEnum>>, department?: Array<VideosListDepartmentEnum>, free?: boolean, level?: Array<VideosListLevelEnum>, limit?: number, offered_by?: Array<VideosListOfferedByEnum>, offset?: number, platform?: Array<VideosListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<VideosListResourceTypeEnum>, resource_type_group?: Array<VideosListResourceTypeGroupEnum>, sortby?: VideosListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/videos/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24951,16 +24747,16 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['readable_id'] = readable_id;
             }
 
-            if (resource_category) {
-                localVarQueryParameter['resource_category'] = resource_category;
-            }
-
             if (resource_id) {
                 localVarQueryParameter['resource_id'] = resource_id;
             }
 
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
+            }
+
+            if (resource_type_group) {
+                localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
             if (sortby !== undefined) {
@@ -25042,16 +24838,16 @@ export const VideosApiFp = function(configuration?: Configuration) {
          * @param {Array<VideosListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<VideosListResourceCategoryEnum>} [resource_category] The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideosListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideosListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videosList(certification?: boolean, certification_type?: Array<VideosListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideosListDeliveryEnum>>, department?: Array<VideosListDepartmentEnum>, free?: boolean, level?: Array<VideosListLevelEnum>, limit?: number, offered_by?: Array<VideosListOfferedByEnum>, offset?: number, platform?: Array<VideosListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<VideosListResourceCategoryEnum>, resource_id?: Array<number>, resource_type?: Array<VideosListResourceTypeEnum>, sortby?: VideosListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedVideoResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videosList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_id, resource_type, sortby, topic, options);
+        async videosList(certification?: boolean, certification_type?: Array<VideosListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<VideosListDeliveryEnum>>, department?: Array<VideosListDepartmentEnum>, free?: boolean, level?: Array<VideosListLevelEnum>, limit?: number, offered_by?: Array<VideosListOfferedByEnum>, offset?: number, platform?: Array<VideosListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<VideosListResourceTypeEnum>, resource_type_group?: Array<VideosListResourceTypeGroupEnum>, sortby?: VideosListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedVideoResourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.videosList(certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VideosApi.videosList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -25087,7 +24883,7 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         videosList(requestParameters: VideosApiVideosListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedVideoResourceList> {
-            return localVarFp.videosList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.videosList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single video
@@ -25200,13 +24996,6 @@ export interface VideosApiVideosListRequest {
     readonly readable_id?: Array<string>
 
     /**
-     * The resource category of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
-     * @memberof VideosApiVideosList
-     */
-    readonly resource_category?: Array<VideosListResourceCategoryEnum>
-
-    /**
      * Comma-separated list of learning resource IDs
      * @type {Array<number>}
      * @memberof VideosApiVideosList
@@ -25214,11 +25003,18 @@ export interface VideosApiVideosListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'article' | 'course' | 'learning_material' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof VideosApiVideosList
      */
     readonly resource_type?: Array<VideosListResourceTypeEnum>
+
+    /**
+     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * @memberof VideosApiVideosList
+     */
+    readonly resource_type_group?: Array<VideosListResourceTypeGroupEnum>
 
     /**
      * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
@@ -25265,7 +25061,7 @@ export class VideosApi extends BaseAPI {
      * @memberof VideosApi
      */
     public videosList(requestParameters: VideosApiVideosListRequest = {}, options?: RawAxiosRequestConfig) {
-        return VideosApiFp(this.configuration).videosList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_id, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return VideosApiFp(this.configuration).videosList(requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -25399,19 +25195,10 @@ export type VideosListPlatformEnum = typeof VideosListPlatformEnum[keyof typeof 
 /**
  * @export
  */
-export const VideosListResourceCategoryEnum = {
-    Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
-} as const;
-export type VideosListResourceCategoryEnum = typeof VideosListResourceCategoryEnum[keyof typeof VideosListResourceCategoryEnum];
-/**
- * @export
- */
 export const VideosListResourceTypeEnum = {
     Article: 'article',
     Course: 'course',
-    LearningMaterial: 'learning_material',
+    Document: 'document',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
@@ -25420,6 +25207,15 @@ export const VideosListResourceTypeEnum = {
     VideoPlaylist: 'video_playlist'
 } as const;
 export type VideosListResourceTypeEnum = typeof VideosListResourceTypeEnum[keyof typeof VideosListResourceTypeEnum];
+/**
+ * @export
+ */
+export const VideosListResourceTypeGroupEnum = {
+    Course: 'course',
+    LearningMaterial: 'learning_material',
+    Program: 'program'
+} as const;
+export type VideosListResourceTypeGroupEnum = typeof VideosListResourceTypeGroupEnum[keyof typeof VideosListResourceTypeGroupEnum];
 /**
  * @export
  */
