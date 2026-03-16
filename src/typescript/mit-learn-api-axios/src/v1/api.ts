@@ -706,7 +706,7 @@ export interface CourseResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof CourseResource
      */
@@ -796,7 +796,7 @@ export interface CourseResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof CourseResource
      */
@@ -1463,7 +1463,7 @@ export interface DocumentResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof DocumentResource
      */
@@ -1553,7 +1553,7 @@ export interface DocumentResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof DocumentResource
      */
@@ -1995,7 +1995,7 @@ export interface LearningPathResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof LearningPathResource
      */
@@ -2031,7 +2031,7 @@ export interface LearningPathResource {
      */
     'resource_type': LearningPathResourceResourceTypeEnum;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof LearningPathResource
      */
@@ -5380,7 +5380,7 @@ export interface PodcastEpisodeResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof PodcastEpisodeResource
      */
@@ -5470,7 +5470,7 @@ export interface PodcastEpisodeResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof PodcastEpisodeResource
      */
@@ -5868,7 +5868,7 @@ export interface PodcastResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof PodcastResource
      */
@@ -5958,7 +5958,7 @@ export interface PodcastResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof PodcastResource
      */
@@ -6583,7 +6583,7 @@ export interface ProgramResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof ProgramResource
      */
@@ -6673,7 +6673,7 @@ export interface ProgramResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof ProgramResource
      */
@@ -7715,7 +7715,7 @@ export interface VideoPlaylistResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof VideoPlaylistResource
      */
@@ -7805,7 +7805,7 @@ export interface VideoPlaylistResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof VideoPlaylistResource
      */
@@ -8191,7 +8191,7 @@ export interface VideoResource {
      */
     'free': boolean;
     /**
-     * Return the resource category of the resource
+     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
      * @type {string}
      * @memberof VideoResource
      */
@@ -8293,7 +8293,7 @@ export interface VideoResource {
      */
     'url'?: string | null;
     /**
-     * 
+     * The display category for this resource.
      * @type {string}
      * @memberof VideoResource
      */
