@@ -92,457 +92,6 @@ export type AggregationsEnum = typeof AggregationsEnum[keyof typeof Aggregations
 
 
 /**
- * Serializer for Article resources
- * @export
- * @interface ArticleResource
- */
-export interface ArticleResource {
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'id': number;
-    /**
-     * 
-     * @type {Array<LearningResourceTopic>}
-     * @memberof ArticleResource
-     */
-    'topics'?: Array<LearningResourceTopic>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'position': number | null;
-    /**
-     * 
-     * @type {LearningResourceOfferor}
-     * @memberof ArticleResource
-     */
-    'offered_by': LearningResourceOfferor | null;
-    /**
-     * 
-     * @type {LearningResourcePlatform}
-     * @memberof ArticleResource
-     */
-    'platform': LearningResourcePlatform | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResource
-     */
-    'course_feature': Array<string> | null;
-    /**
-     * 
-     * @type {Array<LearningResourceDepartment>}
-     * @memberof ArticleResource
-     */
-    'departments': Array<LearningResourceDepartment> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'certification': boolean;
-    /**
-     * 
-     * @type {CourseResourceCertificationType}
-     * @memberof ArticleResource
-     */
-    'certification_type': CourseResourceCertificationType;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResource
-     */
-    'prices': Array<string>;
-    /**
-     * 
-     * @type {Array<LearningResourcePrice>}
-     * @memberof ArticleResource
-     */
-    'resource_prices': Array<LearningResourcePrice>;
-    /**
-     * 
-     * @type {Array<LearningResourceRun>}
-     * @memberof ArticleResource
-     */
-    'runs': Array<LearningResourceRun> | null;
-    /**
-     * 
-     * @type {LearningResourceImage}
-     * @memberof ArticleResource
-     */
-    'image': LearningResourceImage | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'views': number;
-    /**
-     * 
-     * @type {Array<CourseResourceDeliveryInner>}
-     * @memberof ArticleResource
-     */
-    'delivery': Array<CourseResourceDeliveryInner>;
-    /**
-     * Return true if the resource is free/has a free option
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'free': boolean;
-    /**
-     * Return the resource category of the resource
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'resource_type_group': string;
-    /**
-     * 
-     * @type {Array<CourseResourceFormatInner>}
-     * @memberof ArticleResource
-     */
-    'format': Array<CourseResourceFormatInner>;
-    /**
-     * 
-     * @type {Array<CourseResourcePaceInner>}
-     * @memberof ArticleResource
-     */
-    'pace': Array<CourseResourcePaceInner>;
-    /**
-     * 
-     * @type {LearningResourceRelationshipChildField}
-     * @memberof ArticleResource
-     */
-    'children': LearningResourceRelationshipChildField | null;
-    /**
-     * Return the best run id for the resource, if it has runs
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'best_run_id': number | null;
-    /**
-     * 
-     * @type {ArticleResourceResourceTypeEnum}
-     * @memberof ArticleResource
-     */
-    'resource_type': ArticleResourceResourceTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'readable_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'full_description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'last_modified'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'published'?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResource
-     */
-    'languages'?: Array<string> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'url'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'resource_category': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResource
-     */
-    'ocw_topics'?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'professional': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'next_start_date'?: string | null;
-    /**
-     * 
-     * @type {AvailabilityEnum}
-     * @memberof ArticleResource
-     */
-    'availability'?: AvailabilityEnum | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'completeness'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'license_cc'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'test_mode'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'continuing_ed_credits'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'location'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'duration'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'min_weeks'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'max_weeks'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResource
-     */
-    'time_commitment'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'min_weekly_hours'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResource
-     */
-    'max_weekly_hours'?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResource
-     */
-    'require_summaries': boolean;
-}
-
-
-/**
- * Serializer for Article resources
- * @export
- * @interface ArticleResourceRequest
- */
-export interface ArticleResourceRequest {
-    /**
-     * 
-     * @type {Array<LearningResourceTopic>}
-     * @memberof ArticleResourceRequest
-     */
-    'topics'?: Array<LearningResourceTopic>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'readable_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'full_description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'last_modified'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResourceRequest
-     */
-    'published'?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResourceRequest
-     */
-    'languages'?: Array<string> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'url'?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ArticleResourceRequest
-     */
-    'ocw_topics'?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'next_start_date'?: string | null;
-    /**
-     * 
-     * @type {AvailabilityEnum}
-     * @memberof ArticleResourceRequest
-     */
-    'availability'?: AvailabilityEnum | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResourceRequest
-     */
-    'completeness'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResourceRequest
-     */
-    'license_cc'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ArticleResourceRequest
-     */
-    'test_mode'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'continuing_ed_credits'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'location'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'duration'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResourceRequest
-     */
-    'min_weeks'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResourceRequest
-     */
-    'max_weeks'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArticleResourceRequest
-     */
-    'time_commitment'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResourceRequest
-     */
-    'min_weekly_hours'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ArticleResourceRequest
-     */
-    'max_weekly_hours'?: number | null;
-}
-
-
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const ArticleResourceResourceTypeEnum = {
-    Article: 'article'
-} as const;
-
-export type ArticleResourceResourceTypeEnum = typeof ArticleResourceResourceTypeEnum[keyof typeof ArticleResourceResourceTypeEnum];
-
-
-/**
  * * `dated` - Dated * `anytime` - Anytime
  * @export
  * @enum {string}
@@ -2810,7 +2359,7 @@ export type LearningPathResourceResourceTypeEnum = typeof LearningPathResourceRe
  * @type LearningResource
  * @export
  */
-export type LearningResource = { resource_type: 'article' } & ArticleResource | { resource_type: 'course' } & CourseResource | { resource_type: 'document' } & DocumentResource | { resource_type: 'learning_path' } & LearningPathResource | { resource_type: 'podcast' } & PodcastResource | { resource_type: 'podcast_episode' } & PodcastEpisodeResource | { resource_type: 'program' } & ProgramResource | { resource_type: 'video' } & VideoResource | { resource_type: 'video_playlist' } & VideoPlaylistResource;
+export type LearningResource = { resource_type: 'course' } & CourseResource | { resource_type: 'document' } & DocumentResource | { resource_type: 'learning_path' } & LearningPathResource | { resource_type: 'podcast' } & PodcastResource | { resource_type: 'podcast_episode' } & PodcastEpisodeResource | { resource_type: 'program' } & ProgramResource | { resource_type: 'video' } & VideoResource | { resource_type: 'video_playlist' } & VideoPlaylistResource;
 
 /**
  * Serializer for LearningResourceDepartment, minus school  The absence of the departments list is to avoid a circular serialization structure.
@@ -3555,7 +3104,7 @@ export interface LearningResourceRelationshipChildField {
  * @type LearningResourceRequest
  * @export
  */
-export type LearningResourceRequest = { resource_type: 'article' } & ArticleResourceRequest | { resource_type: 'course' } & CourseResourceRequest | { resource_type: 'document' } & DocumentResourceRequest | { resource_type: 'learning_path' } & LearningPathResourceRequest | { resource_type: 'podcast' } & PodcastResourceRequest | { resource_type: 'podcast_episode' } & PodcastEpisodeResourceRequest | { resource_type: 'program' } & ProgramResourceRequest | { resource_type: 'video' } & VideoResourceRequest | { resource_type: 'video_playlist' } & VideoPlaylistResourceRequest;
+export type LearningResourceRequest = { resource_type: 'course' } & CourseResourceRequest | { resource_type: 'document' } & DocumentResourceRequest | { resource_type: 'learning_path' } & LearningPathResourceRequest | { resource_type: 'podcast' } & PodcastResourceRequest | { resource_type: 'podcast_episode' } & PodcastEpisodeResourceRequest | { resource_type: 'program' } & ProgramResourceRequest | { resource_type: 'video' } & VideoResourceRequest | { resource_type: 'video_playlist' } & VideoPlaylistResourceRequest;
 
 /**
  * Serializer for the LearningResourceRun model
@@ -5347,7 +4896,7 @@ export interface PercolateQuerySubscriptionRequestRequest {
      */
     'sortby'?: SortbyEnum;
     /**
-     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `document` - document
+     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `document` - document
      * @type {Array<PercolateQuerySubscriptionRequestResourceTypeEnum>}
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
@@ -5470,7 +5019,7 @@ export interface PercolateQuerySubscriptionRequestRequest {
 
 
 /**
- * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `article` - article * `document` - document
+ * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist * `document` - document
  * @export
  * @enum {string}
  */
@@ -5504,10 +5053,6 @@ export const PercolateQuerySubscriptionRequestResourceTypeEnum = {
     * video playlist
     */
     VideoPlaylist: 'video_playlist',
-    /**
-    * article
-    */
-    Article: 'article',
     /**
     * document
     */
@@ -7425,7 +6970,7 @@ export type RelationTypeEnum = typeof RelationTypeEnum[keyof typeof RelationType
 
 
 /**
- * * `course` - course * `program` - program * `learning_path` - learning_path * `podcast` - podcast * `podcast_episode` - podcast_episode * `video` - video * `video_playlist` - video_playlist * `article` - article * `document` - document
+ * * `course` - course * `program` - program * `learning_path` - learning_path * `podcast` - podcast * `podcast_episode` - podcast_episode * `video` - video * `video_playlist` - video_playlist * `document` - document
  * @export
  * @enum {string}
  */
@@ -7459,10 +7004,6 @@ export const ResourceTypeEnum = {
     * video_playlist
     */
     VideoPlaylist: 'video_playlist',
-    /**
-    * article
-    */
-    Article: 'article',
     /**
     * document
     */
@@ -10704,7 +10245,7 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<CoursesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {CoursesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -10903,7 +10444,7 @@ export const CoursesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<CoursesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<CoursesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {CoursesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -11178,8 +10719,8 @@ export interface CoursesApiCoursesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof CoursesApiCoursesList
      */
     readonly resource_type?: Array<CoursesListResourceTypeEnum>
@@ -11434,7 +10975,6 @@ export type CoursesListPlatformEnum = typeof CoursesListPlatformEnum[keyof typeo
  * @export
  */
 export const CoursesListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -11718,7 +11258,7 @@ export const FeaturedApiAxiosParamCreator = function (configuration?: Configurat
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<FeaturedListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {FeaturedListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -11882,7 +11422,7 @@ export const FeaturedApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<FeaturedListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<FeaturedListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {FeaturedListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -12046,8 +11586,8 @@ export interface FeaturedApiFeaturedListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof FeaturedApiFeaturedList
      */
     readonly resource_type?: Array<FeaturedListResourceTypeEnum>
@@ -12239,7 +11779,6 @@ export type FeaturedListPlatformEnum = typeof FeaturedListPlatformEnum[keyof typ
  * @export
  */
 export const FeaturedListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -12304,7 +11843,7 @@ export const LearningResourceDisplayInfoApiAxiosParamCreator = function (configu
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourceDisplayInfoListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -12468,7 +12007,7 @@ export const LearningResourceDisplayInfoApiFp = function(configuration?: Configu
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourceDisplayInfoListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourceDisplayInfoListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourceDisplayInfoListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -12632,8 +12171,8 @@ export interface LearningResourceDisplayInfoApiLearningResourceDisplayInfoListRe
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourceDisplayInfoApiLearningResourceDisplayInfoList
      */
     readonly resource_type?: Array<LearningResourceDisplayInfoListResourceTypeEnum>
@@ -12825,7 +12364,6 @@ export type LearningResourceDisplayInfoListPlatformEnum = typeof LearningResourc
  * @export
  */
 export const LearningResourceDisplayInfoListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -13132,7 +12670,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13286,7 +12824,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13405,7 +12943,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesSummaryListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSummaryListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13568,7 +13106,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13777,7 +13315,7 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13820,7 +13358,7 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13850,7 +13388,7 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesSummaryListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesSummaryListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSummaryListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -13895,7 +13433,7 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -14311,8 +13849,8 @@ export interface LearningResourcesApiLearningResourcesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesList
      */
     readonly resource_type?: Array<LearningResourcesListResourceTypeEnum>
@@ -14458,8 +13996,8 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>
@@ -14591,8 +14129,8 @@ export interface LearningResourcesApiLearningResourcesSummaryListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesSummaryList
      */
     readonly resource_type?: Array<LearningResourcesSummaryListResourceTypeEnum>
@@ -14752,8 +14290,8 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>
@@ -15078,7 +14616,6 @@ export type LearningResourcesListPlatformEnum = typeof LearningResourcesListPlat
  * @export
  */
 export const LearningResourcesListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -15237,7 +14774,6 @@ export type LearningResourcesSimilarListPlatformEnum = typeof LearningResourcesS
  * @export
  */
 export const LearningResourcesSimilarListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -15396,7 +14932,6 @@ export type LearningResourcesSummaryListPlatformEnum = typeof LearningResourcesS
  * @export
  */
 export const LearningResourcesSummaryListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -15555,7 +15090,6 @@ export type LearningResourcesVectorSimilarListPlatformEnum = typeof LearningReso
  * @export
  */
 export const LearningResourcesVectorSimilarListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -15627,7 +15161,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -15812,7 +15346,7 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16006,8 +15540,8 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
     readonly resource_category?: Array<string>
 
     /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
     readonly resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>
@@ -16228,7 +15762,6 @@ export const LearningResourcesSearchRetrieveResourceTypeEnum = {
     PodcastEpisode: 'podcast_episode',
     Video: 'video',
     VideoPlaylist: 'video_playlist',
-    Article: 'article',
     Document: 'document'
 } as const;
 export type LearningResourcesSearchRetrieveResourceTypeEnum = typeof LearningResourcesSearchRetrieveResourceTypeEnum[keyof typeof LearningResourcesSearchRetrieveResourceTypeEnum];
@@ -16304,7 +15837,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16484,7 +16017,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16659,7 +16192,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16887,7 +16420,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16929,7 +16462,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -16970,7 +16503,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {boolean | null} [professional] 
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
@@ -17209,8 +16742,8 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_category?: Array<string>
 
     /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>
@@ -17426,8 +16959,8 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_category?: Array<string>
 
     /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>
@@ -17636,8 +17169,8 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_category?: Array<string>
 
     /**
-     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;article&#x60; - article * &#x60;document&#x60; - document
-     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'article' | 'document'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
     readonly resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>
@@ -17922,7 +17455,6 @@ export const LearningResourcesUserSubscriptionCheckListResourceTypeEnum = {
     PodcastEpisode: 'podcast_episode',
     Video: 'video',
     VideoPlaylist: 'video_playlist',
-    Article: 'article',
     Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionCheckListResourceTypeEnum = typeof LearningResourcesUserSubscriptionCheckListResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionCheckListResourceTypeEnum];
@@ -18120,7 +17652,6 @@ export const LearningResourcesUserSubscriptionListResourceTypeEnum = {
     PodcastEpisode: 'podcast_episode',
     Video: 'video',
     VideoPlaylist: 'video_playlist',
-    Article: 'article',
     Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionListResourceTypeEnum = typeof LearningResourcesUserSubscriptionListResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionListResourceTypeEnum];
@@ -18310,7 +17841,6 @@ export const LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum = 
     PodcastEpisode: 'podcast_episode',
     Video: 'video',
     VideoPlaylist: 'video_playlist',
-    Article: 'article',
     Document: 'document'
 } as const;
 export type LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum];
@@ -18663,7 +18193,7 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningpathsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningpathsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -18993,7 +18523,7 @@ export const LearningpathsApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<LearningpathsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<LearningpathsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {LearningpathsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -19425,8 +18955,8 @@ export interface LearningpathsApiLearningpathsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof LearningpathsApiLearningpathsList
      */
     readonly resource_type?: Array<LearningpathsListResourceTypeEnum>
@@ -19745,7 +19275,6 @@ export type LearningpathsListPlatformEnum = typeof LearningpathsListPlatformEnum
  * @export
  */
 export const LearningpathsListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -20373,7 +19902,7 @@ export const PodcastEpisodesApiAxiosParamCreator = function (configuration?: Con
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<PodcastEpisodesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastEpisodesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -20537,7 +20066,7 @@ export const PodcastEpisodesApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastEpisodesListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<PodcastEpisodesListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastEpisodesListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -20701,8 +20230,8 @@ export interface PodcastEpisodesApiPodcastEpisodesListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof PodcastEpisodesApiPodcastEpisodesList
      */
     readonly resource_type?: Array<PodcastEpisodesListResourceTypeEnum>
@@ -20894,7 +20423,6 @@ export type PodcastEpisodesListPlatformEnum = typeof PodcastEpisodesListPlatform
  * @export
  */
 export const PodcastEpisodesListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -21046,7 +20574,7 @@ export const PodcastsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<PodcastsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -21240,7 +20768,7 @@ export const PodcastsApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<PodcastsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<PodcastsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {PodcastsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -21480,8 +21008,8 @@ export interface PodcastsApiPodcastsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof PodcastsApiPodcastsList
      */
     readonly resource_type?: Array<PodcastsListResourceTypeEnum>
@@ -21697,7 +21225,6 @@ export type PodcastsListPlatformEnum = typeof PodcastsListPlatformEnum[keyof typ
  * @export
  */
 export const PodcastsListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -21880,7 +21407,7 @@ export const ProgramsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<ProgramsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {ProgramsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -22044,7 +21571,7 @@ export const ProgramsApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<ProgramsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<ProgramsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {ProgramsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -22208,8 +21735,8 @@ export interface ProgramsApiProgramsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof ProgramsApiProgramsList
      */
     readonly resource_type?: Array<ProgramsListResourceTypeEnum>
@@ -22401,7 +21928,6 @@ export type ProgramsListPlatformEnum = typeof ProgramsListPlatformEnum[keyof typ
  * @export
  */
 export const ProgramsListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -24077,7 +23603,7 @@ export const VideoPlaylistsApiAxiosParamCreator = function (configuration?: Conf
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<VideoPlaylistsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideoPlaylistsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -24271,7 +23797,7 @@ export const VideoPlaylistsApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideoPlaylistsListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<VideoPlaylistsListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideoPlaylistsListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -24511,8 +24037,8 @@ export interface VideoPlaylistsApiVideoPlaylistsListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof VideoPlaylistsApiVideoPlaylistsList
      */
     readonly resource_type?: Array<VideoPlaylistsListResourceTypeEnum>
@@ -24728,7 +24254,6 @@ export type VideoPlaylistsListPlatformEnum = typeof VideoPlaylistsListPlatformEn
  * @export
  */
 export const VideoPlaylistsListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
@@ -24793,7 +24318,7 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<VideosListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideosListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -24957,7 +24482,7 @@ export const VideosApiFp = function(configuration?: Configuration) {
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] A unique text identifier for the resources
          * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
+         * @param {Array<VideosListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
          * @param {Array<VideosListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
          * @param {VideosListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
@@ -25121,8 +24646,8 @@ export interface VideosApiVideosListRequest {
     readonly resource_id?: Array<number>
 
     /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;article&#x60; - Article * &#x60;document&#x60; - Document
-     * @type {Array<'article' | 'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
+     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
      * @memberof VideosApiVideosList
      */
     readonly resource_type?: Array<VideosListResourceTypeEnum>
@@ -25314,7 +24839,6 @@ export type VideosListPlatformEnum = typeof VideosListPlatformEnum[keyof typeof 
  * @export
  */
 export const VideosListResourceTypeEnum = {
-    Article: 'article',
     Course: 'course',
     Document: 'document',
     LearningPath: 'learning_path',
