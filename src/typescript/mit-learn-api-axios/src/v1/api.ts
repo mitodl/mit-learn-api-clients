@@ -7621,12 +7621,6 @@ export interface Video {
      * @memberof Video
      */
     'duration': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Video
-     */
-    'transcript'?: string;
 }
 /**
  * Serializer for the VideoChannel model
@@ -8173,12 +8167,6 @@ export interface VideoRequest {
      * @memberof VideoRequest
      */
     'duration': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoRequest
-     */
-    'transcript'?: string;
 }
 /**
  * Serializer for video resources

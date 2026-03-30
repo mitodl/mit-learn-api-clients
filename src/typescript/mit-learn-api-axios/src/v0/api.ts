@@ -5901,12 +5901,6 @@ export interface Video {
      * @memberof Video
      */
     'duration': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Video
-     */
-    'transcript'?: string;
 }
 /**
  * Serializer for the VideoChannel model
