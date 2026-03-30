@@ -756,11 +756,11 @@ export interface CourseResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof CourseResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -1513,11 +1513,11 @@ export interface DocumentResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof DocumentResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -2045,11 +2045,11 @@ export interface LearningPathResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof LearningPathResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -5018,7 +5018,7 @@ export interface PercolateQuerySubscriptionRequestRequest {
      */
     'delivery'?: Array<DeliveryEnum>;
     /**
-     * The resource type grouping of learning resource               * `course` - Course * `program` - Program * `learning_material` - Learning Material
+     * 
      * @type {Array<ResourceTypeGroupEnum>}
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
@@ -5440,11 +5440,11 @@ export interface PodcastEpisodeResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof PodcastEpisodeResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -5928,11 +5928,11 @@ export interface PodcastResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof PodcastResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -6649,11 +6649,11 @@ export interface ProgramResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof ProgramResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -7801,11 +7801,11 @@ export interface VideoPlaylistResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof VideoPlaylistResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -8271,11 +8271,11 @@ export interface VideoResource {
      */
     'free': boolean;
     /**
-     * Return the resource type group for UI grouping.  For courses/programs, this is derived from resource_category (which may differ from resource_type, e.g. a program displayed as a course). For all other types, returns \"learning_material\".
-     * @type {string}
+     * 
+     * @type {ResourceTypeGroupEnum}
      * @memberof VideoResource
      */
-    'resource_type_group': string;
+    'resource_type_group': ResourceTypeGroupEnum;
     /**
      * 
      * @type {Array<CourseResourceFormatInner>}
@@ -15253,7 +15253,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -15438,7 +15438,7 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesSearchRetrieveSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -15638,7 +15638,7 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
     readonly resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>
 
     /**
-     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * 
      * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
@@ -15930,7 +15930,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16110,7 +16110,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16285,7 +16285,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16513,7 +16513,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionCheckListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16555,7 +16555,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionListResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionListSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16596,7 +16596,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_category] The resource category for the resource
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
-         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeGroupEnum>} [resource_type_group] 
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum} [search_mode] The open search search type for text queries               * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid  * &#x60;phrase&#x60; - phrase * &#x60;best_fields&#x60; - best_fields * &#x60;most_fields&#x60; - most_fields * &#x60;hybrid&#x60; - hybrid
          * @param {boolean | null} [show_ocw_files] Whether to include select OCW content files in search results.
          * @param {number | null} [slop] Allowed distance for phrase search
@@ -16841,7 +16841,7 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>
 
     /**
-     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * 
      * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
@@ -17058,7 +17058,7 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>
 
     /**
-     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * 
      * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
@@ -17268,7 +17268,7 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>
 
     /**
-     * The resource type grouping of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * 
      * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
