@@ -2402,7 +2402,7 @@ export interface LearningPathResource {
      * @type {boolean}
      * @memberof LearningPathResource
      */
-    'professional'?: boolean;
+    'professional': boolean;
     /**
      * 
      * @type {string}
@@ -2486,7 +2486,7 @@ export interface LearningPathResource {
      * @type {boolean}
      * @memberof LearningPathResource
      */
-    'require_summaries'?: boolean;
+    'require_summaries': boolean;
 }
 
 
