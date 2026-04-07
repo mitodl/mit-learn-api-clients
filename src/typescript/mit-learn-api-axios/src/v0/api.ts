@@ -9922,9 +9922,6 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * Vector Search for content
          * @summary Content File Vector Search
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
-         * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
-         * @param {Array<string>} [course_number] Course number of the content file
-         * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {string} [group_by] The attribute to group results by
          * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
@@ -9938,14 +9935,12 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {Array<string>} [resource_readable_id] The readable_id value of the parent learning resource for the content file
          * @param {Array<string>} [run_readable_id] The readable_id value of the run that the content file belongs to
          * @param {VectorContentFilesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
-         * @param {Array<string>} [title] The title of the content file. 
          * @param {boolean | null} [title__isnull] Filter to content files where title is null/not null
-         * @param {Array<string>} [url] The url of the content file. 
          * @param {boolean | null} [url__isnull] Filter to content files where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorContentFilesSearchRetrieve: async (collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title?: Array<string>, title__isnull?: boolean | null, url?: Array<string>, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorContentFilesSearchRetrieve: async (collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_content_files_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9960,18 +9955,6 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
 
             if (collection_name !== undefined) {
                 localVarQueryParameter['collection_name'] = collection_name;
-            }
-
-            if (content_feature_type) {
-                localVarQueryParameter['content_feature_type'] = content_feature_type;
-            }
-
-            if (course_number) {
-                localVarQueryParameter['course_number'] = course_number;
-            }
-
-            if (edx_module_id) {
-                localVarQueryParameter['edx_module_id'] = edx_module_id;
             }
 
             if (file_extension) {
@@ -10026,16 +10009,8 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['sortby'] = sortby;
             }
 
-            if (title) {
-                localVarQueryParameter['title'] = title;
-            }
-
             if (title__isnull !== undefined) {
                 localVarQueryParameter['title__isnull'] = title__isnull;
-            }
-
-            if (url) {
-                localVarQueryParameter['url'] = url;
             }
 
             if (url__isnull !== undefined) {
@@ -10067,9 +10042,6 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * Vector Search for content
          * @summary Content File Vector Search
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
-         * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
-         * @param {Array<string>} [course_number] Course number of the content file
-         * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {string} [group_by] The attribute to group results by
          * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
@@ -10083,15 +10055,13 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {Array<string>} [resource_readable_id] The readable_id value of the parent learning resource for the content file
          * @param {Array<string>} [run_readable_id] The readable_id value of the run that the content file belongs to
          * @param {VectorContentFilesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
-         * @param {Array<string>} [title] The title of the content file. 
          * @param {boolean | null} [title__isnull] Filter to content files where title is null/not null
-         * @param {Array<string>} [url] The url of the content file. 
          * @param {boolean | null} [url__isnull] Filter to content files where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorContentFilesSearchRetrieve(collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title?: Array<string>, title__isnull?: boolean | null, url?: Array<string>, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, content_feature_type, course_number, edx_module_id, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, title, title__isnull, url, url__isnull, options);
+        async vectorContentFilesSearchRetrieve(collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, title__isnull, url__isnull, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorContentFilesSearchApi.vectorContentFilesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10114,7 +10084,7 @@ export const VectorContentFilesSearchApiFactory = function (configuration?: Conf
          * @throws {RequiredError}
          */
         vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileVectorSearchResponse> {
-            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title, requestParameters.title__isnull, requestParameters.url, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10131,27 +10101,6 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
      */
     readonly collection_name?: string
-
-    /**
-     * The feature type of the content file. Possible options are at api/v1/course_features/
-     * @type {Array<string>}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly content_feature_type?: Array<string>
-
-    /**
-     * Course number of the content file
-     * @type {Array<string>}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly course_number?: Array<string>
-
-    /**
-     * The edx_module_id of the content file
-     * @type {Array<string>}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly edx_module_id?: Array<string>
 
     /**
      * The extension of the content file. 
@@ -10245,25 +10194,11 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
     readonly sortby?: VectorContentFilesSearchRetrieveSortbyEnum
 
     /**
-     * The title of the content file. 
-     * @type {Array<string>}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly title?: Array<string>
-
-    /**
      * Filter to content files where title is null/not null
      * @type {boolean}
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
      */
     readonly title__isnull?: boolean | null
-
-    /**
-     * The url of the content file. 
-     * @type {Array<string>}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly url?: Array<string>
 
     /**
      * Filter to content files where url is null/not null
@@ -10289,7 +10224,7 @@ export class VectorContentFilesSearchApi extends BaseAPI {
      * @memberof VectorContentFilesSearchApi
      */
     public vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title, requestParameters.title__isnull, requestParameters.url, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
+        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
