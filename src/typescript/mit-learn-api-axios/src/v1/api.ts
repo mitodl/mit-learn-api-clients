@@ -3020,6 +3020,12 @@ export interface HubspotFormSubmitRequestRequest {
      * @type {string}
      * @memberof HubspotFormSubmitRequestRequest
      */
+    'recaptcha_token'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HubspotFormSubmitRequestRequest
+     */
     'page_title'?: string;
     /**
      * 
