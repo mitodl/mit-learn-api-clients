@@ -405,6 +405,12 @@ export interface ContentFile {
      * @memberof ContentFile
      */
     'flashcards'?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContentFile
+     */
+    'youtube_id'?: string | null;
 }
 
 
@@ -3104,27 +3110,58 @@ export interface LearningPathRelationship {
     'child': number;
 }
 /**
- * Specialized serializer for a LearningPath relationship
+ * Create serializer for nested learning path items.  The parent is derived from the nested route and must not be client-supplied.
  * @export
- * @interface LearningPathRelationshipRequest
+ * @interface LearningPathRelationshipCreate
  */
-export interface LearningPathRelationshipRequest {
+export interface LearningPathRelationshipCreate {
     /**
      * 
      * @type {number}
-     * @memberof LearningPathRelationshipRequest
+     * @memberof LearningPathRelationshipCreate
+     */
+    'id': number;
+    /**
+     * 
+     * @type {LearningResource}
+     * @memberof LearningPathRelationshipCreate
+     */
+    'resource': LearningResource;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningPathRelationshipCreate
      */
     'position'?: number;
     /**
      * 
      * @type {number}
-     * @memberof LearningPathRelationshipRequest
+     * @memberof LearningPathRelationshipCreate
      */
     'parent': number;
     /**
      * 
      * @type {number}
-     * @memberof LearningPathRelationshipRequest
+     * @memberof LearningPathRelationshipCreate
+     */
+    'child': number;
+}
+/**
+ * Create serializer for nested learning path items.  The parent is derived from the nested route and must not be client-supplied.
+ * @export
+ * @interface LearningPathRelationshipCreateRequest
+ */
+export interface LearningPathRelationshipCreateRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningPathRelationshipCreateRequest
+     */
+    'position'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningPathRelationshipCreateRequest
      */
     'child': number;
 }
@@ -5715,27 +5752,21 @@ export interface PaginatedVideoResourceList {
     'results': Array<VideoResource>;
 }
 /**
- * Specialized serializer for a LearningPath relationship
+ * Create serializer for nested learning path items.  The parent is derived from the nested route and must not be client-supplied.
  * @export
- * @interface PatchedLearningPathRelationshipRequest
+ * @interface PatchedLearningPathRelationshipCreateRequest
  */
-export interface PatchedLearningPathRelationshipRequest {
+export interface PatchedLearningPathRelationshipCreateRequest {
     /**
      * 
      * @type {number}
-     * @memberof PatchedLearningPathRelationshipRequest
+     * @memberof PatchedLearningPathRelationshipCreateRequest
      */
     'position'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PatchedLearningPathRelationshipRequest
-     */
-    'parent'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedLearningPathRelationshipRequest
+     * @memberof PatchedLearningPathRelationshipCreateRequest
      */
     'child'?: number;
 }
@@ -14424,30 +14455,28 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources
          * @param {number} id 
-         * @param {boolean} [certification] 
-         * @param {Array<LearningResourcesSimilarListCertificationTypeEnum>} [certification_type] The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-         * @param {Array<string>} [course_feature] Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
-         * @param {Array<Array<LearningResourcesSimilarListDeliveryEnum>>} [delivery] The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-         * @param {Array<LearningResourcesSimilarListDepartmentEnum>} [department] The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-         * @param {boolean} [free] The course/program is offered for free
-         * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
+         * @param {boolean | null} [certification] True if the learning resource offers a certificate
+         * @param {Array<LearningResourcesSimilarListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+         * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
+         * @param {Array<LearningResourcesSimilarListDeliveryEnum>} [delivery] The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+         * @param {Array<LearningResourcesSimilarListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [free] 
+         * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] 
          * @param {number} [limit] 
-         * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-         * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-         * @param {boolean} [professional] 
-         * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-         * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+         * @param {Array<string>} [ocw_topic] The ocw topic name.
+         * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+         * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+         * @param {boolean | null} [professional] 
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSimilarList: async (id: number, certification?: boolean | null, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<LearningResourcesSimilarListDeliveryEnum>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean | null, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean | null, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/similar/`
@@ -14495,6 +14524,10 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (ocw_topic) {
+                localVarQueryParameter['ocw_topic'] = ocw_topic;
+            }
+
             if (offered_by) {
                 localVarQueryParameter['offered_by'] = offered_by;
             }
@@ -14507,24 +14540,12 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['professional'] = professional;
             }
 
-            if (readable_id) {
-                localVarQueryParameter['readable_id'] = readable_id;
-            }
-
-            if (resource_id) {
-                localVarQueryParameter['resource_id'] = resource_id;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
             }
 
             if (resource_type_group) {
                 localVarQueryParameter['resource_type_group'] = resource_type_group;
-            }
-
-            if (sortby !== undefined) {
-                localVarQueryParameter['sortby'] = sortby;
             }
 
             if (topic) {
@@ -14706,30 +14727,28 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by Qdrant filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources using vector embeddings
          * @param {number} id 
-         * @param {boolean} [certification] 
-         * @param {Array<LearningResourcesVectorSimilarListCertificationTypeEnum>} [certification_type] The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-         * @param {Array<string>} [course_feature] Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
-         * @param {Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>} [delivery] The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-         * @param {Array<LearningResourcesVectorSimilarListDepartmentEnum>} [department] The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-         * @param {boolean} [free] The course/program is offered for free
-         * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
+         * @param {boolean | null} [certification] True if the learning resource offers a certificate
+         * @param {Array<LearningResourcesVectorSimilarListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+         * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
+         * @param {Array<LearningResourcesVectorSimilarListDeliveryEnum>} [delivery] The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+         * @param {Array<LearningResourcesVectorSimilarListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [free] 
+         * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] 
          * @param {number} [limit] 
-         * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-         * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-         * @param {boolean} [professional] 
-         * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-         * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+         * @param {Array<string>} [ocw_topic] The ocw topic name.
+         * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+         * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+         * @param {boolean | null} [professional] 
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesVectorSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesVectorSimilarList: async (id: number, certification?: boolean | null, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<LearningResourcesVectorSimilarListDeliveryEnum>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean | null, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean | null, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesVectorSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/vector_similar/`
@@ -14777,6 +14796,10 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (ocw_topic) {
+                localVarQueryParameter['ocw_topic'] = ocw_topic;
+            }
+
             if (offered_by) {
                 localVarQueryParameter['offered_by'] = offered_by;
             }
@@ -14789,24 +14812,12 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['professional'] = professional;
             }
 
-            if (readable_id) {
-                localVarQueryParameter['readable_id'] = readable_id;
-            }
-
-            if (resource_id) {
-                localVarQueryParameter['resource_id'] = resource_id;
-            }
-
             if (resource_type) {
                 localVarQueryParameter['resource_type'] = resource_type;
             }
 
             if (resource_type_group) {
                 localVarQueryParameter['resource_type_group'] = resource_type_group;
-            }
-
-            if (sortby !== undefined) {
-                localVarQueryParameter['sortby'] = sortby;
             }
 
             if (topic) {
@@ -14958,31 +14969,29 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources
          * @param {number} id 
-         * @param {boolean} [certification] 
-         * @param {Array<LearningResourcesSimilarListCertificationTypeEnum>} [certification_type] The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-         * @param {Array<string>} [course_feature] Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
-         * @param {Array<Array<LearningResourcesSimilarListDeliveryEnum>>} [delivery] The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-         * @param {Array<LearningResourcesSimilarListDepartmentEnum>} [department] The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-         * @param {boolean} [free] The course/program is offered for free
-         * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
+         * @param {boolean | null} [certification] True if the learning resource offers a certificate
+         * @param {Array<LearningResourcesSimilarListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+         * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
+         * @param {Array<LearningResourcesSimilarListDeliveryEnum>} [delivery] The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+         * @param {Array<LearningResourcesSimilarListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [free] 
+         * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] 
          * @param {number} [limit] 
-         * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-         * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-         * @param {boolean} [professional] 
-         * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {LearningResourcesSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-         * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+         * @param {Array<string>} [ocw_topic] The ocw topic name.
+         * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+         * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+         * @param {boolean | null} [professional] 
+         * @param {Array<LearningResourcesSimilarListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesSimilarListResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
+        async learningResourcesSimilarList(id: number, certification?: boolean | null, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<LearningResourcesSimilarListDeliveryEnum>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean | null, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean | null, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, ocw_topic, offered_by, platform, professional, resource_type, resource_type_group, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -15033,31 +15042,29 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by Qdrant filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources using vector embeddings
          * @param {number} id 
-         * @param {boolean} [certification] 
-         * @param {Array<LearningResourcesVectorSimilarListCertificationTypeEnum>} [certification_type] The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-         * @param {Array<string>} [course_feature] Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
-         * @param {Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>} [delivery] The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-         * @param {Array<LearningResourcesVectorSimilarListDepartmentEnum>} [department] The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-         * @param {boolean} [free] The course/program is offered for free
-         * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
+         * @param {boolean | null} [certification] True if the learning resource offers a certificate
+         * @param {Array<LearningResourcesVectorSimilarListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+         * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
+         * @param {Array<LearningResourcesVectorSimilarListDeliveryEnum>} [delivery] The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+         * @param {Array<LearningResourcesVectorSimilarListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [free] 
+         * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] 
          * @param {number} [limit] 
-         * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-         * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-         * @param {boolean} [professional] 
-         * @param {Array<string>} [readable_id] A unique text identifier for the resources
-         * @param {Array<number>} [resource_id] Comma-separated list of learning resource IDs
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-         * @param {LearningResourcesVectorSimilarListSortbyEnum} [sortby] Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-         * @param {Array<string>} [topic] Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+         * @param {Array<string>} [ocw_topic] The ocw topic name.
+         * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+         * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+         * @param {boolean | null} [professional] 
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+         * @param {Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesVectorSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_id?: Array<number>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_id, resource_type, resource_type_group, sortby, topic, options);
+        async learningResourcesVectorSimilarList(id: number, certification?: boolean | null, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<LearningResourcesVectorSimilarListDeliveryEnum>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean | null, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean | null, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, ocw_topic, offered_by, platform, professional, resource_type, resource_type_group, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesVectorSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -15143,14 +15150,14 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
             return localVarFp.learningResourcesRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources
          * @param {LearningResourcesApiLearningResourcesSimilarListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
-            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a paginated list of learning resources with summary fields
@@ -15173,14 +15180,14 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
             return localVarFp.learningResourcesUserlistsPartialUpdate(requestParameters.id, requestParameters.userlist_id, requestParameters.PatchedUserListRelationshipRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+         * Fetch similar learning resources, optionally narrowed by Qdrant filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
          * @summary Get similar resources using vector embeddings
          * @param {LearningResourcesApiLearningResourcesVectorSimilarListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
-            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -15521,50 +15528,50 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly id: number
 
     /**
-     * 
+     * True if the learning resource offers a certificate
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
-    readonly certification?: boolean
+    readonly certification?: boolean | null
 
     /**
-     * The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-     * @type {Array<'completion' | 'micromasters' | 'none' | 'professional'>}
+     * The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+     * @type {Array<'micromasters' | 'professional' | 'completion' | 'none'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>
 
     /**
-     * Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
+     * The course feature. Possible options are at api/v1/course_features/
      * @type {Array<string>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly course_feature?: Array<string>
 
     /**
-     * The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-     * @type {Array<Array<'online' | 'hybrid' | 'in_person' | 'offline'>>}
+     * The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+     * @type {Array<'online' | 'hybrid' | 'in_person' | 'offline'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
-    readonly delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>
+    readonly delivery?: Array<LearningResourcesSimilarListDeliveryEnum>
 
     /**
-     * The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-     * @type {Array<'1' | '10' | '11' | '12' | '14' | '15' | '16' | '17' | '18' | '2' | '20' | '21A' | '21G' | '21H' | '21L' | '21M' | '22' | '24' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'CC' | 'CMS-W' | 'EC' | 'ES' | 'ESD' | 'HST' | 'IDS' | 'MAS' | 'PE' | 'SP' | 'STS' | 'WGS'>}
+     * The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+     * @type {Array<'1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '14' | '15' | '16' | '17' | '18' | '20' | '21A' | '21G' | '21H' | '21L' | '21M' | '22' | '24' | 'CC' | 'CMS-W' | 'EC' | 'ES' | 'ESD' | 'HST' | 'IDS' | 'MAS' | 'PE' | 'SP' | 'STS' | 'WGS'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly department?: Array<LearningResourcesSimilarListDepartmentEnum>
 
     /**
-     * The course/program is offered for free
+     * 
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
-    readonly free?: boolean
+    readonly free?: boolean | null
 
     /**
-     * The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
-     * @type {Array<'advanced' | 'graduate' | 'high_school' | 'intermediate' | 'introductory' | 'noncredit' | 'undergraduate'>}
+     * 
+     * @type {Array<'undergraduate' | 'graduate' | 'high_school' | 'noncredit' | 'advanced' | 'intermediate' | 'introductory'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly level?: Array<LearningResourcesSimilarListLevelEnum>
@@ -15577,15 +15584,22 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly limit?: number
 
     /**
-     * The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-     * @type {Array<'bootcamps' | 'climate' | 'mitpe' | 'mitx' | 'ocw' | 'see' | 'xpro'>}
+     * The ocw topic name.
+     * @type {Array<string>}
+     * @memberof LearningResourcesApiLearningResourcesSimilarList
+     */
+    readonly ocw_topic?: Array<string>
+
+    /**
+     * The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+     * @type {Array<'mitx' | 'ocw' | 'bootcamps' | 'xpro' | 'mitpe' | 'see' | 'climate'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>
 
     /**
-     * The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-     * @type {Array<'bootcamps' | 'canvas' | 'climate' | 'csail' | 'ctl' | 'edx' | 'emeritus' | 'globalalumni' | 'mitpe' | 'mitxonline' | 'ocw' | 'oll' | 'ovs' | 'podcast' | 'scc' | 'see' | 'simplilearn' | 'susskind' | 'whu' | 'xpro' | 'youtube'>}
+     * The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+     * @type {Array<'edx' | 'ocw' | 'oll' | 'mitxonline' | 'bootcamps' | 'xpro' | 'csail' | 'mitpe' | 'see' | 'scc' | 'ctl' | 'whu' | 'susskind' | 'globalalumni' | 'simplilearn' | 'emeritus' | 'podcast' | 'youtube' | 'canvas' | 'climate' | 'ovs'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly platform?: Array<LearningResourcesSimilarListPlatformEnum>
@@ -15595,45 +15609,24 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
-    readonly professional?: boolean
+    readonly professional?: boolean | null
 
     /**
-     * A unique text identifier for the resources
-     * @type {Array<string>}
-     * @memberof LearningResourcesApiLearningResourcesSimilarList
-     */
-    readonly readable_id?: Array<string>
-
-    /**
-     * Comma-separated list of learning resource IDs
-     * @type {Array<number>}
-     * @memberof LearningResourcesApiLearningResourcesSimilarList
-     */
-    readonly resource_id?: Array<number>
-
-    /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>
 
     /**
-     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
     readonly resource_type_group?: Array<LearningResourcesSimilarListResourceTypeGroupEnum>
 
     /**
-     * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-     * @type {'-id' | '-last_modified' | '-mitcoursenumber' | '-readable_id' | '-start_date' | '-views' | 'id' | 'last_modified' | 'mitcoursenumber' | 'new' | 'readable_id' | 'start_date' | 'upcoming' | 'views'}
-     * @memberof LearningResourcesApiLearningResourcesSimilarList
-     */
-    readonly sortby?: LearningResourcesSimilarListSortbyEnum
-
-    /**
-     * Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+     * The topic name. To see a list of options go to api/v1/topics/
      * @type {Array<string>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
      */
@@ -15815,50 +15808,50 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly id: number
 
     /**
-     * 
+     * True if the learning resource offers a certificate
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
-    readonly certification?: boolean
+    readonly certification?: boolean | null
 
     /**
-     * The type of certification offered  * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
-     * @type {Array<'completion' | 'micromasters' | 'none' | 'professional'>}
+     * The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
+     * @type {Array<'micromasters' | 'professional' | 'completion' | 'none'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>
 
     /**
-     * Content feature for the resources. Load the \&#39;api/v1/course_features\&#39; endpoint for a list of course features
+     * The course feature. Possible options are at api/v1/course_features/
      * @type {Array<string>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly course_feature?: Array<string>
 
     /**
-     * The delivery of course/program resources  * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
-     * @type {Array<Array<'online' | 'hybrid' | 'in_person' | 'offline'>>}
+     * The delivery options in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person * &#x60;offline&#x60; - Offline
+     * @type {Array<'online' | 'hybrid' | 'in_person' | 'offline'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
-    readonly delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>
+    readonly delivery?: Array<LearningResourcesVectorSimilarListDeliveryEnum>
 
     /**
-     * The department that offers learning resources  * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
-     * @type {Array<'1' | '10' | '11' | '12' | '14' | '15' | '16' | '17' | '18' | '2' | '20' | '21A' | '21G' | '21H' | '21L' | '21M' | '22' | '24' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'CC' | 'CMS-W' | 'EC' | 'ES' | 'ESD' | 'HST' | 'IDS' | 'MAS' | 'PE' | 'SP' | 'STS' | 'WGS'>}
+     * The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;SP&#x60; - Special Programs * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+     * @type {Array<'1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '14' | '15' | '16' | '17' | '18' | '20' | '21A' | '21G' | '21H' | '21L' | '21M' | '22' | '24' | 'CC' | 'CMS-W' | 'EC' | 'ES' | 'ESD' | 'HST' | 'IDS' | 'MAS' | 'PE' | 'SP' | 'STS' | 'WGS'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>
 
     /**
-     * The course/program is offered for free
+     * 
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
-    readonly free?: boolean
+    readonly free?: boolean | null
 
     /**
-     * The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
-     * @type {Array<'advanced' | 'graduate' | 'high_school' | 'intermediate' | 'introductory' | 'noncredit' | 'undergraduate'>}
+     * 
+     * @type {Array<'undergraduate' | 'graduate' | 'high_school' | 'noncredit' | 'advanced' | 'intermediate' | 'introductory'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly level?: Array<LearningResourcesVectorSimilarListLevelEnum>
@@ -15871,15 +15864,22 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly limit?: number
 
     /**
-     * The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
-     * @type {Array<'bootcamps' | 'climate' | 'mitpe' | 'mitx' | 'ocw' | 'see' | 'xpro'>}
+     * The ocw topic name.
+     * @type {Array<string>}
+     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
+     */
+    readonly ocw_topic?: Array<string>
+
+    /**
+     * The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;climate&#x60; - MIT Climate
+     * @type {Array<'mitx' | 'ocw' | 'bootcamps' | 'xpro' | 'mitpe' | 'see' | 'climate'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>
 
     /**
-     * The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
-     * @type {Array<'bootcamps' | 'canvas' | 'climate' | 'csail' | 'ctl' | 'edx' | 'emeritus' | 'globalalumni' | 'mitpe' | 'mitxonline' | 'ocw' | 'oll' | 'ovs' | 'podcast' | 'scc' | 'see' | 'simplilearn' | 'susskind' | 'whu' | 'xpro' | 'youtube'>}
+     * The platform on which the learning resource is offered               * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube * &#x60;canvas&#x60; - Canvas * &#x60;climate&#x60; - MIT Climate * &#x60;ovs&#x60; - ODL Video Service
+     * @type {Array<'edx' | 'ocw' | 'oll' | 'mitxonline' | 'bootcamps' | 'xpro' | 'csail' | 'mitpe' | 'see' | 'scc' | 'ctl' | 'whu' | 'susskind' | 'globalalumni' | 'simplilearn' | 'emeritus' | 'podcast' | 'youtube' | 'canvas' | 'climate' | 'ovs'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>
@@ -15889,45 +15889,24 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
      * @type {boolean}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
-    readonly professional?: boolean
+    readonly professional?: boolean | null
 
     /**
-     * A unique text identifier for the resources
-     * @type {Array<string>}
-     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
-     */
-    readonly readable_id?: Array<string>
-
-    /**
-     * Comma-separated list of learning resource IDs
-     * @type {Array<number>}
-     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
-     */
-    readonly resource_id?: Array<number>
-
-    /**
-     * The type of learning resource  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_path&#x60; - Learning Path * &#x60;podcast&#x60; - Podcast * &#x60;podcast_episode&#x60; - Podcast Episode * &#x60;video&#x60; - Video * &#x60;video_playlist&#x60; - Video Playlist * &#x60;document&#x60; - Document
-     * @type {Array<'course' | 'document' | 'learning_path' | 'podcast' | 'podcast_episode' | 'program' | 'video' | 'video_playlist'>}
+     * The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
+     * @type {Array<'course' | 'program' | 'learning_path' | 'podcast' | 'podcast_episode' | 'video' | 'video_playlist' | 'document'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>
 
     /**
-     * The resource type group of the learning resources  * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
-     * @type {Array<'course' | 'learning_material' | 'program'>}
+     * The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+     * @type {Array<'course' | 'program' | 'learning_material'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
     readonly resource_type_group?: Array<LearningResourcesVectorSimilarListResourceTypeGroupEnum>
 
     /**
-     * Sort By  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
-     * @type {'-id' | '-last_modified' | '-mitcoursenumber' | '-readable_id' | '-start_date' | '-views' | 'id' | 'last_modified' | 'mitcoursenumber' | 'new' | 'readable_id' | 'start_date' | 'upcoming' | 'views'}
-     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
-     */
-    readonly sortby?: LearningResourcesVectorSimilarListSortbyEnum
-
-    /**
-     * Topics covered by the resources. Load the \&#39;/api/v1/topics\&#39; endpoint for a list of topics
+     * The topic name. To see a list of options go to api/v1/topics/
      * @type {Array<string>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
      */
@@ -16026,7 +16005,7 @@ export class LearningResourcesApi extends BaseAPI {
     }
 
     /**
-     * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+     * Fetch similar learning resources, optionally narrowed by filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
      * @summary Get similar resources
      * @param {LearningResourcesApiLearningResourcesSimilarListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -16034,7 +16013,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -16062,7 +16041,7 @@ export class LearningResourcesApi extends BaseAPI {
     }
 
     /**
-     * Fetch similar learning resources  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
+     * Fetch similar learning resources, optionally narrowed by Qdrant filters.  Args: id (integer): The id of the learning resource  Returns: QuerySet of similar LearningResource for the resource matching the id parameter
      * @summary Get similar resources using vector embeddings
      * @param {LearningResourcesApiLearningResourcesVectorSimilarListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -16070,7 +16049,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -16277,10 +16256,10 @@ export type LearningResourcesListSortbyEnum = typeof LearningResourcesListSortby
  * @export
  */
 export const LearningResourcesSimilarListCertificationTypeEnum = {
-    Completion: 'completion',
     Micromasters: 'micromasters',
-    None: 'none',
-    Professional: 'professional'
+    Professional: 'professional',
+    Completion: 'completion',
+    None: 'none'
 } as const;
 export type LearningResourcesSimilarListCertificationTypeEnum = typeof LearningResourcesSimilarListCertificationTypeEnum[keyof typeof LearningResourcesSimilarListCertificationTypeEnum];
 /**
@@ -16298,6 +16277,14 @@ export type LearningResourcesSimilarListDeliveryEnum = typeof LearningResourcesS
  */
 export const LearningResourcesSimilarListDepartmentEnum = {
     _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
     _10: '10',
     _11: '11',
     _12: '12',
@@ -16306,7 +16293,6 @@ export const LearningResourcesSimilarListDepartmentEnum = {
     _16: '16',
     _17: '17',
     _18: '18',
-    _2: '2',
     _20: '20',
     _21A: '21A',
     _21G: '21G',
@@ -16315,13 +16301,6 @@ export const LearningResourcesSimilarListDepartmentEnum = {
     _21M: '21M',
     _22: '22',
     _24: '24',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
     Cc: 'CC',
     CmsW: 'CMS-W',
     Ec: 'EC',
@@ -16340,53 +16319,53 @@ export type LearningResourcesSimilarListDepartmentEnum = typeof LearningResource
  * @export
  */
 export const LearningResourcesSimilarListLevelEnum = {
-    Advanced: 'advanced',
+    Undergraduate: 'undergraduate',
     Graduate: 'graduate',
     HighSchool: 'high_school',
-    Intermediate: 'intermediate',
-    Introductory: 'introductory',
     Noncredit: 'noncredit',
-    Undergraduate: 'undergraduate'
+    Advanced: 'advanced',
+    Intermediate: 'intermediate',
+    Introductory: 'introductory'
 } as const;
 export type LearningResourcesSimilarListLevelEnum = typeof LearningResourcesSimilarListLevelEnum[keyof typeof LearningResourcesSimilarListLevelEnum];
 /**
  * @export
  */
 export const LearningResourcesSimilarListOfferedByEnum = {
-    Bootcamps: 'bootcamps',
-    Climate: 'climate',
-    Mitpe: 'mitpe',
     Mitx: 'mitx',
     Ocw: 'ocw',
+    Bootcamps: 'bootcamps',
+    Xpro: 'xpro',
+    Mitpe: 'mitpe',
     See: 'see',
-    Xpro: 'xpro'
+    Climate: 'climate'
 } as const;
 export type LearningResourcesSimilarListOfferedByEnum = typeof LearningResourcesSimilarListOfferedByEnum[keyof typeof LearningResourcesSimilarListOfferedByEnum];
 /**
  * @export
  */
 export const LearningResourcesSimilarListPlatformEnum = {
-    Bootcamps: 'bootcamps',
-    Canvas: 'canvas',
-    Climate: 'climate',
-    Csail: 'csail',
-    Ctl: 'ctl',
     Edx: 'edx',
-    Emeritus: 'emeritus',
-    Globalalumni: 'globalalumni',
-    Mitpe: 'mitpe',
-    Mitxonline: 'mitxonline',
     Ocw: 'ocw',
     Oll: 'oll',
-    Ovs: 'ovs',
-    Podcast: 'podcast',
-    Scc: 'scc',
-    See: 'see',
-    Simplilearn: 'simplilearn',
-    Susskind: 'susskind',
-    Whu: 'whu',
+    Mitxonline: 'mitxonline',
+    Bootcamps: 'bootcamps',
     Xpro: 'xpro',
-    Youtube: 'youtube'
+    Csail: 'csail',
+    Mitpe: 'mitpe',
+    See: 'see',
+    Scc: 'scc',
+    Ctl: 'ctl',
+    Whu: 'whu',
+    Susskind: 'susskind',
+    Globalalumni: 'globalalumni',
+    Simplilearn: 'simplilearn',
+    Emeritus: 'emeritus',
+    Podcast: 'podcast',
+    Youtube: 'youtube',
+    Canvas: 'canvas',
+    Climate: 'climate',
+    Ovs: 'ovs'
 } as const;
 export type LearningResourcesSimilarListPlatformEnum = typeof LearningResourcesSimilarListPlatformEnum[keyof typeof LearningResourcesSimilarListPlatformEnum];
 /**
@@ -16394,13 +16373,13 @@ export type LearningResourcesSimilarListPlatformEnum = typeof LearningResourcesS
  */
 export const LearningResourcesSimilarListResourceTypeEnum = {
     Course: 'course',
-    Document: 'document',
+    Program: 'program',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
-    Program: 'program',
     Video: 'video',
-    VideoPlaylist: 'video_playlist'
+    VideoPlaylist: 'video_playlist',
+    Document: 'document'
 } as const;
 export type LearningResourcesSimilarListResourceTypeEnum = typeof LearningResourcesSimilarListResourceTypeEnum[keyof typeof LearningResourcesSimilarListResourceTypeEnum];
 /**
@@ -16408,30 +16387,10 @@ export type LearningResourcesSimilarListResourceTypeEnum = typeof LearningResour
  */
 export const LearningResourcesSimilarListResourceTypeGroupEnum = {
     Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
+    Program: 'program',
+    LearningMaterial: 'learning_material'
 } as const;
 export type LearningResourcesSimilarListResourceTypeGroupEnum = typeof LearningResourcesSimilarListResourceTypeGroupEnum[keyof typeof LearningResourcesSimilarListResourceTypeGroupEnum];
-/**
- * @export
- */
-export const LearningResourcesSimilarListSortbyEnum = {
-    Id: '-id',
-    LastModified: '-last_modified',
-    Mitcoursenumber: '-mitcoursenumber',
-    ReadableId: '-readable_id',
-    StartDate: '-start_date',
-    Views: '-views',
-    Id2: 'id',
-    LastModified2: 'last_modified',
-    Mitcoursenumber2: 'mitcoursenumber',
-    New: 'new',
-    ReadableId2: 'readable_id',
-    StartDate2: 'start_date',
-    Upcoming: 'upcoming',
-    Views2: 'views'
-} as const;
-export type LearningResourcesSimilarListSortbyEnum = typeof LearningResourcesSimilarListSortbyEnum[keyof typeof LearningResourcesSimilarListSortbyEnum];
 /**
  * @export
  */
@@ -16595,10 +16554,10 @@ export type LearningResourcesSummaryListSortbyEnum = typeof LearningResourcesSum
  * @export
  */
 export const LearningResourcesVectorSimilarListCertificationTypeEnum = {
-    Completion: 'completion',
     Micromasters: 'micromasters',
-    None: 'none',
-    Professional: 'professional'
+    Professional: 'professional',
+    Completion: 'completion',
+    None: 'none'
 } as const;
 export type LearningResourcesVectorSimilarListCertificationTypeEnum = typeof LearningResourcesVectorSimilarListCertificationTypeEnum[keyof typeof LearningResourcesVectorSimilarListCertificationTypeEnum];
 /**
@@ -16616,6 +16575,14 @@ export type LearningResourcesVectorSimilarListDeliveryEnum = typeof LearningReso
  */
 export const LearningResourcesVectorSimilarListDepartmentEnum = {
     _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
     _10: '10',
     _11: '11',
     _12: '12',
@@ -16624,7 +16591,6 @@ export const LearningResourcesVectorSimilarListDepartmentEnum = {
     _16: '16',
     _17: '17',
     _18: '18',
-    _2: '2',
     _20: '20',
     _21A: '21A',
     _21G: '21G',
@@ -16633,13 +16599,6 @@ export const LearningResourcesVectorSimilarListDepartmentEnum = {
     _21M: '21M',
     _22: '22',
     _24: '24',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
     Cc: 'CC',
     CmsW: 'CMS-W',
     Ec: 'EC',
@@ -16658,53 +16617,53 @@ export type LearningResourcesVectorSimilarListDepartmentEnum = typeof LearningRe
  * @export
  */
 export const LearningResourcesVectorSimilarListLevelEnum = {
-    Advanced: 'advanced',
+    Undergraduate: 'undergraduate',
     Graduate: 'graduate',
     HighSchool: 'high_school',
-    Intermediate: 'intermediate',
-    Introductory: 'introductory',
     Noncredit: 'noncredit',
-    Undergraduate: 'undergraduate'
+    Advanced: 'advanced',
+    Intermediate: 'intermediate',
+    Introductory: 'introductory'
 } as const;
 export type LearningResourcesVectorSimilarListLevelEnum = typeof LearningResourcesVectorSimilarListLevelEnum[keyof typeof LearningResourcesVectorSimilarListLevelEnum];
 /**
  * @export
  */
 export const LearningResourcesVectorSimilarListOfferedByEnum = {
-    Bootcamps: 'bootcamps',
-    Climate: 'climate',
-    Mitpe: 'mitpe',
     Mitx: 'mitx',
     Ocw: 'ocw',
+    Bootcamps: 'bootcamps',
+    Xpro: 'xpro',
+    Mitpe: 'mitpe',
     See: 'see',
-    Xpro: 'xpro'
+    Climate: 'climate'
 } as const;
 export type LearningResourcesVectorSimilarListOfferedByEnum = typeof LearningResourcesVectorSimilarListOfferedByEnum[keyof typeof LearningResourcesVectorSimilarListOfferedByEnum];
 /**
  * @export
  */
 export const LearningResourcesVectorSimilarListPlatformEnum = {
-    Bootcamps: 'bootcamps',
-    Canvas: 'canvas',
-    Climate: 'climate',
-    Csail: 'csail',
-    Ctl: 'ctl',
     Edx: 'edx',
-    Emeritus: 'emeritus',
-    Globalalumni: 'globalalumni',
-    Mitpe: 'mitpe',
-    Mitxonline: 'mitxonline',
     Ocw: 'ocw',
     Oll: 'oll',
-    Ovs: 'ovs',
-    Podcast: 'podcast',
-    Scc: 'scc',
-    See: 'see',
-    Simplilearn: 'simplilearn',
-    Susskind: 'susskind',
-    Whu: 'whu',
+    Mitxonline: 'mitxonline',
+    Bootcamps: 'bootcamps',
     Xpro: 'xpro',
-    Youtube: 'youtube'
+    Csail: 'csail',
+    Mitpe: 'mitpe',
+    See: 'see',
+    Scc: 'scc',
+    Ctl: 'ctl',
+    Whu: 'whu',
+    Susskind: 'susskind',
+    Globalalumni: 'globalalumni',
+    Simplilearn: 'simplilearn',
+    Emeritus: 'emeritus',
+    Podcast: 'podcast',
+    Youtube: 'youtube',
+    Canvas: 'canvas',
+    Climate: 'climate',
+    Ovs: 'ovs'
 } as const;
 export type LearningResourcesVectorSimilarListPlatformEnum = typeof LearningResourcesVectorSimilarListPlatformEnum[keyof typeof LearningResourcesVectorSimilarListPlatformEnum];
 /**
@@ -16712,13 +16671,13 @@ export type LearningResourcesVectorSimilarListPlatformEnum = typeof LearningReso
  */
 export const LearningResourcesVectorSimilarListResourceTypeEnum = {
     Course: 'course',
-    Document: 'document',
+    Program: 'program',
     LearningPath: 'learning_path',
     Podcast: 'podcast',
     PodcastEpisode: 'podcast_episode',
-    Program: 'program',
     Video: 'video',
-    VideoPlaylist: 'video_playlist'
+    VideoPlaylist: 'video_playlist',
+    Document: 'document'
 } as const;
 export type LearningResourcesVectorSimilarListResourceTypeEnum = typeof LearningResourcesVectorSimilarListResourceTypeEnum[keyof typeof LearningResourcesVectorSimilarListResourceTypeEnum];
 /**
@@ -16726,30 +16685,10 @@ export type LearningResourcesVectorSimilarListResourceTypeEnum = typeof Learning
  */
 export const LearningResourcesVectorSimilarListResourceTypeGroupEnum = {
     Course: 'course',
-    LearningMaterial: 'learning_material',
-    Program: 'program'
+    Program: 'program',
+    LearningMaterial: 'learning_material'
 } as const;
 export type LearningResourcesVectorSimilarListResourceTypeGroupEnum = typeof LearningResourcesVectorSimilarListResourceTypeGroupEnum[keyof typeof LearningResourcesVectorSimilarListResourceTypeGroupEnum];
-/**
- * @export
- */
-export const LearningResourcesVectorSimilarListSortbyEnum = {
-    Id: '-id',
-    LastModified: '-last_modified',
-    Mitcoursenumber: '-mitcoursenumber',
-    ReadableId: '-readable_id',
-    StartDate: '-start_date',
-    Views: '-views',
-    Id2: 'id',
-    LastModified2: 'last_modified',
-    Mitcoursenumber2: 'mitcoursenumber',
-    New: 'new',
-    ReadableId2: 'readable_id',
-    StartDate2: 'start_date',
-    Upcoming: 'upcoming',
-    Views2: 'views'
-} as const;
-export type LearningResourcesVectorSimilarListSortbyEnum = typeof LearningResourcesVectorSimilarListSortbyEnum[keyof typeof LearningResourcesVectorSimilarListSortbyEnum];
 
 
 /**
@@ -19599,15 +19538,15 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
          * Viewset for LearningPath related resources
          * @summary Learning Path Resource Relationship Add
          * @param {number} learning_resource_id The learning resource id of the learning path
-         * @param {LearningPathRelationshipRequest} LearningPathRelationshipRequest 
+         * @param {LearningPathRelationshipCreateRequest} LearningPathRelationshipCreateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningpathsItemsCreate: async (learning_resource_id: number, LearningPathRelationshipRequest: LearningPathRelationshipRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningpathsItemsCreate: async (learning_resource_id: number, LearningPathRelationshipCreateRequest: LearningPathRelationshipCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'learning_resource_id' is not null or undefined
             assertParamExists('learningpathsItemsCreate', 'learning_resource_id', learning_resource_id)
-            // verify required parameter 'LearningPathRelationshipRequest' is not null or undefined
-            assertParamExists('learningpathsItemsCreate', 'LearningPathRelationshipRequest', LearningPathRelationshipRequest)
+            // verify required parameter 'LearningPathRelationshipCreateRequest' is not null or undefined
+            assertParamExists('learningpathsItemsCreate', 'LearningPathRelationshipCreateRequest', LearningPathRelationshipCreateRequest)
             const localVarPath = `/api/v1/learningpaths/{learning_resource_id}/items/`
                 .replace(`{${"learning_resource_id"}}`, encodeURIComponent(String(learning_resource_id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -19628,7 +19567,7 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(LearningPathRelationshipRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(LearningPathRelationshipCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -19726,11 +19665,11 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
          * @summary Learning Path Resource Relationship Update
          * @param {number} id A unique integer value identifying this learning resource relationship.
          * @param {number} learning_resource_id The learning resource id of the learning path
-         * @param {PatchedLearningPathRelationshipRequest} [PatchedLearningPathRelationshipRequest] 
+         * @param {PatchedLearningPathRelationshipCreateRequest} [PatchedLearningPathRelationshipCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningpathsItemsPartialUpdate: async (id: number, learning_resource_id: number, PatchedLearningPathRelationshipRequest?: PatchedLearningPathRelationshipRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningpathsItemsPartialUpdate: async (id: number, learning_resource_id: number, PatchedLearningPathRelationshipCreateRequest?: PatchedLearningPathRelationshipCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningpathsItemsPartialUpdate', 'id', id)
             // verify required parameter 'learning_resource_id' is not null or undefined
@@ -19756,7 +19695,7 @@ export const LearningpathsApiAxiosParamCreator = function (configuration?: Confi
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(PatchedLearningPathRelationshipRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(PatchedLearningPathRelationshipCreateRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -20063,12 +20002,12 @@ export const LearningpathsApiFp = function(configuration?: Configuration) {
          * Viewset for LearningPath related resources
          * @summary Learning Path Resource Relationship Add
          * @param {number} learning_resource_id The learning resource id of the learning path
-         * @param {LearningPathRelationshipRequest} LearningPathRelationshipRequest 
+         * @param {LearningPathRelationshipCreateRequest} LearningPathRelationshipCreateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningpathsItemsCreate(learning_resource_id: number, LearningPathRelationshipRequest: LearningPathRelationshipRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningPathRelationship>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsItemsCreate(learning_resource_id, LearningPathRelationshipRequest, options);
+        async learningpathsItemsCreate(learning_resource_id: number, LearningPathRelationshipCreateRequest: LearningPathRelationshipCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningPathRelationship>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsItemsCreate(learning_resource_id, LearningPathRelationshipCreateRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningpathsApi.learningpathsItemsCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -20107,12 +20046,12 @@ export const LearningpathsApiFp = function(configuration?: Configuration) {
          * @summary Learning Path Resource Relationship Update
          * @param {number} id A unique integer value identifying this learning resource relationship.
          * @param {number} learning_resource_id The learning resource id of the learning path
-         * @param {PatchedLearningPathRelationshipRequest} [PatchedLearningPathRelationshipRequest] 
+         * @param {PatchedLearningPathRelationshipCreateRequest} [PatchedLearningPathRelationshipCreateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningpathsItemsPartialUpdate(id: number, learning_resource_id: number, PatchedLearningPathRelationshipRequest?: PatchedLearningPathRelationshipRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningPathRelationship>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsItemsPartialUpdate(id, learning_resource_id, PatchedLearningPathRelationshipRequest, options);
+        async learningpathsItemsPartialUpdate(id: number, learning_resource_id: number, PatchedLearningPathRelationshipCreateRequest?: PatchedLearningPathRelationshipCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningPathRelationshipCreate>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningpathsItemsPartialUpdate(id, learning_resource_id, PatchedLearningPathRelationshipCreateRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningpathsApi.learningpathsItemsPartialUpdate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -20238,7 +20177,7 @@ export const LearningpathsApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         learningpathsItemsCreate(requestParameters: LearningpathsApiLearningpathsItemsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<LearningPathRelationship> {
-            return localVarFp.learningpathsItemsCreate(requestParameters.learning_resource_id, requestParameters.LearningPathRelationshipRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningpathsItemsCreate(requestParameters.learning_resource_id, requestParameters.LearningPathRelationshipCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Viewset for LearningPath related resources
@@ -20266,8 +20205,8 @@ export const LearningpathsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningpathsItemsPartialUpdate(requestParameters: LearningpathsApiLearningpathsItemsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<LearningPathRelationship> {
-            return localVarFp.learningpathsItemsPartialUpdate(requestParameters.id, requestParameters.learning_resource_id, requestParameters.PatchedLearningPathRelationshipRequest, options).then((request) => request(axios, basePath));
+        learningpathsItemsPartialUpdate(requestParameters: LearningpathsApiLearningpathsItemsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<LearningPathRelationshipCreate> {
+            return localVarFp.learningpathsItemsPartialUpdate(requestParameters.id, requestParameters.learning_resource_id, requestParameters.PatchedLearningPathRelationshipCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a singe related learning resource for a learning resource.
@@ -20364,10 +20303,10 @@ export interface LearningpathsApiLearningpathsItemsCreateRequest {
 
     /**
      * 
-     * @type {LearningPathRelationshipRequest}
+     * @type {LearningPathRelationshipCreateRequest}
      * @memberof LearningpathsApiLearningpathsItemsCreate
      */
-    readonly LearningPathRelationshipRequest: LearningPathRelationshipRequest
+    readonly LearningPathRelationshipCreateRequest: LearningPathRelationshipCreateRequest
 }
 
 /**
@@ -20448,10 +20387,10 @@ export interface LearningpathsApiLearningpathsItemsPartialUpdateRequest {
 
     /**
      * 
-     * @type {PatchedLearningPathRelationshipRequest}
+     * @type {PatchedLearningPathRelationshipCreateRequest}
      * @memberof LearningpathsApiLearningpathsItemsPartialUpdate
      */
-    readonly PatchedLearningPathRelationshipRequest?: PatchedLearningPathRelationshipRequest
+    readonly PatchedLearningPathRelationshipCreateRequest?: PatchedLearningPathRelationshipCreateRequest
 }
 
 /**
@@ -20683,7 +20622,7 @@ export class LearningpathsApi extends BaseAPI {
      * @memberof LearningpathsApi
      */
     public learningpathsItemsCreate(requestParameters: LearningpathsApiLearningpathsItemsCreateRequest, options?: RawAxiosRequestConfig) {
-        return LearningpathsApiFp(this.configuration).learningpathsItemsCreate(requestParameters.learning_resource_id, requestParameters.LearningPathRelationshipRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningpathsApiFp(this.configuration).learningpathsItemsCreate(requestParameters.learning_resource_id, requestParameters.LearningPathRelationshipCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20718,7 +20657,7 @@ export class LearningpathsApi extends BaseAPI {
      * @memberof LearningpathsApi
      */
     public learningpathsItemsPartialUpdate(requestParameters: LearningpathsApiLearningpathsItemsPartialUpdateRequest, options?: RawAxiosRequestConfig) {
-        return LearningpathsApiFp(this.configuration).learningpathsItemsPartialUpdate(requestParameters.id, requestParameters.learning_resource_id, requestParameters.PatchedLearningPathRelationshipRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningpathsApiFp(this.configuration).learningpathsItemsPartialUpdate(requestParameters.id, requestParameters.learning_resource_id, requestParameters.PatchedLearningPathRelationshipCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
