@@ -9941,13 +9941,12 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_readable_id] The readable_id value of the parent learning resource for the content file
          * @param {Array<string>} [run_readable_id] The readable_id value of the run that the content file belongs to
-         * @param {VectorContentFilesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
          * @param {boolean | null} [title__isnull] Filter to content files where title is null/not null
          * @param {boolean | null} [url__isnull] Filter to content files where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorContentFilesSearchRetrieve: async (aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorContentFilesSearchRetrieve: async (aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_content_files_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10016,10 +10015,6 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['run_readable_id'] = run_readable_id;
             }
 
-            if (sortby !== undefined) {
-                localVarQueryParameter['sortby'] = sortby;
-            }
-
             if (title__isnull !== undefined) {
                 localVarQueryParameter['title__isnull'] = title__isnull;
             }
@@ -10066,14 +10061,13 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {string} [q] The search text
          * @param {Array<string>} [resource_readable_id] The readable_id value of the parent learning resource for the content file
          * @param {Array<string>} [run_readable_id] The readable_id value of the run that the content file belongs to
-         * @param {VectorContentFilesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
          * @param {boolean | null} [title__isnull] Filter to content files where title is null/not null
          * @param {boolean | null} [url__isnull] Filter to content files where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorContentFilesSearchRetrieve(aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(aggregations, collection_name, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, title__isnull, url__isnull, options);
+        async vectorContentFilesSearchRetrieve(aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(aggregations, collection_name, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, title__isnull, url__isnull, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorContentFilesSearchApi.vectorContentFilesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10096,7 +10090,7 @@ export const VectorContentFilesSearchApiFactory = function (configuration?: Conf
          * @throws {RequiredError}
          */
         vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileVectorSearchResponse> {
-            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10206,13 +10200,6 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
     readonly run_readable_id?: Array<string>
 
     /**
-     * if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
-     * @type {'id' | '-id' | 'resource_readable_id' | '-resource_readable_id'}
-     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
-     */
-    readonly sortby?: VectorContentFilesSearchRetrieveSortbyEnum
-
-    /**
      * Filter to content files where title is null/not null
      * @type {boolean}
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
@@ -10243,7 +10230,7 @@ export class VectorContentFilesSearchApi extends BaseAPI {
      * @memberof VectorContentFilesSearchApi
      */
     public vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
+        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10271,16 +10258,6 @@ export const VectorContentFilesSearchRetrieveAggregationsEnum = {
     Checksum: 'checksum'
 } as const;
 export type VectorContentFilesSearchRetrieveAggregationsEnum = typeof VectorContentFilesSearchRetrieveAggregationsEnum[keyof typeof VectorContentFilesSearchRetrieveAggregationsEnum];
-/**
- * @export
- */
-export const VectorContentFilesSearchRetrieveSortbyEnum = {
-    Id: 'id',
-    Id2: '-id',
-    ResourceReadableId: 'resource_readable_id',
-    ResourceReadableId2: '-resource_readable_id'
-} as const;
-export type VectorContentFilesSearchRetrieveSortbyEnum = typeof VectorContentFilesSearchRetrieveSortbyEnum[keyof typeof VectorContentFilesSearchRetrieveSortbyEnum];
 
 
 /**
@@ -10292,7 +10269,7 @@ export const VectorLearningResourcesSearchApiAxiosParamCreator = function (confi
         /**
          * Vector Search for learning resources
          * @summary Vector Search
-         * @param {Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published
+         * @param {Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published * &#x60;next_start_date&#x60; - Next Start Date * &#x60;views&#x60; - Views * &#x60;created_on&#x60; - Created On
          * @param {boolean | null} [certification] True if the learning resource offers a certificate
          * @param {Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
@@ -10312,13 +10289,14 @@ export const VectorLearningResourcesSearchApiAxiosParamCreator = function (confi
          * @param {string} [readable_id] The readable id of the resource
          * @param {Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {VectorLearningResourcesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;next_start_date&#x60; - next_start_date * &#x60;views&#x60; - views * &#x60;created_on&#x60; - created_on * &#x60;-next_start_date&#x60; - -next_start_date * &#x60;-views&#x60; - -views * &#x60;-created_on&#x60; - -created_on
          * @param {boolean | null} [title__isnull] Filter to learning resources where title is null/not null
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {boolean | null} [url__isnull] Filter to learning resources where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorLearningResourcesSearchRetrieve: async (aggregations?: Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<VectorLearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<VectorLearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, hybrid_search?: boolean, level?: Array<VectorLearningResourcesSearchRetrieveLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<VectorLearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<VectorLearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, published?: boolean, q?: string, readable_id?: string, resource_type?: Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>, title__isnull?: boolean | null, topic?: Array<string>, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorLearningResourcesSearchRetrieve: async (aggregations?: Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<VectorLearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<VectorLearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, hybrid_search?: boolean, level?: Array<VectorLearningResourcesSearchRetrieveLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<VectorLearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<VectorLearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, published?: boolean, q?: string, readable_id?: string, resource_type?: Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>, sortby?: VectorLearningResourcesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, topic?: Array<string>, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_learning_resources_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10411,6 +10389,10 @@ export const VectorLearningResourcesSearchApiAxiosParamCreator = function (confi
                 localVarQueryParameter['resource_type_group'] = resource_type_group;
             }
 
+            if (sortby !== undefined) {
+                localVarQueryParameter['sortby'] = sortby;
+            }
+
             if (title__isnull !== undefined) {
                 localVarQueryParameter['title__isnull'] = title__isnull;
             }
@@ -10447,7 +10429,7 @@ export const VectorLearningResourcesSearchApiFp = function(configuration?: Confi
         /**
          * Vector Search for learning resources
          * @summary Vector Search
-         * @param {Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published
+         * @param {Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published * &#x60;next_start_date&#x60; - Next Start Date * &#x60;views&#x60; - Views * &#x60;created_on&#x60; - Created On
          * @param {boolean | null} [certification] True if the learning resource offers a certificate
          * @param {Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - MicroMasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
@@ -10467,14 +10449,15 @@ export const VectorLearningResourcesSearchApiFp = function(configuration?: Confi
          * @param {string} [readable_id] The readable id of the resource
          * @param {Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist * &#x60;document&#x60; - document
          * @param {Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>} [resource_type_group] The category of learning resource               * &#x60;course&#x60; - Course * &#x60;program&#x60; - Program * &#x60;learning_material&#x60; - Learning Material
+         * @param {VectorLearningResourcesSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;next_start_date&#x60; - next_start_date * &#x60;views&#x60; - views * &#x60;created_on&#x60; - created_on * &#x60;-next_start_date&#x60; - -next_start_date * &#x60;-views&#x60; - -views * &#x60;-created_on&#x60; - -created_on
          * @param {boolean | null} [title__isnull] Filter to learning resources where title is null/not null
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {boolean | null} [url__isnull] Filter to learning resources where url is null/not null
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorLearningResourcesSearchRetrieve(aggregations?: Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<VectorLearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<VectorLearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, hybrid_search?: boolean, level?: Array<VectorLearningResourcesSearchRetrieveLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<VectorLearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<VectorLearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, published?: boolean, q?: string, readable_id?: string, resource_type?: Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>, title__isnull?: boolean | null, topic?: Array<string>, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorLearningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, delivery, department, free, hybrid_search, level, limit, ocw_topic, offered_by, offset, platform, professional, published, q, readable_id, resource_type, resource_type_group, title__isnull, topic, url__isnull, options);
+        async vectorLearningResourcesSearchRetrieve(aggregations?: Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<VectorLearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<VectorLearningResourcesSearchRetrieveDeliveryEnum>, department?: Array<VectorLearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, hybrid_search?: boolean, level?: Array<VectorLearningResourcesSearchRetrieveLevelEnum>, limit?: number, ocw_topic?: Array<string>, offered_by?: Array<VectorLearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<VectorLearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, published?: boolean, q?: string, readable_id?: string, resource_type?: Array<VectorLearningResourcesSearchRetrieveResourceTypeEnum>, resource_type_group?: Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>, sortby?: VectorLearningResourcesSearchRetrieveSortbyEnum, title__isnull?: boolean | null, topic?: Array<string>, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorLearningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, delivery, department, free, hybrid_search, level, limit, ocw_topic, offered_by, offset, platform, professional, published, q, readable_id, resource_type, resource_type_group, sortby, title__isnull, topic, url__isnull, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorLearningResourcesSearchApi.vectorLearningResourcesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10497,7 +10480,7 @@ export const VectorLearningResourcesSearchApiFactory = function (configuration?:
          * @throws {RequiredError}
          */
         vectorLearningResourcesSearchRetrieve(requestParameters: VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesVectorSearchResponse> {
-            return localVarFp.vectorLearningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.hybrid_search, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.published, requestParameters.q, requestParameters.readable_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.title__isnull, requestParameters.topic, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorLearningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.hybrid_search, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.published, requestParameters.q, requestParameters.readable_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.title__isnull, requestParameters.topic, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10509,8 +10492,8 @@ export const VectorLearningResourcesSearchApiFactory = function (configuration?:
  */
 export interface VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieveRequest {
     /**
-     * aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published
-     * @type {Array<'readable_id' | 'resource_type' | 'certification' | 'certification_type' | 'professional' | 'free' | 'course_feature' | 'topic' | 'ocw_topic' | 'level' | 'department' | 'platform' | 'offered_by' | 'delivery' | 'title' | 'url' | 'resource_type_group' | 'resource_category' | 'published'>}
+     * aggregations for facet counts               * &#x60;readable_id&#x60; - Readable Id * &#x60;resource_type&#x60; - Resource Type * &#x60;certification&#x60; - Certification * &#x60;certification_type&#x60; - Certification Type * &#x60;professional&#x60; - Professional * &#x60;free&#x60; - Free * &#x60;course_feature&#x60; - Course Feature * &#x60;topic&#x60; - Topic * &#x60;ocw_topic&#x60; - Ocw Topic * &#x60;level&#x60; - Level * &#x60;department&#x60; - Department * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;delivery&#x60; - Delivery * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;resource_type_group&#x60; - Resource Type Group * &#x60;resource_category&#x60; - Resource Category * &#x60;published&#x60; - Published * &#x60;next_start_date&#x60; - Next Start Date * &#x60;views&#x60; - Views * &#x60;created_on&#x60; - Created On
+     * @type {Array<'readable_id' | 'resource_type' | 'certification' | 'certification_type' | 'professional' | 'free' | 'course_feature' | 'topic' | 'ocw_topic' | 'level' | 'department' | 'platform' | 'offered_by' | 'delivery' | 'title' | 'url' | 'resource_type_group' | 'resource_category' | 'published' | 'next_start_date' | 'views' | 'created_on'>}
      * @memberof VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieve
      */
     readonly aggregations?: Array<VectorLearningResourcesSearchRetrieveAggregationsEnum>
@@ -10649,6 +10632,13 @@ export interface VectorLearningResourcesSearchApiVectorLearningResourcesSearchRe
     readonly resource_type_group?: Array<VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum>
 
     /**
+     * if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;next_start_date&#x60; - next_start_date * &#x60;views&#x60; - views * &#x60;created_on&#x60; - created_on * &#x60;-next_start_date&#x60; - -next_start_date * &#x60;-views&#x60; - -views * &#x60;-created_on&#x60; - -created_on
+     * @type {'next_start_date' | 'views' | 'created_on' | '-next_start_date' | '-views' | '-created_on'}
+     * @memberof VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieve
+     */
+    readonly sortby?: VectorLearningResourcesSearchRetrieveSortbyEnum
+
+    /**
      * Filter to learning resources where title is null/not null
      * @type {boolean}
      * @memberof VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieve
@@ -10686,7 +10676,7 @@ export class VectorLearningResourcesSearchApi extends BaseAPI {
      * @memberof VectorLearningResourcesSearchApi
      */
     public vectorLearningResourcesSearchRetrieve(requestParameters: VectorLearningResourcesSearchApiVectorLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorLearningResourcesSearchApiFp(this.configuration).vectorLearningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.hybrid_search, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.published, requestParameters.q, requestParameters.readable_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.title__isnull, requestParameters.topic, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
+        return VectorLearningResourcesSearchApiFp(this.configuration).vectorLearningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.hybrid_search, requestParameters.level, requestParameters.limit, requestParameters.ocw_topic, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.published, requestParameters.q, requestParameters.readable_id, requestParameters.resource_type, requestParameters.resource_type_group, requestParameters.sortby, requestParameters.title__isnull, requestParameters.topic, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10712,7 +10702,10 @@ export const VectorLearningResourcesSearchRetrieveAggregationsEnum = {
     Url: 'url',
     ResourceTypeGroup: 'resource_type_group',
     ResourceCategory: 'resource_category',
-    Published: 'published'
+    Published: 'published',
+    NextStartDate: 'next_start_date',
+    Views: 'views',
+    CreatedOn: 'created_on'
 } as const;
 export type VectorLearningResourcesSearchRetrieveAggregationsEnum = typeof VectorLearningResourcesSearchRetrieveAggregationsEnum[keyof typeof VectorLearningResourcesSearchRetrieveAggregationsEnum];
 /**
@@ -10854,6 +10847,18 @@ export const VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum = {
     LearningMaterial: 'learning_material'
 } as const;
 export type VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum = typeof VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum[keyof typeof VectorLearningResourcesSearchRetrieveResourceTypeGroupEnum];
+/**
+ * @export
+ */
+export const VectorLearningResourcesSearchRetrieveSortbyEnum = {
+    NextStartDate: 'next_start_date',
+    Views: 'views',
+    CreatedOn: 'created_on',
+    NextStartDate2: '-next_start_date',
+    Views2: '-views',
+    CreatedOn2: '-created_on'
+} as const;
+export type VectorLearningResourcesSearchRetrieveSortbyEnum = typeof VectorLearningResourcesSearchRetrieveSortbyEnum[keyof typeof VectorLearningResourcesSearchRetrieveSortbyEnum];
 
 
 /**
