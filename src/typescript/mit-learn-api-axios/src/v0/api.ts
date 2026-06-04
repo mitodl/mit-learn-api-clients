@@ -3438,37 +3438,6 @@ export interface PaginatedFeedSourceList {
     'results': Array<FeedSource>;
 }
 /**
- * 
- * @export
- * @interface PaginatedVideoShortList
- */
-export interface PaginatedVideoShortList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedVideoShortList
-     */
-    'count': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedVideoShortList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedVideoShortList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<VideoShort>}
-     * @memberof PaginatedVideoShortList
-     */
-    'results': Array<VideoShort>;
-}
-/**
  * Similar to ChannelCreateSerializer, with read-only name
  * @export
  * @interface PatchedChannelWriteRequest
@@ -6608,61 +6577,6 @@ export const VideoResourceResourceTypeEnum = {
 export type VideoResourceResourceTypeEnum = typeof VideoResourceResourceTypeEnum[keyof typeof VideoResourceResourceTypeEnum];
 
 
-/**
- * ModelSerializer for VideoShort model
- * @export
- * @interface VideoShort
- */
-export interface VideoShort {
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'video_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'published_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'thumbnail_small_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'thumbnail_large_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'video_url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'created_on': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof VideoShort
-     */
-    'updated_on': string;
-}
 /**
  * WidgetInstance serializer
  * @export
@@ -9929,6 +9843,7 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @summary Content File Vector Search
          * @param {Array<VectorContentFilesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;key&#x60; - Key * &#x60;course_number&#x60; - Course Number * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;file_extension&#x60; - File Extension * &#x60;content_feature_type&#x60; - Content Feature Type * &#x60;run_readable_id&#x60; - Run Readable Id * &#x60;resource_readable_id&#x60; - Resource Readable Id * &#x60;run_title&#x60; - Run Title * &#x60;edx_module_id&#x60; - Edx Module Id * &#x60;content_type&#x60; - Content Type * &#x60;description&#x60; - Description * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;file_type&#x60; - File Type * &#x60;summary&#x60; - Summary * &#x60;flashcards&#x60; - Flashcards * &#x60;checksum&#x60; - Checksum
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
+         * @param {Array<string>} [edx_module_id] The edX module id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {string} [group_by] The attribute to group results by
          * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
@@ -9946,7 +9861,7 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorContentFilesSearchRetrieve: async (aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorContentFilesSearchRetrieve: async (aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_content_files_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9965,6 +9880,10 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
 
             if (collection_name !== undefined) {
                 localVarQueryParameter['collection_name'] = collection_name;
+            }
+
+            if (edx_module_id) {
+                localVarQueryParameter['edx_module_id'] = edx_module_id;
             }
 
             if (file_extension) {
@@ -10049,6 +9968,7 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @summary Content File Vector Search
          * @param {Array<VectorContentFilesSearchRetrieveAggregationsEnum>} [aggregations] aggregations for facet counts               * &#x60;key&#x60; - Key * &#x60;course_number&#x60; - Course Number * &#x60;platform&#x60; - Platform * &#x60;offered_by&#x60; - Offered By * &#x60;file_extension&#x60; - File Extension * &#x60;content_feature_type&#x60; - Content Feature Type * &#x60;run_readable_id&#x60; - Run Readable Id * &#x60;resource_readable_id&#x60; - Resource Readable Id * &#x60;run_title&#x60; - Run Title * &#x60;edx_module_id&#x60; - Edx Module Id * &#x60;content_type&#x60; - Content Type * &#x60;description&#x60; - Description * &#x60;title&#x60; - Title * &#x60;url&#x60; - Url * &#x60;file_type&#x60; - File Type * &#x60;summary&#x60; - Summary * &#x60;flashcards&#x60; - Flashcards * &#x60;checksum&#x60; - Checksum
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
+         * @param {Array<string>} [edx_module_id] The edX module id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {string} [group_by] The attribute to group results by
          * @param {number} [group_size] The number of chunks in each group. Only relevant when group_by is used
@@ -10066,8 +9986,8 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorContentFilesSearchRetrieve(aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(aggregations, collection_name, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, title__isnull, url__isnull, options);
+        async vectorContentFilesSearchRetrieve(aggregations?: Array<VectorContentFilesSearchRetrieveAggregationsEnum>, collection_name?: string, edx_module_id?: Array<string>, file_extension?: Array<string>, group_by?: string, group_size?: number, hybrid_search?: boolean, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, title__isnull?: boolean | null, url__isnull?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(aggregations, collection_name, edx_module_id, file_extension, group_by, group_size, hybrid_search, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, title__isnull, url__isnull, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorContentFilesSearchApi.vectorContentFilesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10090,7 +10010,7 @@ export const VectorContentFilesSearchApiFactory = function (configuration?: Conf
          * @throws {RequiredError}
          */
         vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileVectorSearchResponse> {
-            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10114,6 +10034,13 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
      */
     readonly collection_name?: string
+
+    /**
+     * The edX module id of the content file
+     * @type {Array<string>}
+     * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
+     */
+    readonly edx_module_id?: Array<string>
 
     /**
      * The extension of the content file. 
@@ -10230,7 +10157,7 @@ export class VectorContentFilesSearchApi extends BaseAPI {
      * @memberof VectorContentFilesSearchApi
      */
     public vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
+        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.aggregations, requestParameters.collection_name, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.group_by, requestParameters.group_size, requestParameters.hybrid_search, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.title__isnull, requestParameters.url__isnull, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10872,217 +10799,6 @@ export const VectorLearningResourcesSearchRetrieveSortbyEnum = {
     CreatedOn2: '-created_on'
 } as const;
 export type VectorLearningResourcesSearchRetrieveSortbyEnum = typeof VectorLearningResourcesSearchRetrieveSortbyEnum[keyof typeof VectorLearningResourcesSearchRetrieveSortbyEnum];
-
-
-/**
- * VideoShortsApi - axios parameter creator
- * @export
- */
-export const VideoShortsApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Get a paginated list of video shorts.
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        videoShortsList: async (limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v0/video_shorts/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve a single video short.
-         * @param {string} video_id A unique value identifying this video short.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        videoShortsRetrieve: async (video_id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'video_id' is not null or undefined
-            assertParamExists('videoShortsRetrieve', 'video_id', video_id)
-            const localVarPath = `/api/v0/video_shorts/{video_id}/`
-                .replace(`{${"video_id"}}`, encodeURIComponent(String(video_id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * VideoShortsApi - functional programming interface
- * @export
- */
-export const VideoShortsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = VideoShortsApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * Get a paginated list of video shorts.
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async videoShortsList(limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedVideoShortList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoShortsList(limit, offset, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['VideoShortsApi.videoShortsList']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Retrieve a single video short.
-         * @param {string} video_id A unique value identifying this video short.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async videoShortsRetrieve(video_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoShort>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoShortsRetrieve(video_id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['VideoShortsApi.videoShortsRetrieve']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-    }
-};
-
-/**
- * VideoShortsApi - factory interface
- * @export
- */
-export const VideoShortsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = VideoShortsApiFp(configuration)
-    return {
-        /**
-         * Get a paginated list of video shorts.
-         * @param {VideoShortsApiVideoShortsListRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        videoShortsList(requestParameters: VideoShortsApiVideoShortsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedVideoShortList> {
-            return localVarFp.videoShortsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a single video short.
-         * @param {VideoShortsApiVideoShortsRetrieveRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        videoShortsRetrieve(requestParameters: VideoShortsApiVideoShortsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<VideoShort> {
-            return localVarFp.videoShortsRetrieve(requestParameters.video_id, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * Request parameters for videoShortsList operation in VideoShortsApi.
- * @export
- * @interface VideoShortsApiVideoShortsListRequest
- */
-export interface VideoShortsApiVideoShortsListRequest {
-    /**
-     * Number of results to return per page.
-     * @type {number}
-     * @memberof VideoShortsApiVideoShortsList
-     */
-    readonly limit?: number
-
-    /**
-     * The initial index from which to return the results.
-     * @type {number}
-     * @memberof VideoShortsApiVideoShortsList
-     */
-    readonly offset?: number
-}
-
-/**
- * Request parameters for videoShortsRetrieve operation in VideoShortsApi.
- * @export
- * @interface VideoShortsApiVideoShortsRetrieveRequest
- */
-export interface VideoShortsApiVideoShortsRetrieveRequest {
-    /**
-     * A unique value identifying this video short.
-     * @type {string}
-     * @memberof VideoShortsApiVideoShortsRetrieve
-     */
-    readonly video_id: string
-}
-
-/**
- * VideoShortsApi - object-oriented interface
- * @export
- * @class VideoShortsApi
- * @extends {BaseAPI}
- */
-export class VideoShortsApi extends BaseAPI {
-    /**
-     * Get a paginated list of video shorts.
-     * @param {VideoShortsApiVideoShortsListRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof VideoShortsApi
-     */
-    public videoShortsList(requestParameters: VideoShortsApiVideoShortsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return VideoShortsApiFp(this.configuration).videoShortsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve a single video short.
-     * @param {VideoShortsApiVideoShortsRetrieveRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof VideoShortsApi
-     */
-    public videoShortsRetrieve(requestParameters: VideoShortsApiVideoShortsRetrieveRequest, options?: RawAxiosRequestConfig) {
-        return VideoShortsApiFp(this.configuration).videoShortsRetrieve(requestParameters.video_id, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
 
 
 /**
