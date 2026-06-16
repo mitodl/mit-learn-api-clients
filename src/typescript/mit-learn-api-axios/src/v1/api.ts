@@ -4838,6 +4838,12 @@ export interface LearningResourceSummary {
      * @memberof LearningResourceSummary
      */
     'url'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceSummary
+     */
+    'title': string;
 }
 /**
  * Serializer for LearningResourceTopic model
@@ -8843,6 +8849,30 @@ export interface VideoPlaylist {
      * @memberof VideoPlaylist
      */
     'video_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoPlaylist
+     */
+    'parent_learning_resource_id': number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoPlaylist
+     */
+    'parent_title': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoPlaylist
+     */
+    'parent_url': string | null;
+    /**
+     * Extract the course number(s) from the parent course, if any
+     * @type {Array<string>}
+     * @memberof VideoPlaylist
+     */
+    'parent_course_numbers': Array<string>;
 }
 /**
  * Serializer for the VideoPlaylist model

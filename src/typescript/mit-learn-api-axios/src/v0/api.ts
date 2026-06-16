@@ -279,93 +279,6 @@ export interface ChannelCounts {
 
 
 /**
- * Write serializer for Channel. Uses primary keys for referenced objects during requests, and delegates to ChannelSerializer for responses.
- * @export
- * @interface ChannelCreateRequest
- */
-export interface ChannelCreateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelCreateRequest
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelCreateRequest
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelCreateRequest
-     */
-    'public_description'?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ChannelCreateRequest
-     */
-    'sub_channels'?: Array<string>;
-    /**
-     * Learning path featured in this channel.
-     * @type {number}
-     * @memberof ChannelCreateRequest
-     */
-    'featured_list'?: number | null;
-    /**
-     * Learning paths in this channel.
-     * @type {Array<number>}
-     * @memberof ChannelCreateRequest
-     */
-    'lists'?: Array<number>;
-    /**
-     * 
-     * @type {File}
-     * @memberof ChannelCreateRequest
-     */
-    'avatar'?: File | null;
-    /**
-     * 
-     * @type {File}
-     * @memberof ChannelCreateRequest
-     */
-    'banner'?: File | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof ChannelCreateRequest
-     */
-    'about'?: any | null;
-    /**
-     * 
-     * @type {ChannelTypeEnum}
-     * @memberof ChannelCreateRequest
-     */
-    'channel_type': ChannelTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelCreateRequest
-     */
-    'search_filter'?: string;
-    /**
-     * 
-     * @type {ChannelTopicDetailRequest}
-     * @memberof ChannelCreateRequest
-     */
-    'topic_detail'?: ChannelTopicDetailRequest | null;
-    /**
-     * 
-     * @type {ChannelDepartmentDetailRequest}
-     * @memberof ChannelCreateRequest
-     */
-    'department_detail'?: ChannelDepartmentDetailRequest | null;
-}
-
-
-/**
  * Serializer for the ChannelDepartmentDetail model
  * @export
  * @interface ChannelDepartmentDetail
@@ -379,63 +292,6 @@ export interface ChannelDepartmentDetail {
     'department'?: string | null;
 }
 /**
- * Serializer for the ChannelDepartmentDetail model
- * @export
- * @interface ChannelDepartmentDetailRequest
- */
-export interface ChannelDepartmentDetailRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelDepartmentDetailRequest
-     */
-    'department'?: string | null;
-}
-/**
- * Serializer for moderators
- * @export
- * @interface ChannelModerator
- */
-export interface ChannelModerator {
-    /**
-     * Returns the name for the moderator
-     * @type {string}
-     * @memberof ChannelModerator
-     */
-    'moderator_name'?: string;
-    /**
-     * Get the email from the associated user
-     * @type {string}
-     * @memberof ChannelModerator
-     */
-    'email'?: string;
-    /**
-     * Get the full name of the associated user
-     * @type {string}
-     * @memberof ChannelModerator
-     */
-    'full_name': string;
-}
-/**
- * Serializer for moderators
- * @export
- * @interface ChannelModeratorRequest
- */
-export interface ChannelModeratorRequest {
-    /**
-     * Returns the name for the moderator
-     * @type {string}
-     * @memberof ChannelModeratorRequest
-     */
-    'moderator_name'?: string;
-    /**
-     * Get the email from the associated user
-     * @type {string}
-     * @memberof ChannelModeratorRequest
-     */
-    'email'?: string;
-}
-/**
  * Serializer for the ChannelTopicDetail model
  * @export
  * @interface ChannelTopicDetail
@@ -445,19 +301,6 @@ export interface ChannelTopicDetail {
      * 
      * @type {number}
      * @memberof ChannelTopicDetail
-     */
-    'topic'?: number | null;
-}
-/**
- * Serializer for the ChannelTopicDetail model
- * @export
- * @interface ChannelTopicDetailRequest
- */
-export interface ChannelTopicDetailRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof ChannelTopicDetailRequest
      */
     'topic'?: number | null;
 }
@@ -1398,7 +1241,7 @@ export interface DepartmentChannel {
      * @type {string}
      * @memberof DepartmentChannel
      */
-    'avatar'?: string | null;
+    'avatar': string | null;
     /**
      * Get the avatar image small URL
      * @type {string}
@@ -1416,13 +1259,7 @@ export interface DepartmentChannel {
      * @type {string}
      * @memberof DepartmentChannel
      */
-    'banner'?: string | null;
-    /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof DepartmentChannel
-     */
-    'is_moderator': boolean;
+    'banner': string | null;
     /**
      * 
      * @type {Array<LearningPathPreview>}
@@ -2750,85 +2587,6 @@ export interface LearningResourceOfferorDetail {
     'display_facet'?: boolean;
 }
 /**
- * Serializer for LearningResourceOfferor with all details
- * @export
- * @interface LearningResourceOfferorDetailRequest
- */
-export interface LearningResourceOfferorDetailRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'code': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'name': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'professional'?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'offerings'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'audience'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'formats'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'fee'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'certifications'?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'content_types'?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'more_information'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'value_prop'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LearningResourceOfferorDetailRequest
-     */
-    'display_facet'?: boolean;
-}
-/**
  * Serializer for LearningResourcePlatform
  * @export
  * @interface LearningResourcePlatform
@@ -3438,93 +3196,6 @@ export interface PaginatedFeedSourceList {
     'results': Array<FeedSource>;
 }
 /**
- * Similar to ChannelCreateSerializer, with read-only name
- * @export
- * @interface PatchedChannelWriteRequest
- */
-export interface PatchedChannelWriteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'public_description'?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'sub_channels'?: Array<string>;
-    /**
-     * Learning path featured in this channel.
-     * @type {number}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'featured_list'?: number | null;
-    /**
-     * Learning paths in this channel.
-     * @type {Array<number>}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'lists'?: Array<number>;
-    /**
-     * Get the avatar image URL
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'avatar'?: string | null;
-    /**
-     * Get the banner image URL
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'banner'?: string | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'about'?: any | null;
-    /**
-     * 
-     * @type {ChannelTypeEnum}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'channel_type'?: ChannelTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'search_filter'?: string;
-    /**
-     * 
-     * @type {ChannelTopicDetailRequest}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'topic_detail'?: ChannelTopicDetailRequest | null;
-    /**
-     * 
-     * @type {ChannelDepartmentDetailRequest}
-     * @memberof PatchedChannelWriteRequest
-     */
-    'department_detail'?: ChannelDepartmentDetailRequest | null;
-}
-
-
-/**
  * Serializer for Profile
  * @export
  * @interface PatchedProfileRequest
@@ -3682,7 +3353,7 @@ export interface PathwayChannel {
      * @type {string}
      * @memberof PathwayChannel
      */
-    'avatar'?: string | null;
+    'avatar': string | null;
     /**
      * Get the avatar image small URL
      * @type {string}
@@ -3700,13 +3371,7 @@ export interface PathwayChannel {
      * @type {string}
      * @memberof PathwayChannel
      */
-    'banner'?: string | null;
-    /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof PathwayChannel
-     */
-    'is_moderator': boolean;
+    'banner': string | null;
     /**
      * 
      * @type {Array<LearningPathPreview>}
@@ -5441,7 +5106,7 @@ export interface TopicChannel {
      * @type {string}
      * @memberof TopicChannel
      */
-    'avatar'?: string | null;
+    'avatar': string | null;
     /**
      * Get the avatar image small URL
      * @type {string}
@@ -5459,13 +5124,7 @@ export interface TopicChannel {
      * @type {string}
      * @memberof TopicChannel
      */
-    'banner'?: string | null;
-    /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof TopicChannel
-     */
-    'is_moderator': boolean;
+    'banner': string | null;
     /**
      * 
      * @type {Array<LearningPathPreview>}
@@ -5598,7 +5257,7 @@ export interface UnitChannel {
      * @type {string}
      * @memberof UnitChannel
      */
-    'avatar'?: string | null;
+    'avatar': string | null;
     /**
      * Get the avatar image small URL
      * @type {string}
@@ -5616,13 +5275,7 @@ export interface UnitChannel {
      * @type {string}
      * @memberof UnitChannel
      */
-    'banner'?: string | null;
-    /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof UnitChannel
-     */
-    'is_moderator': boolean;
+    'banner': string | null;
     /**
      * 
      * @type {Array<LearningPathPreview>}
@@ -5944,6 +5597,30 @@ export interface VideoPlaylist {
      * @memberof VideoPlaylist
      */
     'video_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoPlaylist
+     */
+    'parent_learning_resource_id': number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoPlaylist
+     */
+    'parent_title': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoPlaylist
+     */
+    'parent_url': string | null;
+    /**
+     * Extract the course number(s) from the parent course, if any
+     * @type {Array<string>}
+     * @memberof VideoPlaylist
+     */
+    'parent_course_numbers': Array<string>;
 }
 /**
  * Serializer for video playlist resources
@@ -6715,8 +6392,8 @@ export type WidgetTypeEnum = typeof WidgetTypeEnum[keyof typeof WidgetTypeEnum];
 export const ChannelsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * View for retrieving an individual channel by type and name
-         * @summary Channel Detail Lookup by channel type and name
+         * List channel counts by resource type.
+         * @summary Channel Counts by channel type
          * @param {string} channel_type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6749,77 +6426,7 @@ export const ChannelsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {ChannelCreateRequest} ChannelCreateRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsCreate: async (ChannelCreateRequest: ChannelCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'ChannelCreateRequest' is not null or undefined
-            assertParamExists('channelsCreate', 'ChannelCreateRequest', ChannelCreateRequest)
-            const localVarPath = `/api/v0/channels/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(ChannelCreateRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {number} id A unique integer value identifying this channel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsDestroy: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelsDestroy', 'id', id)
-            const localVarPath = `/api/v0/channels/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * List published channels.
          * @summary List
          * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;unit&#x60; - Unit * &#x60;pathway&#x60; - Pathway
          * @param {number} [limit] Number of results to return per page.
@@ -6864,155 +6471,7 @@ export const ChannelsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators Create
-         * @param {string} id 
-         * @param {ChannelModeratorRequest} [ChannelModeratorRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsCreate: async (id: string, ChannelModeratorRequest?: ChannelModeratorRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelsModeratorsCreate', 'id', id)
-            const localVarPath = `/api/v0/channels/{id}/moderators/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(ChannelModeratorRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Channel Moderators Destroy
-         * @param {string} id 
-         * @param {string} moderator_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsDestroy: async (id: string, moderator_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelsModeratorsDestroy', 'id', id)
-            // verify required parameter 'moderator_name' is not null or undefined
-            assertParamExists('channelsModeratorsDestroy', 'moderator_name', moderator_name)
-            const localVarPath = `/api/v0/channels/{id}/moderators/{moderator_name}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"moderator_name"}}`, encodeURIComponent(String(moderator_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators List
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsList: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelsModeratorsList', 'id', id)
-            const localVarPath = `/api/v0/channels/{id}/moderators/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {number} id A unique integer value identifying this channel.
-         * @param {PatchedChannelWriteRequest} [PatchedChannelWriteRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsPartialUpdate: async (id: number, PatchedChannelWriteRequest?: PatchedChannelWriteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('channelsPartialUpdate', 'id', id)
-            const localVarPath = `/api/v0/channels/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(PatchedChannelWriteRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * Retrieve a single channel by id.
          * @summary Retrieve
          * @param {number} id A unique integer value identifying this channel.
          * @param {*} [options] Override http request option.
@@ -7094,8 +6553,8 @@ export const ChannelsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChannelsApiAxiosParamCreator(configuration)
     return {
         /**
-         * View for retrieving an individual channel by type and name
-         * @summary Channel Detail Lookup by channel type and name
+         * List channel counts by resource type.
+         * @summary Channel Counts by channel type
          * @param {string} channel_type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7107,33 +6566,7 @@ export const ChannelsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {ChannelCreateRequest} ChannelCreateRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsCreate(ChannelCreateRequest: ChannelCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Channel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsCreate(ChannelCreateRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsCreate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {number} id A unique integer value identifying this channel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsDestroy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsDestroy(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsDestroy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * List published channels.
          * @summary List
          * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;unit&#x60; - Unit * &#x60;pathway&#x60; - Pathway
          * @param {number} [limit] Number of results to return per page.
@@ -7148,62 +6581,7 @@ export const ChannelsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators Create
-         * @param {string} id 
-         * @param {ChannelModeratorRequest} [ChannelModeratorRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsModeratorsCreate(id: string, ChannelModeratorRequest?: ChannelModeratorRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChannelModerator>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsCreate(id, ChannelModeratorRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsCreate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Channel Moderators Destroy
-         * @param {string} id 
-         * @param {string} moderator_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsModeratorsDestroy(id: string, moderator_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsDestroy(id, moderator_name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsDestroy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators List
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsModeratorsList(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ChannelModerator>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsList(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsList']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {number} id A unique integer value identifying this channel.
-         * @param {PatchedChannelWriteRequest} [PatchedChannelWriteRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async channelsPartialUpdate(id: number, PatchedChannelWriteRequest?: PatchedChannelWriteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Channel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsPartialUpdate(id, PatchedChannelWriteRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ChannelsApi.channelsPartialUpdate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * Retrieve a single channel by id.
          * @summary Retrieve
          * @param {number} id A unique integer value identifying this channel.
          * @param {*} [options] Override http request option.
@@ -7240,8 +6618,8 @@ export const ChannelsApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = ChannelsApiFp(configuration)
     return {
         /**
-         * View for retrieving an individual channel by type and name
-         * @summary Channel Detail Lookup by channel type and name
+         * List channel counts by resource type.
+         * @summary Channel Counts by channel type
          * @param {ChannelsApiChannelsCountsListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7250,27 +6628,7 @@ export const ChannelsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.channelsCountsList(requestParameters.channel_type, options).then((request) => request(axios, basePath));
         },
         /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {ChannelsApiChannelsCreateRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsCreate(requestParameters: ChannelsApiChannelsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<Channel> {
-            return localVarFp.channelsCreate(requestParameters.ChannelCreateRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {ChannelsApiChannelsDestroyRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsDestroy(requestParameters: ChannelsApiChannelsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.channelsDestroy(requestParameters.id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * List published channels.
          * @summary List
          * @param {ChannelsApiChannelsListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -7280,47 +6638,7 @@ export const ChannelsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.channelsList(requestParameters.channel_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
         },
         /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators Create
-         * @param {ChannelsApiChannelsModeratorsCreateRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsCreate(requestParameters: ChannelsApiChannelsModeratorsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChannelModerator> {
-            return localVarFp.channelsModeratorsCreate(requestParameters.id, requestParameters.ChannelModeratorRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Channel Moderators Destroy
-         * @param {ChannelsApiChannelsModeratorsDestroyRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsDestroy(requestParameters: ChannelsApiChannelsModeratorsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.channelsModeratorsDestroy(requestParameters.id, requestParameters.moderator_name, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Channel Moderators List
-         * @param {ChannelsApiChannelsModeratorsListRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsModeratorsList(requestParameters: ChannelsApiChannelsModeratorsListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<ChannelModerator>> {
-            return localVarFp.channelsModeratorsList(requestParameters.id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {ChannelsApiChannelsPartialUpdateRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        channelsPartialUpdate(requestParameters: ChannelsApiChannelsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<Channel> {
-            return localVarFp.channelsPartialUpdate(requestParameters.id, requestParameters.PatchedChannelWriteRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * Retrieve a single channel by id.
          * @summary Retrieve
          * @param {ChannelsApiChannelsRetrieveRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -7357,34 +6675,6 @@ export interface ChannelsApiChannelsCountsListRequest {
 }
 
 /**
- * Request parameters for channelsCreate operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsCreateRequest
- */
-export interface ChannelsApiChannelsCreateRequest {
-    /**
-     * 
-     * @type {ChannelCreateRequest}
-     * @memberof ChannelsApiChannelsCreate
-     */
-    readonly ChannelCreateRequest: ChannelCreateRequest
-}
-
-/**
- * Request parameters for channelsDestroy operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsDestroyRequest
- */
-export interface ChannelsApiChannelsDestroyRequest {
-    /**
-     * A unique integer value identifying this channel.
-     * @type {number}
-     * @memberof ChannelsApiChannelsDestroy
-     */
-    readonly id: number
-}
-
-/**
  * Request parameters for channelsList operation in ChannelsApi.
  * @export
  * @interface ChannelsApiChannelsListRequest
@@ -7410,83 +6700,6 @@ export interface ChannelsApiChannelsListRequest {
      * @memberof ChannelsApiChannelsList
      */
     readonly offset?: number
-}
-
-/**
- * Request parameters for channelsModeratorsCreate operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsModeratorsCreateRequest
- */
-export interface ChannelsApiChannelsModeratorsCreateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelsApiChannelsModeratorsCreate
-     */
-    readonly id: string
-
-    /**
-     * 
-     * @type {ChannelModeratorRequest}
-     * @memberof ChannelsApiChannelsModeratorsCreate
-     */
-    readonly ChannelModeratorRequest?: ChannelModeratorRequest
-}
-
-/**
- * Request parameters for channelsModeratorsDestroy operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsModeratorsDestroyRequest
- */
-export interface ChannelsApiChannelsModeratorsDestroyRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelsApiChannelsModeratorsDestroy
-     */
-    readonly id: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelsApiChannelsModeratorsDestroy
-     */
-    readonly moderator_name: string
-}
-
-/**
- * Request parameters for channelsModeratorsList operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsModeratorsListRequest
- */
-export interface ChannelsApiChannelsModeratorsListRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChannelsApiChannelsModeratorsList
-     */
-    readonly id: string
-}
-
-/**
- * Request parameters for channelsPartialUpdate operation in ChannelsApi.
- * @export
- * @interface ChannelsApiChannelsPartialUpdateRequest
- */
-export interface ChannelsApiChannelsPartialUpdateRequest {
-    /**
-     * A unique integer value identifying this channel.
-     * @type {number}
-     * @memberof ChannelsApiChannelsPartialUpdate
-     */
-    readonly id: number
-
-    /**
-     * 
-     * @type {PatchedChannelWriteRequest}
-     * @memberof ChannelsApiChannelsPartialUpdate
-     */
-    readonly PatchedChannelWriteRequest?: PatchedChannelWriteRequest
 }
 
 /**
@@ -7532,8 +6745,8 @@ export interface ChannelsApiChannelsTypeRetrieveRequest {
  */
 export class ChannelsApi extends BaseAPI {
     /**
-     * View for retrieving an individual channel by type and name
-     * @summary Channel Detail Lookup by channel type and name
+     * List channel counts by resource type.
+     * @summary Channel Counts by channel type
      * @param {ChannelsApiChannelsCountsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7544,31 +6757,7 @@ export class ChannelsApi extends BaseAPI {
     }
 
     /**
-     * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Create
-     * @param {ChannelsApiChannelsCreateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsCreate(requestParameters: ChannelsApiChannelsCreateRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsCreate(requestParameters.ChannelCreateRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Destroy
-     * @param {ChannelsApiChannelsDestroyRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsDestroy(requestParameters: ChannelsApiChannelsDestroyRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsDestroy(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * List published channels.
      * @summary List
      * @param {ChannelsApiChannelsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -7580,55 +6769,7 @@ export class ChannelsApi extends BaseAPI {
     }
 
     /**
-     * View for listing and adding moderators
-     * @summary Channel Moderators Create
-     * @param {ChannelsApiChannelsModeratorsCreateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsModeratorsCreate(requestParameters: ChannelsApiChannelsModeratorsCreateRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsModeratorsCreate(requestParameters.id, requestParameters.ChannelModeratorRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Remove the user from the moderator groups for this website
-     * @summary Channel Moderators Destroy
-     * @param {ChannelsApiChannelsModeratorsDestroyRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsModeratorsDestroy(requestParameters: ChannelsApiChannelsModeratorsDestroyRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsModeratorsDestroy(requestParameters.id, requestParameters.moderator_name, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * View for listing and adding moderators
-     * @summary Channel Moderators List
-     * @param {ChannelsApiChannelsModeratorsListRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsModeratorsList(requestParameters: ChannelsApiChannelsModeratorsListRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsModeratorsList(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Update
-     * @param {ChannelsApiChannelsPartialUpdateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelsApi
-     */
-    public channelsPartialUpdate(requestParameters: ChannelsApiChannelsPartialUpdateRequest, options?: RawAxiosRequestConfig) {
-        return ChannelsApiFp(this.configuration).channelsPartialUpdate(requestParameters.id, requestParameters.PatchedChannelWriteRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Channels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * Retrieve a single channel by id.
      * @summary Retrieve
      * @param {ChannelsApiChannelsRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
