@@ -4287,6 +4287,12 @@ export interface Profile {
     'profile_image_medium': string;
     /**
      * 
+     * @type {boolean}
+     * @memberof Profile
+     */
+    'email_optin'?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Profile
      */
