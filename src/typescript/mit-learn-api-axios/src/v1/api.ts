@@ -6515,6 +6515,12 @@ export interface PodcastEpisode {
     'podcasts': Array<number>;
     /**
      * 
+     * @type {Array<PodcastEpisodeParent>}
+     * @memberof PodcastEpisode
+     */
+    'parent_podcasts': Array<PodcastEpisodeParent>;
+    /**
+     * 
      * @type {string}
      * @memberof PodcastEpisode
      */
@@ -6543,6 +6549,31 @@ export interface PodcastEpisode {
      * @memberof PodcastEpisode
      */
     'rss'?: string | null;
+}
+/**
+ * Minimal parent-podcast summary embedded in an episode.
+ * @export
+ * @interface PodcastEpisodeParent
+ */
+export interface PodcastEpisodeParent {
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastEpisodeParent
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PodcastEpisodeParent
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PodcastEpisodeParent
+     */
+    'readable_id': string;
 }
 /**
  * Serializer for PodcastEpisode
