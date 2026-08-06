@@ -12,7 +12,7 @@ repos:
       - id: trailing-whitespace
         exclude: ^src/typescript/mit-learn-api-axios/src/v0|^src/typescript/mit-learn-api-axios/src/v1
       - id: end-of-file-fixer
-        exclude: .hbs$|^src/typescript/mit-learn-api-axios/src/v0|^src/typescript/mit-learn-api-axios/src/v1
+        exclude: '(\.hbs$|^src/typescript/mit-learn-api-axios/src/v[01]/)'
       - id: check-yaml
       - id: check-added-large-files
       - id: check-merge-conflict
