@@ -10,8 +10,9 @@ repos:
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        exclude: "^src/typescript/mit-learn-api-axios/src/v[01]/"
       - id: end-of-file-fixer
-        exclude: ".hbs$"
+        exclude: '(\.hbs$|^src/typescript/mit-learn-api-axios/src/v[01]/)'
       - id: check-yaml
       - id: check-added-large-files
       - id: check-merge-conflict
@@ -25,6 +26,7 @@ repos:
         args:
           - --no-config
           - --no-semi
+        exclude: ^src/typescript/mit-learn-api-axios/src/v0|^src/typescript/mit-learn-api-axios/src/v1
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.7.0-4
     hooks:
