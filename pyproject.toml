@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mit-learn-api-clients"
-version = "2026.8.17"
+version = "2026.8.19"
 description = ""
 authors = []
 readme = "README.md"
