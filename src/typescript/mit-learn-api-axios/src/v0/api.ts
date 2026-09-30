@@ -2415,7 +2415,7 @@ export interface WidgetListRequest {
     'widgets'?: Array<WidgetInstance> | null;
 }
 /**
- * * `Markdown` - Markdown * `URL` - URL * `RSS Feed` - RSS Feed * `People` - People
+ * * `Markdown` - Markdown * `URL` - URL * `People` - People
  */
 
 export const WidgetTypeEnum = {
@@ -2427,10 +2427,6 @@ export const WidgetTypeEnum = {
     * URL
     */
     Url: 'URL',
-    /**
-    * RSS Feed
-    */
-    RssFeed: 'RSS Feed',
     /**
     * People
     */
