@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 #
+# errexit stops at the first failed generate (the loop's status is otherwise
+# only the last one's, so a failed earlier config passed with its stale
+# client); pipefail also fails the run if find does.
+set -euo pipefail
 script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 script_parent_dir=$(dirname "$script_dir")
 find ${script_parent_dir} -regex ".*config/.*.yaml" -print0 | while IFS= read -r -d $'\0' cfile; do
