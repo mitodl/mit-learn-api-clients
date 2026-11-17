@@ -3705,13 +3705,13 @@ export const ArticlesApiAxiosParamCreator = function (configuration?: Configurat
          * Get a paginated list of website content items
          * @summary List
          * @param {ArticlesListContentTypeEnum} [content_type] Filter by content type  * &#x60;news&#x60; - News * &#x60;article&#x60; - Article
-         * @param {boolean} [draft] Filter to show only draft (unpublished) items
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {ArticlesListStatusEnum} [status] Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        articlesList: async (content_type?: ArticlesListContentTypeEnum, draft?: boolean, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        articlesList: async (content_type?: ArticlesListContentTypeEnum, limit?: number, offset?: number, status?: ArticlesListStatusEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/articles/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3728,16 +3728,16 @@ export const ArticlesApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['content_type'] = content_type;
             }
 
-            if (draft !== undefined) {
-                localVarQueryParameter['draft'] = draft;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -3874,14 +3874,14 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
          * Get a paginated list of website content items
          * @summary List
          * @param {ArticlesListContentTypeEnum} [content_type] Filter by content type  * &#x60;news&#x60; - News * &#x60;article&#x60; - Article
-         * @param {boolean} [draft] Filter to show only draft (unpublished) items
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {ArticlesListStatusEnum} [status] Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async articlesList(content_type?: ArticlesListContentTypeEnum, draft?: boolean, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebsiteContentList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.articlesList(content_type, draft, limit, offset, options);
+        async articlesList(content_type?: ArticlesListContentTypeEnum, limit?: number, offset?: number, status?: ArticlesListStatusEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebsiteContentList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.articlesList(content_type, limit, offset, status, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ArticlesApi.articlesList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3960,7 +3960,7 @@ export const ArticlesApiFactory = function (configuration?: Configuration, baseP
          * @throws {RequiredError}
          */
         articlesList(requestParameters: ArticlesApiArticlesListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedWebsiteContentList> {
-            return localVarFp.articlesList(requestParameters.content_type, requestParameters.draft, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
+            return localVarFp.articlesList(requestParameters.content_type, requestParameters.limit, requestParameters.offset, requestParameters.status, options).then((request) => request(axios, basePath));
         },
         /**
          * Update a content item
@@ -4022,11 +4022,6 @@ export interface ArticlesApiArticlesListRequest {
     readonly content_type?: ArticlesListContentTypeEnum
 
     /**
-     * Filter to show only draft (unpublished) items
-     */
-    readonly draft?: boolean
-
-    /**
      * Number of results to return per page.
      */
     readonly limit?: number
@@ -4035,6 +4030,11 @@ export interface ArticlesApiArticlesListRequest {
      * The initial index from which to return the results.
      */
     readonly offset?: number
+
+    /**
+     * Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
+     */
+    readonly status?: ArticlesListStatusEnum
 }
 
 /**
@@ -4104,7 +4104,7 @@ export class ArticlesApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public articlesList(requestParameters: ArticlesApiArticlesListRequest = {}, options?: RawAxiosRequestConfig) {
-        return ArticlesApiFp(this.configuration).articlesList(requestParameters.content_type, requestParameters.draft, requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+        return ArticlesApiFp(this.configuration).articlesList(requestParameters.content_type, requestParameters.limit, requestParameters.offset, requestParameters.status, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4135,6 +4135,12 @@ export const ArticlesListContentTypeEnum = {
     News: 'news',
 } as const;
 export type ArticlesListContentTypeEnum = typeof ArticlesListContentTypeEnum[keyof typeof ArticlesListContentTypeEnum];
+export const ArticlesListStatusEnum = {
+    Both: 'both',
+    Draft: 'draft',
+    Published: 'published',
+} as const;
+export type ArticlesListStatusEnum = typeof ArticlesListStatusEnum[keyof typeof ArticlesListStatusEnum];
 
 
 /**
@@ -18698,13 +18704,13 @@ export const WebsiteContentApiAxiosParamCreator = function (configuration?: Conf
          * Get a paginated list of website content items
          * @summary List
          * @param {WebsiteContentListContentTypeEnum} [content_type] Filter by content type  * &#x60;news&#x60; - News * &#x60;article&#x60; - Article
-         * @param {boolean} [draft] Filter to show only draft (unpublished) items
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {WebsiteContentListStatusEnum} [status] Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        websiteContentList: async (content_type?: WebsiteContentListContentTypeEnum, draft?: boolean, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        websiteContentList: async (content_type?: WebsiteContentListContentTypeEnum, limit?: number, offset?: number, status?: WebsiteContentListStatusEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/website_content/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -18721,16 +18727,16 @@ export const WebsiteContentApiAxiosParamCreator = function (configuration?: Conf
                 localVarQueryParameter['content_type'] = content_type;
             }
 
-            if (draft !== undefined) {
-                localVarQueryParameter['draft'] = draft;
-            }
-
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -18867,14 +18873,14 @@ export const WebsiteContentApiFp = function(configuration?: Configuration) {
          * Get a paginated list of website content items
          * @summary List
          * @param {WebsiteContentListContentTypeEnum} [content_type] Filter by content type  * &#x60;news&#x60; - News * &#x60;article&#x60; - Article
-         * @param {boolean} [draft] Filter to show only draft (unpublished) items
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {WebsiteContentListStatusEnum} [status] Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async websiteContentList(content_type?: WebsiteContentListContentTypeEnum, draft?: boolean, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebsiteContentList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.websiteContentList(content_type, draft, limit, offset, options);
+        async websiteContentList(content_type?: WebsiteContentListContentTypeEnum, limit?: number, offset?: number, status?: WebsiteContentListStatusEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWebsiteContentList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.websiteContentList(content_type, limit, offset, status, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebsiteContentApi.websiteContentList']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -18953,7 +18959,7 @@ export const WebsiteContentApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         websiteContentList(requestParameters: WebsiteContentApiWebsiteContentListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedWebsiteContentList> {
-            return localVarFp.websiteContentList(requestParameters.content_type, requestParameters.draft, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
+            return localVarFp.websiteContentList(requestParameters.content_type, requestParameters.limit, requestParameters.offset, requestParameters.status, options).then((request) => request(axios, basePath));
         },
         /**
          * Update a content item
@@ -19015,11 +19021,6 @@ export interface WebsiteContentApiWebsiteContentListRequest {
     readonly content_type?: WebsiteContentListContentTypeEnum
 
     /**
-     * Filter to show only draft (unpublished) items
-     */
-    readonly draft?: boolean
-
-    /**
      * Number of results to return per page.
      */
     readonly limit?: number
@@ -19028,6 +19029,11 @@ export interface WebsiteContentApiWebsiteContentListRequest {
      * The initial index from which to return the results.
      */
     readonly offset?: number
+
+    /**
+     * Filter by publish status. Defaults to published. Drafts are only returned to users who may edit website content; for anyone else, draft is always empty and both is the same as published.  * &#x60;published&#x60; - Published * &#x60;draft&#x60; - Draft * &#x60;both&#x60; - Both
+     */
+    readonly status?: WebsiteContentListStatusEnum
 }
 
 /**
@@ -19097,7 +19103,7 @@ export class WebsiteContentApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public websiteContentList(requestParameters: WebsiteContentApiWebsiteContentListRequest = {}, options?: RawAxiosRequestConfig) {
-        return WebsiteContentApiFp(this.configuration).websiteContentList(requestParameters.content_type, requestParameters.draft, requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+        return WebsiteContentApiFp(this.configuration).websiteContentList(requestParameters.content_type, requestParameters.limit, requestParameters.offset, requestParameters.status, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -19128,5 +19134,11 @@ export const WebsiteContentListContentTypeEnum = {
     News: 'news',
 } as const;
 export type WebsiteContentListContentTypeEnum = typeof WebsiteContentListContentTypeEnum[keyof typeof WebsiteContentListContentTypeEnum];
+export const WebsiteContentListStatusEnum = {
+    Both: 'both',
+    Draft: 'draft',
+    Published: 'published',
+} as const;
+export type WebsiteContentListStatusEnum = typeof WebsiteContentListStatusEnum[keyof typeof WebsiteContentListStatusEnum];
 
 
