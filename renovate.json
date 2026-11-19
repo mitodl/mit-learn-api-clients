@@ -1,4 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>mitodl/.github:renovate-config"]
+  "extends": ["local>mitodl/.github:renovate-config"],
+  "customManagers": [
+    {
+      "description": "The openapi-generator-cli image tag that scripts/generate.sh and mit-learn's generate-branch-client.sh run. Keep it at the publish pipeline's OPENAPI_GENERATOR_VERSION (ol-infrastructure src/bridge/lib/versions.py).",
+      "customType": "regex",
+      "managerFilePatterns": ["/^OPENAPI-GENERATOR-VERSION$/"],
+      "matchStrings": ["^(?<currentValue>v\\d+\\.\\d+\\.\\d+)\\s*$"],
+      "depNameTemplate": "openapi-generator-cli",
+      "packageNameTemplate": "openapitools/openapi-generator-cli",
+      "datasourceTemplate": "docker"
+    }
+  ]
 }
