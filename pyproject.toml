@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mit-learn-api-clients"
-version = "2026.1119.0"
+version = "2026.1123.0"
 description = ""
 authors = []
 readme = "README.md"
@@ -15,7 +15,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bumpver]
-current_version = "2026.1119.0"
+current_version = "2026.1123.0"
 # 2026.1109.0, then 2026.1109.1 for a second client the same day. Month and
 # zero-padded day share the minor so the patch can count the day's clients:
 # npm orders by semver, and the old YYYY.MM.DD[-INC0] made a second same-day
